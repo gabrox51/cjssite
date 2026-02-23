@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo | CJS Embalagens</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-text">CJS</span>
+                <span class="logo-sub">Soluções em Embalagens</span>
+            </a>
+            <nav class="nav">
+                <a href="index.html">Início</a>
+                <a href="index.html#sobre">Sobre</a>
+                <a href="catalogo.html" class="nav-active">Catálogo</a>
+                <a href="index.html#diferenciais">Diferenciais</a>
+                <a href="index.html#contato">Contato</a>
+            </nav>
+            <a href="https://wa.me/5511995535533" class="btn-header" target="_blank">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+                WhatsApp
+            </a>
+        </div>
+    </header>
+
+    <!-- Catálogo Page Header -->
+    <section class="catalogo-hero">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Nossos Produtos</span>
+                <h1>Catálogo de Embalagens</h1>
+                <p>Conheça nossa linha completa de embalagens para delivery</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catálogo Section -->
+    <section id="catalogo" class="catalogo catalogo-page">
+        <div class="container">
+            <!-- Filtros -->
+            <div class="filtros">
+                <button class="filtro active" data-filter="todos">Todos</button>
+                <button class="filtro" data-filter="hamburger">Hambúrguer</button>
+                <button class="filtro" data-filter="sushi">Sushi</button>
+                <button class="filtro" data-filter="diversos">Diversos</button>
+                <button class="filtro" data-filter="sacolas">Sacolas</button>
+            </div>
+
+            <!-- Produtos Grid -->
+            <div class="produtos-grid catalogo-grid">
+                <!-- Hambúrguer -->
+                <div class="produto-card" data-category="hamburger">
+                    <div class="produto-image carrossel">
+                        <div class="carrossel-inner">
+                            <img src="images/caixa-hamburguer.jpg" alt="Caixa Hambúrguer" class="carrossel-slide ativo" onclick="abrirImagem(this.src, this.alt)">
+                            <img src="images/caixa-hamburguer-2.jpg" alt="Caixa Hambúrguer" class="carrossel-slide" onclick="abrirImagem(this.src, this.alt)">
+                        </div>
+                        <button class="carrossel-btn carrossel-prev" onclick="mudarSlide(this, -1)">&#10094;</button>
+                        <button class="carrossel-btn carrossel-next" onclick="mudarSlide(this, 1)">&#10095;</button>
+                        <div class="carrossel-dots">
+                            <span class="dot ativo" onclick="irParaSlide(this, 0)"></span>
+                            <span class="dot" onclick="irParaSlide(this, 1)"></span>
+                        </div>
+                    </div>
+                    <div class="produto-info">
+                        <h3>Caixa Hambúrguer</h3>
+                        <p class="produto-dim">12,5 x 12,5 x 8,5 cm</p>
+                        <div class="produto-preco">
+                            <span class="preco">R$ 0,79</span>
+                            <span class="qtd">/ unidade</span>
+                        </div>
+                        <p class="produto-min">Mínimo: 200 unidades</p>
+                    </div>
+                </div>
+
+                <div class="produto-card" data-category="hamburger">
+                    <div class="produto-image">
+                        <img src="images/caixa-combo.jpg" alt="Caixa Combo" onerror="this.style.display='none'; this.parentElement.classList.add('sem-foto');" onclick="abrirImagem(this.src, this.alt)">
+                    </div>
+                    <div class="produto-info">
+                        <h3>Caixa Combo</h3>
+                        <p class="produto-dim">18 x 12 x 8,5 cm</p>
+                        <div class="produto-preco">
+                            <span class="preco">R$ 0,99</span>
+                            <span class="qtd">/ unidade</span>
+                        </div>
+                        <p class="produto-min">Mínimo: 200 unidades</p>
+                    </div>
+                </div>
+
+                <div class="produto-card" data-category="hamburger">
+                    <div class="produto-image">
+                        <img src="images/batata-cheddar.jpg" alt="Batata Cheddar" onerror="this.style.display='none'; this.parentElement.classList.add('sem-foto');" onclick="abrirImagem(this.src, this.alt)">
+                    </div>
+                    <div class="produto-info">
+                        <h3>Batata Cheddar</h3>
+                        <p class="produto-dim">18 x 10 x 6 cm</p>
+                        <div class="produto-preco">
+                            <span class="preco">R$ 0,79</span>
+                            <span class="qtd">/ unidade</span>
+                        </div>
+                        <p class="produto-min">Mínimo: 300 unidades</p>
+                    </div>
+                </div>
+
+                <div class="produto-card" data-category="hamburger">
+                    <div class="produto-image">
+                        <img src="images/batata-mc.jpg" alt="Caixa de Batata tipo McDonald's" onerror="this.style.display='none'; this.parentElement.classList.add('sem-foto');" onclick="abrirImagem(this.src, this.alt)">
+                    </div>
+                    <div class="produto-info">
+                        <h3>Caixa de Batata tipo McDonald's</h3>
+                        <div class="produto-preco">
+                            <span class="preco">R$ 0,35</span>
+                            <span class="qtd">/ unidade</span>
+                        </div>
+                        <p class="produto-min">Mínimo: 300 unidades</p>
+                    </div>
+                </div>
+
+                <!-- Sushi -->
+                <div class="produto-card" data-category="sushi">
+                    <div class="produto-image">
+                        <img src="images/sushi-pequena.jpg" alt="Caixa Sushi Pequena" onerror="this.style.display='none'; this.parentElement.classList.add('sem-foto');" onclick="abrirImagem(this.src, this.alt)">
+                    </div>
+                    <div class="produto-info">
+                        <h3>Caixa Sushi Pequena</h3>
+                        <p class="produto-dim">185 x 70 x 40 mm</p>
+                        <div class="produto-preco">
+                            <span class="preco">R$ 55,00</span>
+                            <span class="qtd">/ 300 un</span>
+                        </div>
+                        <p class="produto-min">Pacote com 300 unidades</p>
+                    </div>
+                </div>
+
+                <div class="produto-card" data-category="sushi">
+                    <div class="produto-image">
+                        <img src="images/sushi-media.jpg" alt="Caixa Sushi Média" onerror="this.style.display='none'; this.parentElement.classList.add('sem-foto');" onclick="abrirImagem(this.src, this.alt)">
+                    </div>
+                    <div class="produto-info">
+                        <h3>Caixa Sushi Média</h3>
+                        <p class="produto-dim">235 x 135 x 40 mm</p>
+                        <div class="produto-preco">
+                            <span class="preco">R$ 69,00</span>
+                            <span class="qtd">/ 300 un</span>
+                        </div>
+                        <p class="produto-min">Pacote com 300 unidades</p>
+                    </div>
+                </div>
+
+                <div class="produto-card" data-category="sushi">
+                    <div class="produto-image carrossel">
+                        <div class="carrossel-inner">
+                            <img src="images/sushi-grande.jpg" alt="Caixa Sushi Grande" class="carrossel-slide ativo" onclick="abrirImagem(this.src, this.alt)">
+                            <img src="images/sushi-grande-2.jpg" alt="Caixa Sushi Grande" class="carrossel-slide" onclick="abrirImagem(this.src, this.alt)">
+                        </div>
+                        <button class="carrossel-btn carrossel-prev" onclick="mudarSlide(this, -1)">&#10094;</button>
+                        <button class="carrossel-btn carrossel-next" onclick="mudarSlide(this, 1)">&#10095;</button>
+                        <div class="carrossel-dots">
+                            <span class="dot ativo" onclick="irParaSlide(this, 0)"></span>
+                            <span class="dot" onclick="irParaSlide(this, 1)"></span>
+                        </div>
+                    </div>
+                    <div class="produto-info">
+                        <h3>Caixa Sushi Grande</h3>
+                        <p class="produto-dim">230 x 175 x 40 mm</p>
+                        <div class="produto-preco">
+                            <span class="preco">R$ 80,00</span>
+                            <span class="qtd">/ 300 un</span>
+                        </div>
+                        <p class="produto-min">Pacote com 300 unidades</p>
+                    </div>
+                </div>
+
+                <div class="produto-card" data-category="sushi">
+                    <div class="produto-image">
+                        <img src="images/temaki.jpg" alt="Caixa Temaki" onerror="this.style.display='none'; this.parentElement.classList.add('sem-foto');" onclick="abrirImagem(this.src, this.alt)">
+                    </div>
+                    <div class="produto-info">
+                        <h3>Caixa Temaki</h3>
+                        <p class="produto-dim">Tamanho padrão</p>
+                        <div class="produto-preco">
+                            <span class="preco">R$ 0,95</span>
+                            <span class="qtd">/ unidade</span>
+                        </div>
+                        <p class="produto-min">Mínimo: 300 unidades</p>
+                    </div>
+                </div>
+
+                <!-- Diversos -->
+                <div class="produto-card" data-category="diversos">
+                    <div class="produto-image">
+                        <img src="images/yakisoba-1l.jpg" alt="Yakisoba 1 Litro" onerror="this.style.display='none'; this.parentElement.classList.add('sem-foto');" onclick="abrirImagem(this.src, this.alt)">
+                    </div>
+                    <div class="produto-info">
+                        <h3>Yakisoba 1 Litro</h3>
+                        <p class="produto-dim">8,3 x 8,3 x 12 cm</p>
+                        <div class="produto-preco">
+                            <span class="preco">R$ 1,70</span>
+                            <span class="qtd">/ unidade</span>
+                        </div>
+                        <p class="produto-min">Mínimo: 200 unidades</p>
+                    </div>
+                </div>
+
+                <div class="produto-card" data-category="diversos">
+                    <div class="produto-image">
+                        <img src="images/yakisoba-500ml.jpg" alt="Yakisoba 500ml" onerror="this.style.display='none'; this.parentElement.classList.add('sem-foto');" onclick="abrirImagem(this.src, this.alt)">
+                    </div>
+                    <div class="produto-info">
+                        <h3>Yakisoba 500ml</h3>
+                        <p class="produto-dim">7,3 x 7,3 x 8,3 cm</p>
+                        <div class="produto-preco">
+                            <span class="preco">R$ 1,20</span>
+                            <span class="qtd">/ unidade</span>
+                        </div>
+                        <p class="produto-min">Mínimo: 300 unidades</p>
+                    </div>
+                </div>
+
+                <!-- Sacos Kraft (sem alça) -->
+                <div class="produto-card" data-category="sacolas">
+                    <div class="produto-image">
+                        <img src="images/saco-kraft-18.jpg" alt="Saco Kraft nº 18" onerror="this.style.display='none'; this.parentElement.classList.add('sem-foto');" onclick="abrirImagem(this.src, this.alt)">
+                    </div>
+                    <div class="produto-info">
+                        <h3>Saco Kraft nº 18</h3>
+                        <p class="produto-dim">18 x 10 x 26 cm</p>
+                        <div class="produto-preco">
+                            <span class="preco">R$ 55,00</span>
+                            <span class="qtd">/ 100 un</span>
+                        </div>
+                        <p class="produto-min">Pacote com 100 unidades</p>
+                    </div>
+                </div>
+
+                <div class="produto-card" data-category="sacolas">
+                    <div class="produto-image">
+                        <img src="images/saco-kraft-20.jpg" alt="Saco Kraft nº 20" onerror="this.style.display='none'; this.parentElement.classList.add('sem-foto');" onclick="abrirImagem(this.src, this.alt)">
+                    </div>
+                    <div class="produto-info">
+                        <h3>Saco Kraft nº 20</h3>
+                        <p class="produto-dim">20 x 11 x 34 cm</p>
+                        <div class="produto-preco">
+                            <span class="preco">R$ 60,00</span>
+                            <span class="qtd">/ 100 un</span>
+                        </div>
+                        <p class="produto-min">Pacote com 100 unidades</p>
+                    </div>
+                </div>
+
+                <div class="produto-card" data-category="sacolas">
+                    <div class="produto-image">
+                        <img src="images/saco-kraft-25.jpg" alt="Saco Kraft nº 25" onerror="this.style.display='none'; this.parentElement.classList.add('sem-foto');" onclick="abrirImagem(this.src, this.alt)">
+                    </div>
+                    <div class="produto-info">
+                        <h3>Saco Kraft nº 25</h3>
+                        <p class="produto-dim">25 x 14 x 34 cm</p>
+                        <div class="produto-preco">
+                            <span class="preco">R$ 70,00</span>
+                            <span class="qtd">/ 100 un</span>
+                        </div>
+                        <p class="produto-min">Pacote com 100 unidades</p>
+                    </div>
+                </div>
+
+                <div class="produto-card" data-category="sacolas">
+                    <div class="produto-image">
+                        <img src="images/saco-kraft-30.jpg" alt="Saco Kraft nº 30" onerror="this.style.display='none'; this.parentElement.classList.add('sem-foto');" onclick="abrirImagem(this.src, this.alt)">
+                    </div>
+                    <div class="produto-info">
+                        <h3>Saco Kraft nº 30</h3>
+                        <p class="produto-dim">30 x 19 x 32 cm</p>
+                        <div class="produto-preco">
+                            <span class="preco">R$ 80,00</span>
+                            <span class="qtd">/ 100 un</span>
+                        </div>
+                        <p class="produto-min">Pacote com 100 unidades</p>
+                    </div>
+                </div>
+
+                <!-- Sacolas Kraft (com alça) -->
+                <div class="produto-card" data-category="sacolas">
+                    <div class="produto-image">
+                        <img src="images/sacola-kraft-18.jpg" alt="Sacola Kraft nº 18" onerror="this.style.display='none'; this.parentElement.classList.add('sem-foto');" onclick="abrirImagem(this.src, this.alt)">
+                    </div>
+                    <div class="produto-info">
+                        <h3>Sacola Kraft nº 18</h3>
+                        <p class="produto-dim">18 x 10 x 26 cm</p>
+                        <div class="produto-preco">
+                            <span class="preco">R$ 70,00</span>
+                            <span class="qtd">/ 100 un</span>
+                        </div>
+                        <p class="produto-min">Pacote com 100 unidades</p>
+                    </div>
+                </div>
+
+                <div class="produto-card" data-category="sacolas">
+                    <div class="produto-image">
+                        <img src="images/sacola-kraft-20.jpg" alt="Sacola Kraft nº 20" onerror="this.style.display='none'; this.parentElement.classList.add('sem-foto');" onclick="abrirImagem(this.src, this.alt)">
+                    </div>
+                    <div class="produto-info">
+                        <h3>Sacola Kraft nº 20</h3>
+                        <p class="produto-dim">20 x 11 x 34 cm</p>
+                        <div class="produto-preco">
+                            <span class="preco">R$ 80,00</span>
+                            <span class="qtd">/ 100 un</span>
+                        </div>
+                        <p class="produto-min">Pacote com 100 unidades</p>
+                    </div>
+                </div>
+
+                <div class="produto-card" data-category="sacolas">
+                    <div class="produto-image">
+                        <img src="images/sacola-kraft-25.jpg" alt="Sacola Kraft nº 25" onerror="this.style.display='none'; this.parentElement.classList.add('sem-foto');" onclick="abrirImagem(this.src, this.alt)">
+                    </div>
+                    <div class="produto-info">
+                        <h3>Sacola Kraft nº 25</h3>
+                        <p class="produto-dim">25 x 14 x 34 cm</p>
+                        <div class="produto-preco">
+                            <span class="preco">R$ 90,00</span>
+                            <span class="qtd">/ 100 un</span>
+                        </div>
+                        <p class="produto-min">Pacote com 100 unidades</p>
+                    </div>
+                </div>
+
+                <div class="produto-card" data-category="sacolas">
+                    <div class="produto-image">
+                        <img src="images/sacola-kraft-30.jpg" alt="Sacola Kraft nº 30" onerror="this.style.display='none'; this.parentElement.classList.add('sem-foto');" onclick="abrirImagem(this.src, this.alt)">
+                    </div>
+                    <div class="produto-info">
+                        <h3>Sacola Kraft nº 30</h3>
+                        <p class="produto-dim">30 x 19 x 32 cm</p>
+                        <div class="produto-preco">
+                            <span class="preco">R$ 99,00</span>
+                            <span class="qtd">/ 100 un</span>
+                        </div>
+                        <p class="produto-min">Pacote com 100 unidades</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="catalogo-cta">
+                <p>Precisa de embalagens personalizadas?</p>
+                <a href="https://wa.me/5511995535533?text=Olá! Gostaria de um orçamento para embalagens personalizadas." class="btn btn-primary" target="_blank">Solicitar Orçamento</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox" onclick="fecharImagem()">
+        <span class="lightbox-fechar">&times;</span>
+        <button id="lightbox-prev" class="lightbox-nav lightbox-nav-prev" onclick="event.stopPropagation(); lightboxNav(-1)">&#10094;</button>
+        <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()">
+        <button id="lightbox-next" class="lightbox-nav lightbox-nav-next" onclick="event.stopPropagation(); lightboxNav(1)">&#10095;</button>
+        <p id="lightbox-legenda"></p>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-text">CJS</span>
+                    <p>Soluções em Embalagens</p>
+                    <p class="footer-copy">&copy; 2017-2026 CJS Soluções Gráficas.<br>Todos os direitos reservados.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Links Rápidos</h4>
+                    <a href="index.html">Início</a>
+                    <a href="index.html#sobre">Sobre</a>
+                    <a href="catalogo.html">Catálogo</a>
+                    <a href="index.html#contato">Contato</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Produtos</h4>
+                    <a href="catalogo.html">Caixas Hambúrguer</a>
+                    <a href="catalogo.html">Caixas Sushi</a>
+                    <a href="catalogo.html">Yakisoba</a>
+                    <a href="catalogo.html">Sacolas Kraft</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
