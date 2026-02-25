@@ -153,8 +153,17 @@
                 </div>
 
                 <div class="produto-card" data-category="sushi">
-                    <div class="produto-image">
-                        <img src="images/sushi-media.jpg" alt="Caixa Sushi Média" onerror="this.style.display='none'; this.parentElement.classList.add('sem-foto');" onclick="abrirImagem(this.src, this.alt)">
+                    <div class="produto-image carrossel">
+                        <div class="carrossel-inner">
+                            <img src="images/sushi-media.jpg" alt="Caixa Sushi Média" class="carrossel-slide ativo" onclick="abrirImagem(this.src, this.alt)">
+                            <img src="images/1771959123217.png" alt="Caixa Sushi Média" class="carrossel-slide" onclick="abrirImagem(this.src, this.alt)">
+                        </div>
+                        <button class="carrossel-btn carrossel-prev" onclick="mudarSlide(this, -1)">&#10094;</button>
+                        <button class="carrossel-btn carrossel-next" onclick="mudarSlide(this, 1)">&#10095;</button>
+                        <div class="carrossel-dots">
+                            <span class="dot ativo" onclick="irParaSlide(this, 0)"></span>
+                            <span class="dot" onclick="irParaSlide(this, 1)"></span>
+                        </div>
                     </div>
                     <div class="produto-info">
                         <h3>Caixa Sushi Média</h3>
