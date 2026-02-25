@@ -68,7 +68,70 @@ document.addEventListener('DOMContentLoaded', function() {
         card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(card);
     });
+
+    // Swipe nos carrosséis de produtos
+    inicializarSwipeCarrosseis();
+
+    // Swipe no lightbox
+    inicializarSwipeLightbox();
 });
+
+// === SWIPE PARA CARROSSÉIS DE PRODUTOS ===
+function inicializarSwipeCarrosseis() {
+    document.querySelectorAll('.carrossel').forEach(function(carrossel) {
+        var touchStartX = 0;
+        var touchEndX = 0;
+        var minSwipe = 40; // distância mínima em px para considerar swipe
+
+        carrossel.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        carrossel.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            var diff = touchStartX - touchEndX;
+
+            if (Math.abs(diff) > minSwipe) {
+                var slides = carrossel.querySelectorAll('.carrossel-slide');
+                var dots = carrossel.querySelectorAll('.dot');
+                var atual = 0;
+                slides.forEach(function(s, i) { if (s.classList.contains('ativo')) atual = i; });
+
+                var direcao = diff > 0 ? 1 : -1; // swipe esquerda = próximo, swipe direita = anterior
+
+                slides[atual].classList.remove('ativo');
+                dots[atual].classList.remove('ativo');
+                atual = (atual + direcao + slides.length) % slides.length;
+                slides[atual].classList.add('ativo');
+                dots[atual].classList.add('ativo');
+            }
+        }, { passive: true });
+    });
+}
+
+// === SWIPE PARA LIGHTBOX ===
+function inicializarSwipeLightbox() {
+    var lightbox = document.getElementById('lightbox');
+    if (!lightbox) return;
+
+    var touchStartX = 0;
+    var touchEndX = 0;
+    var minSwipe = 40;
+
+    lightbox.addEventListener('touchstart', function(e) {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    lightbox.addEventListener('touchend', function(e) {
+        touchEndX = e.changedTouches[0].screenX;
+        var diff = touchStartX - touchEndX;
+
+        if (Math.abs(diff) > minSwipe && lightboxImagens.length > 1) {
+            var direcao = diff > 0 ? 1 : -1;
+            lightboxNav(direcao);
+        }
+    }, { passive: true });
+}
 
 // Carrossel de imagens
 function mudarSlide(btn, direcao) {
