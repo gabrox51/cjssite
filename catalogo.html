@@ -1,425 +1,1449 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo | CJS Embalagens</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8" />
+<meta name="google-site-verification" content="9Aw-r-V0gSyJGMc-vLsbB5BFwyAD_dFwhqGiyd9nMqw" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17972588049"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-17972588049');
+  gtag('config', 'G-SWR4RMKD9Q');
+</script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Catálogo | CJS Embalagens — Embalagens para Delivery ABC Paulista</title>
+<meta name="description" content="Catálogo completo de embalagens para delivery: caixas de hambúrguer, sushi, yakisoba, sacolas kraft. Pedido mínimo acessível, entrega para todo o Brasil." />
+<meta name="robots" content="index, follow" />
+<meta name="author" content="CJS Embalagens" />
+<link rel="canonical" href="https://cjsembalagens.com.br/catalogo.html" />
+<meta property="og:title" content="Catálogo | CJS Embalagens" />
+<meta property="og:description" content="Catálogo completo de embalagens para delivery com preços e pedido mínimo acessível." />
+<meta property="og:url" content="https://cjsembalagens.com.br/catalogo.html" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="pt_BR" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --kraft-50: #faf6ef;
+    --kraft-100: #f2ebdc;
+    --kraft-200: #e6d9be;
+    --kraft-300: #d4be93;
+    --kraft-400: #b89a6a;
+    --kraft-500: #8f6f42;
+    --kraft-600: #6b5028;
+    --kraft-700: #3d2d14;
+
+    --leaf-50: #f0f5ee;
+    --leaf-100: #d9e6d3;
+    --leaf-300: #86a878;
+    --leaf-500: #3d6b2d;
+    --leaf-600: #2d5020;
+    --leaf-700: #1f3816;
+    --leaf-800: #12230d;
+
+    --ink: #1a1a1a;
+    --ink-soft: #4a4a4a;
+    --paper: #faf6ef;
+    --cream: #f5efe1;
+    --accent: #d94e1f;
+
+    --font-display: 'Fraunces', serif;
+    --font-body: 'Inter Tight', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  body {
+    font-family: var(--font-body);
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.5;
+    overflow-x: hidden;
+    font-feature-settings: "ss01", "cv11";
+  }
+  ::selection { background: var(--leaf-500); color: var(--paper); }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+  /* Grain */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.03;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* NAV */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 16px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(250, 246, 239, 0.85);
+    backdrop-filter: blur(20px) saturate(1.2);
+    -webkit-backdrop-filter: blur(20px) saturate(1.2);
+    border-bottom: 1px solid rgba(26, 26, 26, 0.06);
+    transition: padding 0.3s;
+  }
+  .nav__logo {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .nav__logo span {
+    font-size: 10px;
+    font-family: var(--font-mono);
+    opacity: 0.6;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .nav__links {
+    display: flex;
+    gap: 36px;
+    font-size: 13.5px;
+  }
+  .nav__links a {
+    position: relative;
+    transition: opacity 0.3s;
+  }
+  .nav__links a.active { color: var(--leaf-600); }
+  .nav__links a::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: -4px;
+    width: 0; height: 1px;
+    background: currentColor;
+    transition: width 0.3s var(--ease-out-quart);
+  }
+  .nav__links a:hover::after,
+  .nav__links a.active::after { width: 100%; }
+
+  .nav__cta {
+    font-size: 13px;
+    padding: 10px 20px;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .nav__cta:hover {
+    background: var(--leaf-800);
+    color: var(--paper);
+    border-color: var(--leaf-800);
+  }
+
+  @media (max-width: 900px) {
+    .nav { padding: 14px 22px; }
+    .nav__links { display: none; }
+  }
+
+  /* HERO CATALOGO */
+  .cat-hero {
+    padding: 180px 40px 80px;
+    background: var(--leaf-800);
+    color: var(--paper);
+    position: relative;
+    overflow: hidden;
+  }
+  .cat-hero__bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 20% 0%, rgba(61, 107, 45, 0.5), transparent 60%),
+      radial-gradient(ellipse 60% 80% at 100% 100%, rgba(212, 190, 147, 0.12), transparent 50%);
+    pointer-events: none;
+  }
+  .cat-hero__grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(212, 190, 147, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212, 190, 147, 0.04) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+
+  .cat-hero__inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .cat-hero__meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--kraft-300);
+    margin-bottom: 28px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .cat-hero__meta::before {
+    content: '';
+    width: 32px; height: 1px;
+    background: var(--kraft-300);
+  }
+
+  .cat-hero__title {
+    font-family: var(--font-display);
+    font-size: clamp(48px, 9vw, 132px);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    font-variation-settings: "opsz" 144;
+    margin-bottom: 28px;
+  }
+  .cat-hero__title em {
+    font-style: italic;
+    color: var(--kraft-300);
+    font-weight: 300;
+  }
+
+  .cat-hero__sub {
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.5;
+    color: rgba(250, 246, 239, 0.7);
+    max-width: 520px;
+  }
+
+  .cat-hero__info {
+    display: flex;
+    gap: 60px;
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(212, 190, 147, 0.2);
+    flex-wrap: wrap;
+  }
+  .cat-hero__info-item {
+    font-size: 13px;
+    color: rgba(250, 246, 239, 0.5);
+    font-family: var(--font-mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .cat-hero__info-item strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--kraft-300);
+    text-transform: none;
+    letter-spacing: -0.01em;
+    margin-bottom: 2px;
+    font-style: italic;
+  }
+
+  @media (max-width: 768px) {
+    .cat-hero { padding: 120px 22px 60px; }
+    .cat-hero__info { gap: 30px; }
+  }
+
+  /* FILTROS */
+  .filter-bar {
+    position: sticky;
+    top: 60px;
+    z-index: 50;
+    background: rgba(250, 246, 239, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--kraft-200);
+    padding: 20px 40px;
+  }
+  .filter-bar__inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .filter-bar__label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--kraft-500);
+  }
+  .filter-group {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .filter-btn {
+    padding: 9px 18px;
+    border-radius: 999px;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    border: 1px solid var(--kraft-200);
+    transition: all 0.3s var(--ease-out-quart);
+    background: transparent;
+  }
+  .filter-btn:hover {
+    border-color: var(--leaf-600);
+    color: var(--leaf-700);
+  }
+  .filter-btn.active {
+    background: var(--leaf-800);
+    color: var(--kraft-300);
+    border-color: var(--leaf-800);
+  }
+  .filter-count {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--kraft-500);
+    letter-spacing: 0.1em;
+  }
+
+  @media (max-width: 768px) {
+    .filter-bar { padding: 16px 22px; top: 58px; }
+    .filter-bar__label { display: none; }
+    .filter-btn { padding: 8px 14px; font-size: 12.5px; }
+  }
+
+  /* GRID PRODUTOS */
+  .catalogo {
+    padding: 80px 40px 120px;
+    background: var(--paper);
+  }
+  .catalogo__inner {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .produtos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  .produto {
+    background: var(--paper);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.4s var(--ease-out-quart), box-shadow 0.4s var(--ease-out-quart), border-color 0.4s var(--ease-out-quart);
+    position: relative;
+    overflow: hidden;
+    animation: fadeUp 0.6s var(--ease-out-expo) backwards;
+    border: 1px solid var(--kraft-200);
+    border-radius: 4px;
+  }
+  .produto.hidden {
+    display: none;
+  }
+  .produto:hover {
+    transform: translateY(-4px);
+    border-color: var(--leaf-500);
+    box-shadow: 0 20px 40px -20px rgba(61, 45, 20, 0.18);
+  }
+
+  .produto__image {
+    aspect-ratio: 4/3;
+    background: linear-gradient(135deg, var(--kraft-100), var(--kraft-200));
+    position: relative;
+    overflow: hidden;
+  }
+  .produto__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s var(--ease-out-quart);
+    cursor: zoom-in;
+  }
+  .produto:hover .produto__image img {
+    transform: scale(1.05);
+  }
+
+  /* Placeholder quando imagem falha */
+  .produto__image.sem-foto {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .produto__image.sem-foto::after {
+    content: '📦';
+    font-size: 64px;
+    opacity: 0.35;
+  }
+  .produto__image.sem-foto img { display: none; }
+
+  /* Carrossel */
+  .carrossel {
+    position: relative;
+  }
+  .carrossel-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  .carrossel-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.5s var(--ease-out-quart);
+    pointer-events: none;
+  }
+  .carrossel-slide.ativo {
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+  }
+  .carrossel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: rgba(250, 246, 239, 0.9);
+    color: var(--leaf-800);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    z-index: 3;
+    opacity: 0;
+    transition: all 0.3s;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .produto:hover .carrossel-btn { opacity: 1; }
+  .carrossel-btn:hover { background: var(--leaf-800); color: var(--kraft-300); }
+  .carrossel-prev { left: 12px; }
+  .carrossel-next { right: 12px; }
+  .carrossel-dots {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+    z-index: 3;
+  }
+  .carrossel-dots .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(250, 246, 239, 0.5);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .carrossel-dots .dot.ativo {
+    background: var(--paper);
+    width: 20px;
+    border-radius: 3px;
+  }
+
+  /* Badge categoria */
+  .produto__cat {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--leaf-800);
+    background: rgba(250, 246, 239, 0.9);
+    padding: 6px 12px;
+    border-radius: 999px;
+    z-index: 2;
+    backdrop-filter: blur(8px);
+  }
+
+  /* Info */
+  .produto__info {
+    padding: 28px 28px 32px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .produto__name {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--leaf-800);
+    margin-bottom: 6px;
+  }
+  .produto__dim {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--kraft-500);
+    margin-bottom: 22px;
+  }
+  .produto__preco-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--kraft-300);
+    margin-top: auto;
+  }
+  .produto__preco {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+  }
+  .produto__preco-val {
+    font-family: var(--font-display);
+    font-size: 30px;
+    font-weight: 400;
+    color: var(--leaf-800);
+    letter-spacing: -0.02em;
+    font-variation-settings: "opsz" 144;
+  }
+  .produto__preco-un {
+    font-size: 12px;
+    color: var(--ink-soft);
+    font-weight: 300;
+  }
+  .produto__min {
+    font-size: 11.5px;
+    color: var(--kraft-500);
+    text-align: right;
+    line-height: 1.3;
+  }
+
+  @media (max-width: 1100px) {
+    .produtos-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .catalogo { padding: 60px 22px 80px; }
+  }
+  @media (max-width: 600px) {
+    .produtos-grid { grid-template-columns: 1fr; gap: 18px; }
+    .produto__info { padding: 24px; }
+  }
+
+  /* CTA final */
+  .catalogo-cta {
+    margin-top: 100px;
+    padding: 80px 40px;
+    background: var(--leaf-800);
+    color: var(--paper);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: 2px;
+  }
+  .catalogo-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 100% at 50% 0%, rgba(212, 190, 147, 0.12), transparent);
+  }
+  .catalogo-cta__inner {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .catalogo-cta__tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--kraft-300);
+    margin-bottom: 24px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .catalogo-cta__tag::before,
+  .catalogo-cta__tag::after {
+    content: '';
+    width: 28px; height: 1px;
+    background: var(--kraft-300);
+  }
+  .catalogo-cta__heading {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 5vw, 54px);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    margin-bottom: 16px;
+  }
+  .catalogo-cta__heading em {
+    font-style: italic;
+    color: var(--kraft-300);
+    font-weight: 300;
+  }
+  .catalogo-cta__desc {
+    font-size: 16px;
+    color: rgba(250, 246, 239, 0.7);
+    font-weight: 300;
+    margin-bottom: 36px;
+  }
+  .catalogo-cta__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--kraft-300);
+    color: var(--leaf-800);
+    padding: 18px 36px;
+    border-radius: 999px;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.4s var(--ease-out-quart);
+  }
+  .catalogo-cta__btn:hover {
+    background: var(--paper);
+    transform: translateY(-3px);
+    box-shadow: 0 24px 48px -16px rgba(0, 0, 0, 0.3);
+  }
+  .catalogo-cta__btn svg { transition: transform 0.4s; }
+  .catalogo-cta__btn:hover svg { transform: rotate(12deg); }
+
+  @media (max-width: 768px) {
+    .catalogo-cta { padding: 60px 24px; margin-top: 60px; }
+  }
+
+  /* LIGHTBOX */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: rgba(18, 35, 13, 0.96);
+    backdrop-filter: blur(8px);
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    cursor: zoom-out;
+    animation: fadeBox 0.3s;
+  }
+  .lightbox.ativo { display: flex; }
+  .lightbox img {
+    max-width: 90%;
+    max-height: 80vh;
+    border-radius: 4px;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.4);
+  }
+  .lightbox-fechar {
+    position: absolute;
+    top: 28px; right: 32px;
+    font-size: 40px;
+    color: var(--kraft-300);
+    font-weight: 300;
+    cursor: pointer;
+    line-height: 1;
+    transition: transform 0.3s;
+  }
+  .lightbox-fechar:hover { transform: rotate(90deg); color: var(--paper); }
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: rgba(250, 246, 239, 0.1);
+    color: var(--kraft-300);
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  .lightbox-nav:hover { background: var(--kraft-300); color: var(--leaf-800); }
+  .lightbox-nav-prev { left: 30px; }
+  .lightbox-nav-next { right: 30px; }
+  #lightbox-legenda {
+    position: absolute;
+    bottom: 30px; left: 50%;
+    transform: translateX(-50%);
+    color: var(--kraft-300);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 17px;
+  }
+
+  /* FOOTER */
+  .footer {
+    background: var(--leaf-800);
+    color: var(--paper);
+    padding: 80px 40px 40px;
+  }
+  .footer__inner {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .footer__top {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 60px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid rgba(212, 190, 147, 0.15);
+  }
+  .footer__brand {
+    font-family: var(--font-display);
+    font-size: 80px;
+    font-weight: 400;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    color: var(--kraft-300);
+    margin-bottom: 20px;
+    font-variation-settings: "opsz" 144;
+  }
+  .footer__tagline {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 18px;
+    color: rgba(250, 246, 239, 0.6);
+    font-weight: 300;
+    max-width: 280px;
+  }
+  .footer__col h4 {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--kraft-300);
+    font-weight: 500;
+    margin-bottom: 24px;
+  }
+  .footer__col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .footer__col a {
+    font-size: 14.5px;
+    color: rgba(250, 246, 239, 0.75);
+    font-weight: 300;
+    transition: color 0.3s;
+  }
+  .footer__col a:hover { color: var(--kraft-300); }
+  .footer__bottom {
+    padding-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: rgba(250, 246, 239, 0.4);
+    text-transform: uppercase;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  @media (max-width: 900px) {
+    .footer { padding: 60px 22px 30px; }
+    .footer__top { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .footer__brand { font-size: 56px; }
+  }
+  @media (max-width: 500px) {
+    .footer__top { grid-template-columns: 1fr; }
+  }
+
+  /* Floating WhatsApp */
+  .float-wa {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: var(--leaf-500);
+    color: var(--paper);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99;
+    box-shadow: 0 16px 32px -8px rgba(61, 107, 45, 0.5);
+    transition: all 0.3s var(--ease-out-quart);
+    animation: pulse-ring 2.5s infinite;
+  }
+  .float-wa:hover { transform: scale(1.1); background: var(--accent); }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeBox {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes pulse-ring {
+    0% { box-shadow: 0 0 0 0 rgba(61, 107, 45, 0.6), 0 16px 32px -8px rgba(61, 107, 45, 0.5); }
+    70% { box-shadow: 0 0 0 20px rgba(61, 107, 45, 0), 0 16px 32px -8px rgba(61, 107, 45, 0.5); }
+    100% { box-shadow: 0 0 0 0 rgba(61, 107, 45, 0), 0 16px 32px -8px rgba(61, 107, 45, 0.5); }
+  }
+
+  .produto:nth-child(1) { animation-delay: 0.05s; }
+  .produto:nth-child(2) { animation-delay: 0.1s; }
+  .produto:nth-child(3) { animation-delay: 0.15s; }
+  .produto:nth-child(4) { animation-delay: 0.2s; }
+  .produto:nth-child(5) { animation-delay: 0.25s; }
+  .produto:nth-child(6) { animation-delay: 0.3s; }
+  .produto:nth-child(7) { animation-delay: 0.35s; }
+  .produto:nth-child(8) { animation-delay: 0.4s; }
+  .produto:nth-child(n+9) { animation-delay: 0.45s; }
+
+</style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <a href="index.html" class="logo">
-                <span class="logo-text">CJS</span>
-                <span class="logo-sub">Soluções em Embalagens</span>
-            </a>
-            <nav class="nav">
-                <a href="index.html">Início</a>
-                <a href="index.html#sobre">Sobre</a>
-                <a href="catalogo.html" class="nav-active">Catálogo</a>
-                <a href="index.html#diferenciais">Diferenciais</a>
-                <a href="index.html#contato">Contato</a>
-            </nav>
-            <a href="https://wa.me/5511995535533" class="btn-header" target="_blank" onclick="gtag('event', 'conversion', {'send_to': 'AW-17972588049/3G85CLHE8oYcEJHc__lC'});">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                </svg>
-                WhatsApp
-            </a>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav__logo">
+    CJS <span>Embalagens</span>
+  </a>
+  <div class="nav__links">
+    <a href="index.html">Início</a>
+    <a href="index.html#sobre">Sobre</a>
+    <a href="catalogo.html" class="active">Catálogo</a>
+    <a href="index.html#diferenciais">Diferenciais</a>
+    <a href="index.html#contato">Contato</a>
+  </div>
+  <a href="https://wa.me/5511995535533" class="nav__cta" target="_blank" onclick="try{gtag('event','conversion',{'send_to':'AW-17972588049/3G85CLHE8oYcEJHc__lC'});}catch(e){}">
+    WhatsApp
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="cat-hero">
+  <div class="cat-hero__bg"></div>
+  <div class="cat-hero__grid"></div>
+  <div class="cat-hero__inner">
+    <div class="cat-hero__meta">Nossos Produtos</div>
+    <h1 class="cat-hero__title">
+      Catálogo de<br>
+      <em>embalagens.</em>
+    </h1>
+    <p class="cat-hero__sub">
+      Conheça nossa linha completa de embalagens para delivery. Hamburguerias, sushis, yakisoba, sacolas kraft — pequenas e grandes quantidades com entrega para todo o Brasil.
+    </p>
+
+    <div class="cat-hero__info">
+      <div class="cat-hero__info-item">
+        <strong>18</strong>
+        Produtos no catálogo
+      </div>
+      <div class="cat-hero__info-item">
+        <strong>200+</strong>
+        Unidades mínimas
+      </div>
+      <div class="cat-hero__info-item">
+        <strong>Biodegradável</strong>
+        Materiais homologados
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FILTROS -->
+<div class="filter-bar">
+  <div class="filter-bar__inner">
+    <span class="filter-bar__label">Filtrar por</span>
+    <div class="filter-group">
+      <button class="filter-btn active" data-filter="todos">Todos</button>
+      <button class="filter-btn" data-filter="hamburger">Hambúrguer</button>
+      <button class="filter-btn" data-filter="sushi">Sushi</button>
+      <button class="filter-btn" data-filter="diversos">Yakisoba</button>
+      <button class="filter-btn" data-filter="sacolas">Sacolas Kraft</button>
+    </div>
+    <span class="filter-count" id="filterCount">18 produtos</span>
+  </div>
+</div>
+
+<!-- CATÁLOGO -->
+<section class="catalogo">
+  <div class="catalogo__inner">
+
+    <div class="produtos-grid">
+
+      <!-- HAMBÚRGUER -->
+      <article class="produto" data-category="hamburger">
+        <div class="produto__image carrossel">
+          <span class="produto__cat">Hambúrguer</span>
+          <div class="carrossel-inner">
+            <img src="images/caixa-hamburguer.jpg" alt="Caixa Hambúrguer" class="carrossel-slide ativo" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
+            <img src="images/caixa-hamburguer-2.jpg" alt="Caixa Hambúrguer" class="carrossel-slide" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
+          </div>
+          <button class="carrossel-btn carrossel-prev" onclick="mudarSlide(this, -1)" aria-label="Anterior">‹</button>
+          <button class="carrossel-btn carrossel-next" onclick="mudarSlide(this, 1)" aria-label="Próximo">›</button>
+          <div class="carrossel-dots">
+            <span class="dot ativo" onclick="irParaSlide(this, 0)"></span>
+            <span class="dot" onclick="irParaSlide(this, 1)"></span>
+          </div>
         </div>
-    </header>
-
-    <!-- Catálogo Page Header -->
-    <section class="catalogo-hero">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Nossos Produtos</span>
-                <h1>Catálogo de Embalagens</h1>
-                <p>Conheça nossa linha completa de embalagens para delivery</p>
+        <div class="produto__info">
+          <h3 class="produto__name">Caixa Hambúrguer</h3>
+          <p class="produto__dim">12,5 × 12,5 × 8,5 cm</p>
+          <div class="produto__preco-row">
+            <div class="produto__preco">
+              <span class="produto__preco-val">R$ 0,79</span>
+              <span class="produto__preco-un">/ un</span>
             </div>
+            <p class="produto__min">Mín. 200<br>unidades</p>
+          </div>
         </div>
-    </section>
+      </article>
 
-    <!-- Catálogo Section -->
-    <section id="catalogo" class="catalogo catalogo-page">
-        <div class="container">
-            <!-- Filtros -->
-            <div class="filtros">
-                <button class="filtro active" data-filter="todos">Todos</button>
-                <button class="filtro" data-filter="hamburger">Hambúrguer</button>
-                <button class="filtro" data-filter="sushi">Sushi</button>
-                <button class="filtro" data-filter="diversos">Diversos</button>
-                <button class="filtro" data-filter="sacolas">Sacolas</button>
-            </div>
-
-            <!-- Produtos Grid -->
-            <div class="produtos-grid catalogo-grid">
-                <!-- Hambúrguer -->
-                <div class="produto-card" data-category="hamburger">
-                    <div class="produto-image carrossel">
-                        <div class="carrossel-inner">
-                            <img src="images/caixa-hamburguer.jpg" alt="Caixa Hambúrguer" class="carrossel-slide ativo" onclick="abrirImagem(this.src, this.alt)">
-                            <img src="images/caixa-hamburguer-2.jpg" alt="Caixa Hambúrguer" class="carrossel-slide" onclick="abrirImagem(this.src, this.alt)">
-                        </div>
-                        <button class="carrossel-btn carrossel-prev" onclick="mudarSlide(this, -1)">&#10094;</button>
-                        <button class="carrossel-btn carrossel-next" onclick="mudarSlide(this, 1)">&#10095;</button>
-                        <div class="carrossel-dots">
-                            <span class="dot ativo" onclick="irParaSlide(this, 0)"></span>
-                            <span class="dot" onclick="irParaSlide(this, 1)"></span>
-                        </div>
-                    </div>
-                    <div class="produto-info">
-                        <h3>Caixa Hambúrguer</h3>
-                        <p class="produto-dim">12,5 x 12,5 x 8,5 cm</p>
-                        <div class="produto-preco">
-                            <span class="preco">R$ 0,79</span>
-                            <span class="qtd">/ unidade</span>
-                        </div>
-                        <p class="produto-min">Mínimo: 200 unidades</p>
-                    </div>
-                </div>
-
-                <div class="produto-card" data-category="hamburger">
-                    <div class="produto-image">
-                        <img src="images/caixa-combo.jpg" alt="Caixa Combo" onerror="this.style.display='none'; this.parentElement.classList.add('sem-foto');" onclick="abrirImagem(this.src, this.alt)">
-                    </div>
-                    <div class="produto-info">
-                        <h3>Caixa Combo</h3>
-                        <p class="produto-dim">18 x 12 x 8,5 cm</p>
-                        <div class="produto-preco">
-                            <span class="preco">R$ 0,99</span>
-                            <span class="qtd">/ unidade</span>
-                        </div>
-                        <p class="produto-min">Mínimo: 200 unidades</p>
-                    </div>
-                </div>
-
-                <div class="produto-card" data-category="hamburger">
-                    <div class="produto-image">
-                        <img src="images/batata-cheddar.jpg" alt="Batata Cheddar" onerror="this.style.display='none'; this.parentElement.classList.add('sem-foto');" onclick="abrirImagem(this.src, this.alt)">
-                    </div>
-                    <div class="produto-info">
-                        <h3>Batata Cheddar</h3>
-                        <p class="produto-dim">18 x 10 x 6 cm</p>
-                        <div class="produto-preco">
-                            <span class="preco">R$ 0,79</span>
-                            <span class="qtd">/ unidade</span>
-                        </div>
-                        <p class="produto-min">Mínimo: 300 unidades</p>
-                    </div>
-                </div>
-
-                <div class="produto-card" data-category="hamburger">
-                    <div class="produto-image">
-                        <img src="images/batata-mc.jpg" alt="Caixa de Batata tipo McDonald's" onerror="this.style.display='none'; this.parentElement.classList.add('sem-foto');" onclick="abrirImagem(this.src, this.alt)">
-                    </div>
-                    <div class="produto-info">
-                        <h3>Caixa de Batata tipo McDonald's</h3>
-                        <div class="produto-preco">
-                            <span class="preco">R$ 0,35</span>
-                            <span class="qtd">/ unidade</span>
-                        </div>
-                        <p class="produto-min">Mínimo: 300 unidades</p>
-                    </div>
-                </div>
-
-                <!-- Sushi -->
-                <div class="produto-card" data-category="sushi">
-                    <div class="produto-image carrossel">
-                        <div class="carrossel-inner">
-                            <img src="images/sushi-pequena.jpg" alt="Caixa Sushi Pequena" class="carrossel-slide ativo" onclick="abrirImagem(this.src, this.alt)">
-                            <img src="images/image-17.jpg" alt="Caixa Sushi Pequena" class="carrossel-slide" onclick="abrirImagem(this.src, this.alt)">
-                            <img src="images/SushiPTampa.jpg" alt="Caixa Sushi Pequena" class="carrossel-slide" onclick="abrirImagem(this.src, this.alt)">
-                        </div>
-                        <button class="carrossel-btn carrossel-prev" onclick="mudarSlide(this, -1)">&#10094;</button>
-                        <button class="carrossel-btn carrossel-next" onclick="mudarSlide(this, 1)">&#10095;</button>
-                        <div class="carrossel-dots">
-                            <span class="dot ativo" onclick="irParaSlide(this, 0)"></span>
-                            <span class="dot" onclick="irParaSlide(this, 1)"></span>
-                            <span class="dot" onclick="irParaSlide(this, 2)"></span>
-                        </div>
-                    </div>
-                    <div class="produto-info">
-                        <h3>Caixa Sushi Pequena</h3>
-                        <p class="produto-dim">185 x 70 x 40 mm</p>
-                        <div class="produto-preco">
-                            <span class="preco">R$ 1,30</span>
-                            <span class="qtd">/ unidade</span>
-                        </div>
-                        <p class="produto-min">Mínimo: 200 unidades</p>
-                    </div>
-                </div>
-
-                <div class="produto-card" data-category="sushi">
-                    <div class="produto-image carrossel">
-                        <div class="carrossel-inner">
-                            <img src="images/sushi-media.jpg" alt="Caixa Sushi Média" class="carrossel-slide ativo" onclick="abrirImagem(this.src, this.alt)">
-                            <img src="images/Screenshot_20260225_154651_Gallery.jpg" alt="Caixa Sushi Média" class="carrossel-slide" onclick="abrirImagem(this.src, this.alt)">
-                            <img src="images/SushiMTampa.jpg" alt="Caixa Sushi Média" class="carrossel-slide" onclick="abrirImagem(this.src, this.alt)">
-                        </div>
-                        <button class="carrossel-btn carrossel-prev" onclick="mudarSlide(this, -1)">&#10094;</button>
-                        <button class="carrossel-btn carrossel-next" onclick="mudarSlide(this, 1)">&#10095;</button>
-                        <div class="carrossel-dots">
-                            <span class="dot ativo" onclick="irParaSlide(this, 0)"></span>
-                            <span class="dot" onclick="irParaSlide(this, 1)"></span>
-                            <span class="dot" onclick="irParaSlide(this, 2)"></span>
-                        </div>
-                    </div>
-                    <div class="produto-info">
-                        <h3>Caixa Sushi Média</h3>
-                        <p class="produto-dim">235 x 135 x 40 mm</p>
-                        <div class="produto-preco">
-                            <span class="preco">R$ 1,89</span>
-                            <span class="qtd">/ unidade</span>
-                        </div>
-                        <p class="produto-min">Mínimo: 200 unidades</p>
-                    </div>
-                </div>
-
-                <div class="produto-card" data-category="sushi">
-                    <div class="produto-image carrossel">
-                        <div class="carrossel-inner">
-                            <img src="images/sushi-grande.jpg" alt="Caixa Sushi Grande" class="carrossel-slide ativo" onclick="abrirImagem(this.src, this.alt)">
-                            <img src="images/sushi-grande-2.jpg" alt="Caixa Sushi Grande" class="carrossel-slide" onclick="abrirImagem(this.src, this.alt)">
-                            <img src="images/1772046558512(1).png" alt="Caixa Sushi Grande" class="carrossel-slide" onclick="abrirImagem(this.src, this.alt)">
-                            <img src="images/SushiGTampa.jpg" alt="Caixa Sushi Grande" class="carrossel-slide" onclick="abrirImagem(this.src, this.alt)">
-                        </div>
-                        <button class="carrossel-btn carrossel-prev" onclick="mudarSlide(this, -1)">&#10094;</button>
-                        <button class="carrossel-btn carrossel-next" onclick="mudarSlide(this, 1)">&#10095;</button>
-                        <div class="carrossel-dots">
-                            <span class="dot ativo" onclick="irParaSlide(this, 0)"></span>
-                            <span class="dot" onclick="irParaSlide(this, 1)"></span>
-                            <span class="dot" onclick="irParaSlide(this, 2)"></span>
-                            <span class="dot" onclick="irParaSlide(this, 3)"></span>
-                        </div>
-                    </div>
-                    <div class="produto-info">
-                        <h3>Caixa Sushi Grande</h3>
-                        <p class="produto-dim">230 x 175 x 40 mm</p>
-                        <div class="produto-preco">
-                            <span class="preco">R$ 1,99</span>
-                            <span class="qtd">/ unidade</span>
-                        </div>
-                        <p class="produto-min">Mínimo: 200 unidades</p>
-                    </div>
-                </div>
-
-                <div class="produto-card" data-category="sushi">
-                    <div class="produto-image">
-                        <img src="images/temaki.jpg" alt="Caixa Temaki" onerror="this.style.display='none'; this.parentElement.classList.add('sem-foto');" onclick="abrirImagem(this.src, this.alt)">
-                    </div>
-                    <div class="produto-info">
-                        <h3>Caixa Temaki</h3>
-                        <p class="produto-dim">Tamanho padrão</p>
-                        <div class="produto-preco">
-                            <span class="preco">R$ 0,95</span>
-                            <span class="qtd">/ unidade</span>
-                        </div>
-                        <p class="produto-min">Mínimo: 300 unidades</p>
-                    </div>
-                </div>
-
-                <!-- Diversos -->
-                <div class="produto-card" data-category="diversos">
-                    <div class="produto-image">
-                        <img src="images/yakisoba-1l.jpg" alt="Yakisoba 1 Litro" onerror="this.style.display='none'; this.parentElement.classList.add('sem-foto');" onclick="abrirImagem(this.src, this.alt)">
-                    </div>
-                    <div class="produto-info">
-                        <h3>Yakisoba 1 Litro</h3>
-                        <p class="produto-dim">8,3 x 8,3 x 12 cm</p>
-                        <div class="produto-preco">
-                            <span class="preco">R$ 1,70</span>
-                            <span class="qtd">/ unidade</span>
-                        </div>
-                        <p class="produto-min">Mínimo: 200 unidades</p>
-                    </div>
-                </div>
-
-                <div class="produto-card" data-category="diversos">
-                    <div class="produto-image">
-                        <img src="images/yakisoba-500ml.jpg" alt="Yakisoba 500ml" onerror="this.style.display='none'; this.parentElement.classList.add('sem-foto');" onclick="abrirImagem(this.src, this.alt)">
-                    </div>
-                    <div class="produto-info">
-                        <h3>Yakisoba 500ml</h3>
-                        <p class="produto-dim">7,3 x 7,3 x 8,3 cm</p>
-                        <div class="produto-preco">
-                            <span class="preco">R$ 1,20</span>
-                            <span class="qtd">/ unidade</span>
-                        </div>
-                        <p class="produto-min">Mínimo: 300 unidades</p>
-                    </div>
-                </div>
-
-                <!-- Sacos Kraft (sem alça) -->
-                <div class="produto-card" data-category="sacolas">
-                    <div class="produto-image">
-                        <img src="images/saco-kraft-18.jpg" alt="Saco Kraft nº 18" onerror="this.style.display='none'; this.parentElement.classList.add('sem-foto');" onclick="abrirImagem(this.src, this.alt)">
-                    </div>
-                    <div class="produto-info">
-                        <h3>Saco Kraft nº 18</h3>
-                        <p class="produto-dim">18 x 10 x 26 cm</p>
-                        <div class="produto-preco">
-                            <span class="preco">R$ 55,00</span>
-                            <span class="qtd">/ 100 un</span>
-                        </div>
-                        <p class="produto-min">Pacote com 100 unidades</p>
-                    </div>
-                </div>
-
-                <div class="produto-card" data-category="sacolas">
-                    <div class="produto-image">
-                        <img src="images/saco-kraft-20.jpg" alt="Saco Kraft nº 20" onerror="this.style.display='none'; this.parentElement.classList.add('sem-foto');" onclick="abrirImagem(this.src, this.alt)">
-                    </div>
-                    <div class="produto-info">
-                        <h3>Saco Kraft nº 20</h3>
-                        <p class="produto-dim">20 x 11 x 34 cm</p>
-                        <div class="produto-preco">
-                            <span class="preco">R$ 60,00</span>
-                            <span class="qtd">/ 100 un</span>
-                        </div>
-                        <p class="produto-min">Pacote com 100 unidades</p>
-                    </div>
-                </div>
-
-                <div class="produto-card" data-category="sacolas">
-                    <div class="produto-image">
-                        <img src="images/saco-kraft-25.jpg" alt="Saco Kraft nº 25" onerror="this.style.display='none'; this.parentElement.classList.add('sem-foto');" onclick="abrirImagem(this.src, this.alt)">
-                    </div>
-                    <div class="produto-info">
-                        <h3>Saco Kraft nº 25</h3>
-                        <p class="produto-dim">25 x 14 x 34 cm</p>
-                        <div class="produto-preco">
-                            <span class="preco">R$ 70,00</span>
-                            <span class="qtd">/ 100 un</span>
-                        </div>
-                        <p class="produto-min">Pacote com 100 unidades</p>
-                    </div>
-                </div>
-
-                <div class="produto-card" data-category="sacolas">
-                    <div class="produto-image">
-                        <img src="images/saco-kraft-30.jpg" alt="Saco Kraft nº 30" onerror="this.style.display='none'; this.parentElement.classList.add('sem-foto');" onclick="abrirImagem(this.src, this.alt)">
-                    </div>
-                    <div class="produto-info">
-                        <h3>Saco Kraft nº 30</h3>
-                        <p class="produto-dim">30 x 19 x 32 cm</p>
-                        <div class="produto-preco">
-                            <span class="preco">R$ 80,00</span>
-                            <span class="qtd">/ 100 un</span>
-                        </div>
-                        <p class="produto-min">Pacote com 100 unidades</p>
-                    </div>
-                </div>
-
-                <!-- Sacolas Kraft (com alça) -->
-                <div class="produto-card" data-category="sacolas">
-                    <div class="produto-image">
-                        <img src="images/sacola-kraft-18.jpg" alt="Sacola Kraft nº 18" onerror="this.style.display='none'; this.parentElement.classList.add('sem-foto');" onclick="abrirImagem(this.src, this.alt)">
-                    </div>
-                    <div class="produto-info">
-                        <h3>Sacola Kraft nº 18</h3>
-                        <p class="produto-dim">18 x 10 x 26 cm</p>
-                        <div class="produto-preco">
-                            <span class="preco">R$ 70,00</span>
-                            <span class="qtd">/ 100 un</span>
-                        </div>
-                        <p class="produto-min">Pacote com 100 unidades</p>
-                    </div>
-                </div>
-
-                <div class="produto-card" data-category="sacolas">
-                    <div class="produto-image">
-                        <img src="images/sacola-kraft-20.jpg" alt="Sacola Kraft nº 20" onerror="this.style.display='none'; this.parentElement.classList.add('sem-foto');" onclick="abrirImagem(this.src, this.alt)">
-                    </div>
-                    <div class="produto-info">
-                        <h3>Sacola Kraft nº 20</h3>
-                        <p class="produto-dim">20 x 11 x 34 cm</p>
-                        <div class="produto-preco">
-                            <span class="preco">R$ 80,00</span>
-                            <span class="qtd">/ 100 un</span>
-                        </div>
-                        <p class="produto-min">Pacote com 100 unidades</p>
-                    </div>
-                </div>
-
-                <div class="produto-card" data-category="sacolas">
-                    <div class="produto-image">
-                        <img src="images/sacola-kraft-25.jpg" alt="Sacola Kraft nº 25" onerror="this.style.display='none'; this.parentElement.classList.add('sem-foto');" onclick="abrirImagem(this.src, this.alt)">
-                    </div>
-                    <div class="produto-info">
-                        <h3>Sacola Kraft nº 25</h3>
-                        <p class="produto-dim">25 x 14 x 34 cm</p>
-                        <div class="produto-preco">
-                            <span class="preco">R$ 90,00</span>
-                            <span class="qtd">/ 100 un</span>
-                        </div>
-                        <p class="produto-min">Pacote com 100 unidades</p>
-                    </div>
-                </div>
-
-                <div class="produto-card" data-category="sacolas">
-                    <div class="produto-image">
-                        <img src="images/sacola-kraft-30.jpg" alt="Sacola Kraft nº 30" onerror="this.style.display='none'; this.parentElement.classList.add('sem-foto');" onclick="abrirImagem(this.src, this.alt)">
-                    </div>
-                    <div class="produto-info">
-                        <h3>Sacola Kraft nº 30</h3>
-                        <p class="produto-dim">30 x 19 x 32 cm</p>
-                        <div class="produto-preco">
-                            <span class="preco">R$ 99,00</span>
-                            <span class="qtd">/ 100 un</span>
-                        </div>
-                        <p class="produto-min">Pacote com 100 unidades</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="catalogo-cta">
-                <p>Precisa de embalagens personalizadas?</p>
-                <a href="https://wa.me/5511995535533?text=Olá! Gostaria de um orçamento para embalagens personalizadas." class="btn btn-primary" target="_blank" onclick="gtag('event', 'conversion', {'send_to': 'AW-17972588049/3G85CLHE8oYcEJHc__lC'});">Solicitar Orçamento</a>
-            </div>
+      <article class="produto" data-category="hamburger">
+        <div class="produto__image">
+          <span class="produto__cat">Hambúrguer</span>
+          <img src="images/caixa-combo.jpg" alt="Caixa Combo" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
         </div>
-    </section>
+        <div class="produto__info">
+          <h3 class="produto__name">Caixa Combo</h3>
+          <p class="produto__dim">18 × 12 × 8,5 cm</p>
+          <div class="produto__preco-row">
+            <div class="produto__preco">
+              <span class="produto__preco-val">R$ 0,99</span>
+              <span class="produto__preco-un">/ un</span>
+            </div>
+            <p class="produto__min">Mín. 200<br>unidades</p>
+          </div>
+        </div>
+      </article>
 
-    <!-- Lightbox Modal -->
-    <div id="lightbox" class="lightbox" onclick="fecharImagem()">
-        <span class="lightbox-fechar">&times;</span>
-        <button id="lightbox-prev" class="lightbox-nav lightbox-nav-prev" onclick="event.stopPropagation(); lightboxNav(-1)">&#10094;</button>
-        <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()">
-        <button id="lightbox-next" class="lightbox-nav lightbox-nav-next" onclick="event.stopPropagation(); lightboxNav(1)">&#10095;</button>
-        <p id="lightbox-legenda"></p>
+      <article class="produto" data-category="hamburger">
+        <div class="produto__image">
+          <span class="produto__cat">Hambúrguer</span>
+          <img src="images/batata-cheddar.jpg" alt="Batata Cheddar" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
+        </div>
+        <div class="produto__info">
+          <h3 class="produto__name">Batata Cheddar</h3>
+          <p class="produto__dim">18 × 10 × 6 cm</p>
+          <div class="produto__preco-row">
+            <div class="produto__preco">
+              <span class="produto__preco-val">R$ 0,79</span>
+              <span class="produto__preco-un">/ un</span>
+            </div>
+            <p class="produto__min">Mín. 300<br>unidades</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="produto" data-category="hamburger">
+        <div class="produto__image">
+          <span class="produto__cat">Hambúrguer</span>
+          <img src="images/batata-mc.jpg" alt="Caixa de Batata tipo McDonald's" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
+        </div>
+        <div class="produto__info">
+          <h3 class="produto__name">Caixa de Batata<br>tipo McDonald's</h3>
+          <p class="produto__dim">Tamanho padrão</p>
+          <div class="produto__preco-row">
+            <div class="produto__preco">
+              <span class="produto__preco-val">R$ 0,35</span>
+              <span class="produto__preco-un">/ un</span>
+            </div>
+            <p class="produto__min">Mín. 300<br>unidades</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- SUSHI -->
+      <article class="produto" data-category="sushi">
+        <div class="produto__image carrossel">
+          <span class="produto__cat">Sushi</span>
+          <div class="carrossel-inner">
+            <img src="images/sushi-pequena.jpg" alt="Caixa Sushi Pequena" class="carrossel-slide ativo" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
+            <img src="images/image-17.jpg" alt="Caixa Sushi Pequena" class="carrossel-slide" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
+            <img src="images/SushiPTampa.jpg" alt="Caixa Sushi Pequena" class="carrossel-slide" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
+          </div>
+          <button class="carrossel-btn carrossel-prev" onclick="mudarSlide(this, -1)" aria-label="Anterior">‹</button>
+          <button class="carrossel-btn carrossel-next" onclick="mudarSlide(this, 1)" aria-label="Próximo">›</button>
+          <div class="carrossel-dots">
+            <span class="dot ativo" onclick="irParaSlide(this, 0)"></span>
+            <span class="dot" onclick="irParaSlide(this, 1)"></span>
+            <span class="dot" onclick="irParaSlide(this, 2)"></span>
+          </div>
+        </div>
+        <div class="produto__info">
+          <h3 class="produto__name">Caixa Sushi<br>Pequena</h3>
+          <p class="produto__dim">185 × 70 × 40 mm</p>
+          <div class="produto__preco-row">
+            <div class="produto__preco">
+              <span class="produto__preco-val">R$ 1,30</span>
+              <span class="produto__preco-un">/ un</span>
+            </div>
+            <p class="produto__min">Mín. 200<br>unidades</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="produto" data-category="sushi">
+        <div class="produto__image carrossel">
+          <span class="produto__cat">Sushi</span>
+          <div class="carrossel-inner">
+            <img src="images/sushi-media.jpg" alt="Caixa Sushi Média" class="carrossel-slide ativo" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
+            <img src="images/Screenshot_20260225_154651_Gallery.jpg" alt="Caixa Sushi Média" class="carrossel-slide" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
+            <img src="images/SushiMTampa.jpg" alt="Caixa Sushi Média" class="carrossel-slide" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
+          </div>
+          <button class="carrossel-btn carrossel-prev" onclick="mudarSlide(this, -1)" aria-label="Anterior">‹</button>
+          <button class="carrossel-btn carrossel-next" onclick="mudarSlide(this, 1)" aria-label="Próximo">›</button>
+          <div class="carrossel-dots">
+            <span class="dot ativo" onclick="irParaSlide(this, 0)"></span>
+            <span class="dot" onclick="irParaSlide(this, 1)"></span>
+            <span class="dot" onclick="irParaSlide(this, 2)"></span>
+          </div>
+        </div>
+        <div class="produto__info">
+          <h3 class="produto__name">Caixa Sushi<br>Média</h3>
+          <p class="produto__dim">235 × 135 × 40 mm</p>
+          <div class="produto__preco-row">
+            <div class="produto__preco">
+              <span class="produto__preco-val">R$ 1,89</span>
+              <span class="produto__preco-un">/ un</span>
+            </div>
+            <p class="produto__min">Mín. 200<br>unidades</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="produto" data-category="sushi">
+        <div class="produto__image carrossel">
+          <span class="produto__cat">Sushi</span>
+          <div class="carrossel-inner">
+            <img src="images/sushi-grande.jpg" alt="Caixa Sushi Grande" class="carrossel-slide ativo" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
+            <img src="images/sushi-grande-2.jpg" alt="Caixa Sushi Grande" class="carrossel-slide" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
+            <img src="images/1772046558512(1).png" alt="Caixa Sushi Grande" class="carrossel-slide" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
+            <img src="images/SushiGTampa.jpg" alt="Caixa Sushi Grande" class="carrossel-slide" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
+          </div>
+          <button class="carrossel-btn carrossel-prev" onclick="mudarSlide(this, -1)" aria-label="Anterior">‹</button>
+          <button class="carrossel-btn carrossel-next" onclick="mudarSlide(this, 1)" aria-label="Próximo">›</button>
+          <div class="carrossel-dots">
+            <span class="dot ativo" onclick="irParaSlide(this, 0)"></span>
+            <span class="dot" onclick="irParaSlide(this, 1)"></span>
+            <span class="dot" onclick="irParaSlide(this, 2)"></span>
+            <span class="dot" onclick="irParaSlide(this, 3)"></span>
+          </div>
+        </div>
+        <div class="produto__info">
+          <h3 class="produto__name">Caixa Sushi<br>Grande</h3>
+          <p class="produto__dim">230 × 175 × 40 mm</p>
+          <div class="produto__preco-row">
+            <div class="produto__preco">
+              <span class="produto__preco-val">R$ 1,99</span>
+              <span class="produto__preco-un">/ un</span>
+            </div>
+            <p class="produto__min">Mín. 200<br>unidades</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="produto" data-category="sushi">
+        <div class="produto__image">
+          <span class="produto__cat">Sushi</span>
+          <img src="images/temaki.jpg" alt="Caixa Temaki" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
+        </div>
+        <div class="produto__info">
+          <h3 class="produto__name">Caixa Temaki</h3>
+          <p class="produto__dim">Tamanho padrão</p>
+          <div class="produto__preco-row">
+            <div class="produto__preco">
+              <span class="produto__preco-val">R$ 0,95</span>
+              <span class="produto__preco-un">/ un</span>
+            </div>
+            <p class="produto__min">Mín. 300<br>unidades</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- DIVERSOS / YAKISOBA -->
+      <article class="produto" data-category="diversos">
+        <div class="produto__image">
+          <span class="produto__cat">Yakisoba</span>
+          <img src="images/yakisoba-1l.jpg" alt="Yakisoba 1 Litro" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
+        </div>
+        <div class="produto__info">
+          <h3 class="produto__name">Yakisoba 1 Litro</h3>
+          <p class="produto__dim">8,3 × 8,3 × 12 cm</p>
+          <div class="produto__preco-row">
+            <div class="produto__preco">
+              <span class="produto__preco-val">R$ 1,70</span>
+              <span class="produto__preco-un">/ un</span>
+            </div>
+            <p class="produto__min">Mín. 200<br>unidades</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="produto" data-category="diversos">
+        <div class="produto__image">
+          <span class="produto__cat">Yakisoba</span>
+          <img src="images/yakisoba-500ml.jpg" alt="Yakisoba 500ml" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
+        </div>
+        <div class="produto__info">
+          <h3 class="produto__name">Yakisoba 500ml</h3>
+          <p class="produto__dim">7,3 × 7,3 × 8,3 cm</p>
+          <div class="produto__preco-row">
+            <div class="produto__preco">
+              <span class="produto__preco-val">R$ 1,20</span>
+              <span class="produto__preco-un">/ un</span>
+            </div>
+            <p class="produto__min">Mín. 300<br>unidades</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- SACOS KRAFT -->
+      <article class="produto" data-category="sacolas">
+        <div class="produto__image">
+          <span class="produto__cat">Saco Kraft</span>
+          <img src="images/saco-kraft-18.jpg" alt="Saco Kraft nº 18" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
+        </div>
+        <div class="produto__info">
+          <h3 class="produto__name">Saco Kraft nº 18</h3>
+          <p class="produto__dim">18 × 10 × 26 cm</p>
+          <div class="produto__preco-row">
+            <div class="produto__preco">
+              <span class="produto__preco-val">R$ 55</span>
+              <span class="produto__preco-un">/ 100 un</span>
+            </div>
+            <p class="produto__min">Pacote com<br>100 unidades</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="produto" data-category="sacolas">
+        <div class="produto__image">
+          <span class="produto__cat">Saco Kraft</span>
+          <img src="images/saco-kraft-20.jpg" alt="Saco Kraft nº 20" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
+        </div>
+        <div class="produto__info">
+          <h3 class="produto__name">Saco Kraft nº 20</h3>
+          <p class="produto__dim">20 × 11 × 34 cm</p>
+          <div class="produto__preco-row">
+            <div class="produto__preco">
+              <span class="produto__preco-val">R$ 60</span>
+              <span class="produto__preco-un">/ 100 un</span>
+            </div>
+            <p class="produto__min">Pacote com<br>100 unidades</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="produto" data-category="sacolas">
+        <div class="produto__image">
+          <span class="produto__cat">Saco Kraft</span>
+          <img src="images/saco-kraft-25.jpg" alt="Saco Kraft nº 25" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
+        </div>
+        <div class="produto__info">
+          <h3 class="produto__name">Saco Kraft nº 25</h3>
+          <p class="produto__dim">25 × 14 × 34 cm</p>
+          <div class="produto__preco-row">
+            <div class="produto__preco">
+              <span class="produto__preco-val">R$ 70</span>
+              <span class="produto__preco-un">/ 100 un</span>
+            </div>
+            <p class="produto__min">Pacote com<br>100 unidades</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="produto" data-category="sacolas">
+        <div class="produto__image">
+          <span class="produto__cat">Saco Kraft</span>
+          <img src="images/saco-kraft-30.jpg" alt="Saco Kraft nº 30" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
+        </div>
+        <div class="produto__info">
+          <h3 class="produto__name">Saco Kraft nº 30</h3>
+          <p class="produto__dim">30 × 19 × 32 cm</p>
+          <div class="produto__preco-row">
+            <div class="produto__preco">
+              <span class="produto__preco-val">R$ 80</span>
+              <span class="produto__preco-un">/ 100 un</span>
+            </div>
+            <p class="produto__min">Pacote com<br>100 unidades</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- SACOLAS KRAFT (com alça) -->
+      <article class="produto" data-category="sacolas">
+        <div class="produto__image">
+          <span class="produto__cat">Sacola Kraft</span>
+          <img src="images/sacola-kraft-18.jpg" alt="Sacola Kraft nº 18" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
+        </div>
+        <div class="produto__info">
+          <h3 class="produto__name">Sacola Kraft nº 18</h3>
+          <p class="produto__dim">18 × 10 × 26 cm</p>
+          <div class="produto__preco-row">
+            <div class="produto__preco">
+              <span class="produto__preco-val">R$ 70</span>
+              <span class="produto__preco-un">/ 100 un</span>
+            </div>
+            <p class="produto__min">Pacote com<br>100 unidades</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="produto" data-category="sacolas">
+        <div class="produto__image">
+          <span class="produto__cat">Sacola Kraft</span>
+          <img src="images/sacola-kraft-20.jpg" alt="Sacola Kraft nº 20" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
+        </div>
+        <div class="produto__info">
+          <h3 class="produto__name">Sacola Kraft nº 20</h3>
+          <p class="produto__dim">20 × 11 × 34 cm</p>
+          <div class="produto__preco-row">
+            <div class="produto__preco">
+              <span class="produto__preco-val">R$ 80</span>
+              <span class="produto__preco-un">/ 100 un</span>
+            </div>
+            <p class="produto__min">Pacote com<br>100 unidades</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="produto" data-category="sacolas">
+        <div class="produto__image">
+          <span class="produto__cat">Sacola Kraft</span>
+          <img src="images/sacola-kraft-25.jpg" alt="Sacola Kraft nº 25" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
+        </div>
+        <div class="produto__info">
+          <h3 class="produto__name">Sacola Kraft nº 25</h3>
+          <p class="produto__dim">25 × 14 × 34 cm</p>
+          <div class="produto__preco-row">
+            <div class="produto__preco">
+              <span class="produto__preco-val">R$ 90</span>
+              <span class="produto__preco-un">/ 100 un</span>
+            </div>
+            <p class="produto__min">Pacote com<br>100 unidades</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="produto" data-category="sacolas">
+        <div class="produto__image">
+          <span class="produto__cat">Sacola Kraft</span>
+          <img src="images/sacola-kraft-30.jpg" alt="Sacola Kraft nº 30" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
+        </div>
+        <div class="produto__info">
+          <h3 class="produto__name">Sacola Kraft nº 30</h3>
+          <p class="produto__dim">30 × 19 × 32 cm</p>
+          <div class="produto__preco-row">
+            <div class="produto__preco">
+              <span class="produto__preco-val">R$ 99</span>
+              <span class="produto__preco-un">/ 100 un</span>
+            </div>
+            <p class="produto__min">Pacote com<br>100 unidades</p>
+          </div>
+        </div>
+      </article>
+
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <span class="logo-text">CJS</span>
-                    <p>Soluções em Embalagens</p>
-                    <p class="footer-copy">&copy; 2017-2026 CJS Soluções Gráficas.<br>Todos os direitos reservados.</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Links Rápidos</h4>
-                    <a href="index.html">Início</a>
-                    <a href="index.html#sobre">Sobre</a>
-                    <a href="catalogo.html">Catálogo</a>
-                    <a href="index.html#contato">Contato</a>
-                </div>
-                <div class="footer-links">
-                    <h4>Produtos</h4>
-                    <a href="catalogo.html">Caixas Hambúrguer</a>
-                    <a href="catalogo.html">Caixas Sushi</a>
-                    <a href="catalogo.html">Yakisoba</a>
-                    <a href="catalogo.html">Sacolas Kraft</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <!-- CTA Final -->
+    <div class="catalogo-cta">
+      <div class="catalogo-cta__inner">
+        <div class="catalogo-cta__tag">Personalize</div>
+        <h2 class="catalogo-cta__heading">
+          Precisa de embalagens<br><em>personalizadas?</em>
+        </h2>
+        <p class="catalogo-cta__desc">
+          Assessoria gráfica completa para aplicar a identidade visual do seu negócio em cada embalagem.
+        </p>
+        <a href="https://wa.me/5511995535533?text=Olá!%20Gostaria%20de%20um%20orçamento%20para%20embalagens%20personalizadas." class="catalogo-cta__btn" target="_blank" onclick="try{gtag('event','conversion',{'send_to':'AW-17972588049/3G85CLHE8oYcEJHc__lC'});}catch(e){}">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          Solicitar Orçamento
+        </a>
+      </div>
+    </div>
 
-    <script src="script.js"></script>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox" onclick="fecharImagem()">
+  <span class="lightbox-fechar">×</span>
+  <button class="lightbox-nav lightbox-nav-prev" onclick="event.stopPropagation(); lightboxNav(-1)">‹</button>
+  <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()">
+  <button class="lightbox-nav lightbox-nav-next" onclick="event.stopPropagation(); lightboxNav(1)">›</button>
+  <p id="lightbox-legenda"></p>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__top">
+      <div>
+        <div class="footer__brand">CJS</div>
+        <p class="footer__tagline">Soluções em embalagens para o ABC Paulista.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Links Rápidos</h4>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="index.html#sobre">Sobre</a></li>
+          <li><a href="catalogo.html">Catálogo</a></li>
+          <li><a href="index.html#contato">Contato</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Produtos</h4>
+        <ul>
+          <li><a href="catalogo.html">Caixas Hambúrguer</a></li>
+          <li><a href="catalogo.html">Caixas Sushi</a></li>
+          <li><a href="catalogo.html">Yakisoba</a></li>
+          <li><a href="catalogo.html">Sacolas Kraft</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Atendimento</h4>
+        <ul>
+          <li><a href="https://wa.me/5511995535533" target="_blank" onclick="try{gtag('event','conversion',{'send_to':'AW-17972588049/3G85CLHE8oYcEJHc__lC'});}catch(e){}">WhatsApp</a></li>
+          <li><a href="https://instagram.com/cjssolucoes" target="_blank">Instagram</a></li>
+          <li><a href="https://www.google.com/maps/search/Rua+Gonzaga,+47,+São+Caetano+do+Sul,+SP" target="_blank">Endereço</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2017–2026 CJS Soluções Gráficas</span>
+      <span>Todos os direitos reservados</span>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp Flutuante -->
+<a href="https://wa.me/5511995535533" class="float-wa" aria-label="WhatsApp" onclick="try{gtag('event','conversion',{'send_to':'AW-17972588049/3G85CLHE8oYcEJHc__lC'});}catch(e){}">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+</a>
+
+<script>
+  // Placeholder se imagem não carregar
+  function handleImgError(img) {
+    const parent = img.closest('.produto__image');
+    if (parent) parent.classList.add('sem-foto');
+    img.style.display = 'none';
+  }
+
+  // Carrossel
+  function mudarSlide(btn, direcao) {
+    const carrossel = btn.closest('.carrossel');
+    const slides = carrossel.querySelectorAll('.carrossel-slide');
+    const dots = carrossel.querySelectorAll('.dot');
+    let atual = Array.from(slides).findIndex(s => s.classList.contains('ativo'));
+    let novo = atual + direcao;
+    if (novo < 0) novo = slides.length - 1;
+    if (novo >= slides.length) novo = 0;
+    slides[atual].classList.remove('ativo');
+    slides[novo].classList.add('ativo');
+    dots[atual].classList.remove('ativo');
+    dots[novo].classList.add('ativo');
+  }
+
+  function irParaSlide(dot, idx) {
+    const carrossel = dot.closest('.carrossel');
+    const slides = carrossel.querySelectorAll('.carrossel-slide');
+    const dots = carrossel.querySelectorAll('.dot');
+    slides.forEach(s => s.classList.remove('ativo'));
+    dots.forEach(d => d.classList.remove('ativo'));
+    slides[idx].classList.add('ativo');
+    dots[idx].classList.add('ativo');
+  }
+
+  // Swipe mobile nos carrosséis
+  document.querySelectorAll('.carrossel').forEach(car => {
+    let startX = 0;
+    car.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+    car.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 40) {
+        const btn = car.querySelector(dx < 0 ? '.carrossel-next' : '.carrossel-prev');
+        if (btn) mudarSlide(btn, dx < 0 ? 1 : -1);
+      }
+    }, { passive: true });
+  });
+
+  // Filtros
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const produtos = document.querySelectorAll('.produto');
+  const filterCount = document.getElementById('filterCount');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      let count = 0;
+      produtos.forEach(p => {
+        if (filter === 'todos' || p.dataset.category === filter) {
+          p.classList.remove('hidden');
+          count++;
+        } else {
+          p.classList.add('hidden');
+        }
+      });
+      filterCount.textContent = count + ' produto' + (count !== 1 ? 's' : '');
+    });
+  });
+
+  // Lightbox
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxLeg = document.getElementById('lightbox-legenda');
+  let lightboxImgs = [];
+  let lightboxIdx = 0;
+
+  function abrirImagem(src, alt) {
+    // Coleta todas as imagens visíveis
+    lightboxImgs = [];
+    document.querySelectorAll('.produto:not(.hidden) .produto__image img').forEach(img => {
+      if (img.style.display !== 'none') lightboxImgs.push({ src: img.src, alt: img.alt });
+    });
+    lightboxIdx = lightboxImgs.findIndex(i => i.src === src);
+    if (lightboxIdx === -1) lightboxIdx = 0;
+    lightboxImg.src = src;
+    lightboxImg.alt = alt;
+    lightboxLeg.textContent = alt;
+    lightbox.classList.add('ativo');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function fecharImagem() {
+    lightbox.classList.remove('ativo');
+    document.body.style.overflow = '';
+  }
+
+  function lightboxNav(dir) {
+    lightboxIdx = (lightboxIdx + dir + lightboxImgs.length) % lightboxImgs.length;
+    lightboxImg.src = lightboxImgs[lightboxIdx].src;
+    lightboxImg.alt = lightboxImgs[lightboxIdx].alt;
+    lightboxLeg.textContent = lightboxImgs[lightboxIdx].alt;
+  }
+
+  // Tecla ESC e setas no lightbox
+  document.addEventListener('keydown', e => {
+    if (!lightbox.classList.contains('ativo')) return;
+    if (e.key === 'Escape') fecharImagem();
+    if (e.key === 'ArrowLeft') lightboxNav(-1);
+    if (e.key === 'ArrowRight') lightboxNav(1);
+  });
+</script>
+
 </body>
 </html>
