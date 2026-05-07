@@ -26,6 +26,14 @@
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="pt_BR" />
 
+<!-- Tema dinâmico por dia da semana -->
+<script>
+  (function(){
+    var dias = ['dom','seg','ter','qua','qui','sex','sab'];
+    document.documentElement.setAttribute('data-day', dias[new Date().getDay()]);
+  })();
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -64,6 +72,52 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  /* ————— Tema dinâmico por dia da semana ————— */
+  /* Sobrescreve apenas fundo e tons kraft. Verde e estrutura permanecem. */
+
+  /* SEGUNDA — Bege neutro */
+  html[data-day="seg"] {
+    --paper: #f7f3ec; --cream: #efe8d8;
+    --kraft-200: #e2d5b8; --kraft-300: #cdb78a;
+    --kraft-400: #b1925f; --kraft-500: #87663a;
+  }
+  /* TERÇA — Creme rosado */
+  html[data-day="ter"] {
+    --paper: #faf2ec; --cream: #f3e6dc;
+    --kraft-200: #ead4c1; --kraft-300: #d8b598;
+    --kraft-400: #b88e6a; --kraft-500: #8a6041;
+  }
+  /* QUARTA — Bege oliva */
+  html[data-day="qua"] {
+    --paper: #f5f3ea; --cream: #ece8d4;
+    --kraft-200: #d9d3b2; --kraft-300: #beb284;
+    --kraft-400: #94895a; --kraft-500: #6d6438;
+  }
+  /* QUINTA — Areia quente */
+  html[data-day="qui"] {
+    --paper: #f9f1e3; --cream: #f1e6d0;
+    --kraft-200: #e2cca6; --kraft-300: #cda970;
+    --kraft-400: #a8843f; --kraft-500: #7a5d22;
+  }
+  /* SEXTA — Pêssego suave */
+  html[data-day="sex"] {
+    --paper: #fbf1e7; --cream: #f5e3d2;
+    --kraft-200: #ecceb1; --kraft-300: #d6a17f;
+    --kraft-400: #b87753; --kraft-500: #8c5230;
+  }
+  /* SÁBADO — Rosé pálido */
+  html[data-day="sab"] {
+    --paper: #faeee9; --cream: #f3ddd2;
+    --kraft-200: #e4c2b1; --kraft-300: #cf9982;
+    --kraft-400: #ab6f55; --kraft-500: #804d35;
+  }
+  /* DOMINGO — Cinza-quente */
+  html[data-day="dom"] {
+    --paper: #f4f1ec; --cream: #ebe6dc;
+    --kraft-200: #d6cfbe; --kraft-300: #b4ab94;
+    --kraft-400: #8a8167; --kraft-500: #5e5640;
+  }
   html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
   body {
     font-family: var(--font-body);
