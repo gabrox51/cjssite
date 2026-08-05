@@ -1053,23 +1053,26 @@
         <div class="produto__info">
           <h3 class="produto__name">Caixa para Burguer</h3>
           <p class="produto__dim">12,5 × 12,5 × 8,5 cm</p>
-          <div class="produto__preco-row">
-            <p class="produto__min">Mín. 200<br>unidades</p>
-          </div>
         </div>
       </article>
 
       <article class="produto" data-category="hamburger">
-        <div class="produto__image">
+        <div class="produto__image carrossel">
           <span class="produto__cat">Hambúrguer</span>
-          <img src="images/caixa-combo.jpg" alt="Caixa Combo" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
+          <div class="carrossel-inner">
+            <img src="images/caixa-combo-1.jpg" alt="Caixa Combo" class="carrossel-slide ativo" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
+            <img src="images/caixa-combo-2.jpg" alt="Caixa Combo" class="carrossel-slide" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
+          </div>
+          <button class="carrossel-btn carrossel-prev" onclick="mudarSlide(this, -1)" aria-label="Anterior">‹</button>
+          <button class="carrossel-btn carrossel-next" onclick="mudarSlide(this, 1)" aria-label="Próximo">›</button>
+          <div class="carrossel-dots">
+            <span class="dot ativo" onclick="irParaSlide(this, 0)"></span>
+            <span class="dot" onclick="irParaSlide(this, 1)"></span>
+          </div>
         </div>
         <div class="produto__info">
           <h3 class="produto__name">Caixa Combo</h3>
           <p class="produto__dim">18 × 12 × 8,5 cm</p>
-          <div class="produto__preco-row">
-            <p class="produto__min">Mín. 200<br>unidades</p>
-          </div>
         </div>
       </article>
 
@@ -1081,9 +1084,6 @@
         <div class="produto__info">
           <h3 class="produto__name">Batata Cheddar</h3>
           <p class="produto__dim">18 × 10 × 6 cm</p>
-          <div class="produto__preco-row">
-            <p class="produto__min">Mín. 300<br>unidades</p>
-          </div>
         </div>
       </article>
 
@@ -1095,9 +1095,6 @@
         <div class="produto__info">
           <h3 class="produto__name">Caixa de Batata<br>tipo McDonald's</h3>
           <p class="produto__dim">Tamanho padrão</p>
-          <div class="produto__preco-row">
-            <p class="produto__min">Mín. 300<br>unidades</p>
-          </div>
         </div>
       </article>
 
@@ -1110,9 +1107,6 @@
         <div class="produto__info">
           <h3 class="produto__name">Caixa Temaki</h3>
           <p class="produto__dim">Tamanho padrão</p>
-          <div class="produto__preco-row">
-            <p class="produto__min">Mín. 300<br>unidades</p>
-          </div>
         </div>
       </article>
 
@@ -1125,9 +1119,6 @@
         <div class="produto__info">
           <h3 class="produto__name">Yakisoba 1 Litro</h3>
           <p class="produto__dim">8,3 × 8,3 × 12 cm</p>
-          <div class="produto__preco-row">
-            <p class="produto__min">Mín. 200<br>unidades</p>
-          </div>
         </div>
       </article>
 
@@ -1139,9 +1130,6 @@
         <div class="produto__info">
           <h3 class="produto__name">Yakisoba 500ml</h3>
           <p class="produto__dim">7,3 × 7,3 × 8,3 cm</p>
-          <div class="produto__preco-row">
-            <p class="produto__min">Mín. 300<br>unidades</p>
-          </div>
         </div>
       </article>
 
@@ -1165,9 +1153,6 @@
         <div class="produto__info">
           <h3 class="produto__name">Caixa para Hot Dog</h3>
           <p class="produto__dim">17 × 6 × 7 cm</p>
-          <div class="produto__preco-row">
-            <p class="produto__min">Mín. 200<br>unidades</p>
-          </div>
         </div>
       </article>
 
@@ -1211,9 +1196,6 @@
         <div class="produto__info">
           <h3 class="produto__name">Caixa para Empada</h3>
           <p class="produto__dim">14 × 14 × 5,5 cm</p>
-          <div class="produto__preco-row">
-            <p class="produto__min">Mín. 200<br>unidades</p>
-          </div>
         </div>
       </article>
 
@@ -1237,9 +1219,6 @@
         <div class="produto__info">
           <h3 class="produto__name">Barquinha para Salgados Diversos</h3>
           <p class="produto__dim">12,5 × 5,5 × 4 cm</p>
-          <div class="produto__preco-row">
-            <p class="produto__min">Mín. 200<br>unidades</p>
-          </div>
         </div>
       </article>
 
@@ -1261,9 +1240,6 @@
         <div class="produto__info">
           <h3 class="produto__name">Caixa para Pastel</h3>
           <p class="produto__dim">15 × 29 cm</p>
-          <div class="produto__preco-row">
-            <p class="produto__min">Mín. 200<br>unidades</p>
-          </div>
         </div>
       </article>
 
@@ -1296,9 +1272,6 @@
         <div class="produto__info">
           <h3 class="produto__name">Saco para Pipoca</h3>
           <p class="produto__dim">23,5 × 12 × 8 cm</p>
-          <div class="produto__preco-row">
-            <p class="produto__min">Mín. 200<br>unidades</p>
-          </div>
         </div>
       </article>
 
