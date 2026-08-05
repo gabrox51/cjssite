@@ -970,7 +970,7 @@
 
     <div class="cat-hero__info">
       <div class="cat-hero__info-item">
-        <strong>6</strong>
+        <strong>7</strong>
         Produtos no catálogo
       </div>
       <div class="cat-hero__info-item">
@@ -995,7 +995,7 @@
       <button class="filter-btn" data-filter="sushi">Sushi</button>
       <button class="filter-btn" data-filter="diversos">Yakisoba</button>
     </div>
-    <span class="filter-count" id="filterCount">6 produtos</span>
+    <span class="filter-count" id="filterCount">7 produtos</span>
   </div>
 </div>
 
@@ -1030,6 +1030,29 @@
     <div class="produtos-grid">
 
       <!-- HAMBÚRGUER -->
+      <article class="produto" data-category="hamburger">
+        <div class="produto__image carrossel">
+          <span class="produto__cat">Hambúrguer</span>
+          <div class="carrossel-inner">
+            <img src="images/caixa-para-burguer-1.jpg" alt="Caixa para Burguer" class="carrossel-slide ativo" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
+            <img src="images/caixa-para-burguer-2.jpg" alt="Caixa para Burguer" class="carrossel-slide" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
+          </div>
+          <button class="carrossel-btn carrossel-prev" onclick="mudarSlide(this, -1)" aria-label="Anterior">‹</button>
+          <button class="carrossel-btn carrossel-next" onclick="mudarSlide(this, 1)" aria-label="Próximo">›</button>
+          <div class="carrossel-dots">
+            <span class="dot ativo" onclick="irParaSlide(this, 0)"></span>
+            <span class="dot" onclick="irParaSlide(this, 1)"></span>
+          </div>
+        </div>
+        <div class="produto__info">
+          <h3 class="produto__name">Caixa para Burguer</h3>
+          <p class="produto__dim">12,5 × 12,5 × 8,5 cm</p>
+          <div class="produto__preco-row">
+            <p class="produto__min">Mín. 200<br>unidades</p>
+          </div>
+        </div>
+      </article>
+
       <article class="produto" data-category="hamburger">
         <div class="produto__image">
           <span class="produto__cat">Hambúrguer</span>
