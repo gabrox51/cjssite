@@ -877,6 +877,7 @@
     <a href="index.html">Início</a>
     <a href="index.html#sobre">Sobre</a>
     <a href="catalogo.html" class="active">Catálogo</a>
+    <a href="personalizados.html">Personalizados</a>
     <a href="index.html#diferenciais">Diferenciais</a>
     <a href="index.html#contato">Contato</a>
   </div>
@@ -902,7 +903,7 @@
 
     <div class="cat-hero__info">
       <div class="cat-hero__info-item">
-        <strong>10</strong>
+        <strong>6</strong>
         Produtos no catálogo
       </div>
       <div class="cat-hero__info-item">
@@ -927,7 +928,7 @@
       <button class="filter-btn" data-filter="sushi">Sushi</button>
       <button class="filter-btn" data-filter="diversos">Yakisoba</button>
     </div>
-    <span class="filter-count" id="filterCount">10 produtos</span>
+    <span class="filter-count" id="filterCount">6 produtos</span>
   </div>
 </div>
 
@@ -938,29 +939,6 @@
     <div class="produtos-grid">
 
       <!-- HAMBÚRGUER -->
-      <article class="produto" data-category="hamburger">
-        <div class="produto__image carrossel">
-          <span class="produto__cat">Hambúrguer</span>
-          <div class="carrossel-inner">
-            <img src="images/caixa-hamburguer.jpg" alt="Caixa Hambúrguer" class="carrossel-slide ativo" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
-            <img src="images/caixa-hamburguer-2.jpg" alt="Caixa Hambúrguer" class="carrossel-slide" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
-          </div>
-          <button class="carrossel-btn carrossel-prev" onclick="mudarSlide(this, -1)" aria-label="Anterior">‹</button>
-          <button class="carrossel-btn carrossel-next" onclick="mudarSlide(this, 1)" aria-label="Próximo">›</button>
-          <div class="carrossel-dots">
-            <span class="dot ativo" onclick="irParaSlide(this, 0)"></span>
-            <span class="dot" onclick="irParaSlide(this, 1)"></span>
-          </div>
-        </div>
-        <div class="produto__info">
-          <h3 class="produto__name">Caixa Hambúrguer</h3>
-          <p class="produto__dim">12,5 × 12,5 × 8,5 cm</p>
-          <div class="produto__preco-row">
-            <p class="produto__min">Mín. 200<br>unidades</p>
-          </div>
-        </div>
-      </article>
-
       <article class="produto" data-category="hamburger">
         <div class="produto__image">
           <span class="produto__cat">Hambúrguer</span>
@@ -1004,83 +982,6 @@
       </article>
 
       <!-- SUSHI -->
-      <article class="produto" data-category="sushi">
-        <div class="produto__image carrossel">
-          <span class="produto__cat">Sushi</span>
-          <div class="carrossel-inner">
-            <img src="images/sushi-pequena.jpg" alt="Caixa Sushi Pequena" class="carrossel-slide ativo" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
-            <img src="images/image-17.jpg" alt="Caixa Sushi Pequena" class="carrossel-slide" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
-            <img src="images/SushiPTampa.jpg" alt="Caixa Sushi Pequena" class="carrossel-slide" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
-          </div>
-          <button class="carrossel-btn carrossel-prev" onclick="mudarSlide(this, -1)" aria-label="Anterior">‹</button>
-          <button class="carrossel-btn carrossel-next" onclick="mudarSlide(this, 1)" aria-label="Próximo">›</button>
-          <div class="carrossel-dots">
-            <span class="dot ativo" onclick="irParaSlide(this, 0)"></span>
-            <span class="dot" onclick="irParaSlide(this, 1)"></span>
-            <span class="dot" onclick="irParaSlide(this, 2)"></span>
-          </div>
-        </div>
-        <div class="produto__info">
-          <h3 class="produto__name">Caixa Sushi<br>Pequena</h3>
-          <p class="produto__dim">185 × 70 × 40 mm</p>
-          <div class="produto__preco-row">
-            <p class="produto__min">Mín. 200<br>unidades</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="produto" data-category="sushi">
-        <div class="produto__image carrossel">
-          <span class="produto__cat">Sushi</span>
-          <div class="carrossel-inner">
-            <img src="images/sushi-media.jpg" alt="Caixa Sushi Média" class="carrossel-slide ativo" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
-            <img src="images/Screenshot_20260225_154651_Gallery.jpg" alt="Caixa Sushi Média" class="carrossel-slide" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
-            <img src="images/SushiMTampa.jpg" alt="Caixa Sushi Média" class="carrossel-slide" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
-          </div>
-          <button class="carrossel-btn carrossel-prev" onclick="mudarSlide(this, -1)" aria-label="Anterior">‹</button>
-          <button class="carrossel-btn carrossel-next" onclick="mudarSlide(this, 1)" aria-label="Próximo">›</button>
-          <div class="carrossel-dots">
-            <span class="dot ativo" onclick="irParaSlide(this, 0)"></span>
-            <span class="dot" onclick="irParaSlide(this, 1)"></span>
-            <span class="dot" onclick="irParaSlide(this, 2)"></span>
-          </div>
-        </div>
-        <div class="produto__info">
-          <h3 class="produto__name">Caixa Sushi<br>Média</h3>
-          <p class="produto__dim">235 × 135 × 40 mm</p>
-          <div class="produto__preco-row">
-            <p class="produto__min">Mín. 200<br>unidades</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="produto" data-category="sushi">
-        <div class="produto__image carrossel">
-          <span class="produto__cat">Sushi</span>
-          <div class="carrossel-inner">
-            <img src="images/sushi-grande.jpg" alt="Caixa Sushi Grande" class="carrossel-slide ativo" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
-            <img src="images/sushi-grande-2.jpg" alt="Caixa Sushi Grande" class="carrossel-slide" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
-            <img src="images/1772046558512(1).png" alt="Caixa Sushi Grande" class="carrossel-slide" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
-            <img src="images/SushiGTampa.jpg" alt="Caixa Sushi Grande" class="carrossel-slide" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
-          </div>
-          <button class="carrossel-btn carrossel-prev" onclick="mudarSlide(this, -1)" aria-label="Anterior">‹</button>
-          <button class="carrossel-btn carrossel-next" onclick="mudarSlide(this, 1)" aria-label="Próximo">›</button>
-          <div class="carrossel-dots">
-            <span class="dot ativo" onclick="irParaSlide(this, 0)"></span>
-            <span class="dot" onclick="irParaSlide(this, 1)"></span>
-            <span class="dot" onclick="irParaSlide(this, 2)"></span>
-            <span class="dot" onclick="irParaSlide(this, 3)"></span>
-          </div>
-        </div>
-        <div class="produto__info">
-          <h3 class="produto__name">Caixa Sushi<br>Grande</h3>
-          <p class="produto__dim">230 × 175 × 40 mm</p>
-          <div class="produto__preco-row">
-            <p class="produto__min">Mín. 200<br>unidades</p>
-          </div>
-        </div>
-      </article>
-
       <article class="produto" data-category="sushi">
         <div class="produto__image">
           <span class="produto__cat">Sushi</span>
