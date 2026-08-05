@@ -970,7 +970,7 @@
 
     <div class="cat-hero__info">
       <div class="cat-hero__info-item">
-        <strong>8</strong>
+        <strong>9</strong>
         Produtos no catálogo
       </div>
       <div class="cat-hero__info-item">
@@ -996,7 +996,7 @@
       <button class="filter-btn" data-filter="diversos">Yakisoba</button>
       <button class="filter-btn" data-filter="hotdog">Hot Dog</button>
     </div>
-    <span class="filter-count" id="filterCount">8 produtos</span>
+    <span class="filter-count" id="filterCount">9 produtos</span>
   </div>
 </div>
 
@@ -1163,6 +1163,26 @@
           <div class="produto__preco-row">
             <p class="produto__min">Mín. 200<br>unidades</p>
           </div>
+        </div>
+      </article>
+
+      <!-- CONE BATATA -->
+      <article class="produto" data-category="hamburger">
+        <div class="produto__image carrossel">
+          <span class="produto__cat">Batata</span>
+          <div class="carrossel-inner">
+            <img src="images/cone-batata-1.jpg" alt="Cone para Batata Frita" class="carrossel-slide ativo" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
+            <img src="images/cone-batata-2.jpg" alt="Cone para Batata Frita" class="carrossel-slide" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
+          </div>
+          <button class="carrossel-btn carrossel-prev" onclick="mudarSlide(this, -1)" aria-label="Anterior">‹</button>
+          <button class="carrossel-btn carrossel-next" onclick="mudarSlide(this, 1)" aria-label="Próximo">›</button>
+          <div class="carrossel-dots">
+            <span class="dot ativo" onclick="irParaSlide(this, 0)"></span>
+            <span class="dot" onclick="irParaSlide(this, 1)"></span>
+          </div>
+        </div>
+        <div class="produto__info">
+          <h3 class="produto__name">Cone para Batata Frita</h3>
         </div>
       </article>
 
