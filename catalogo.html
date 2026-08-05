@@ -1077,9 +1077,18 @@
       </article>
 
       <article class="produto" data-category="hamburger">
-        <div class="produto__image">
+        <div class="produto__image carrossel">
           <span class="produto__cat">Hambúrguer</span>
-          <img src="images/batata-cheddar.jpg" alt="Batata Cheddar" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
+          <div class="carrossel-inner">
+            <img src="images/batata-cheddar-1.jpg" alt="Batata Cheddar" class="carrossel-slide ativo" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
+            <img src="images/batata-cheddar-2.jpg" alt="Batata Cheddar" class="carrossel-slide" onclick="abrirImagem(this.src, this.alt)" onerror="handleImgError(this)">
+          </div>
+          <button class="carrossel-btn carrossel-prev" onclick="mudarSlide(this, -1)" aria-label="Anterior">‹</button>
+          <button class="carrossel-btn carrossel-next" onclick="mudarSlide(this, 1)" aria-label="Próximo">›</button>
+          <div class="carrossel-dots">
+            <span class="dot ativo" onclick="irParaSlide(this, 0)"></span>
+            <span class="dot" onclick="irParaSlide(this, 1)"></span>
+          </div>
         </div>
         <div class="produto__info">
           <h3 class="produto__name">Batata Cheddar</h3>
