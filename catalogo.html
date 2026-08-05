@@ -409,9 +409,16 @@
     width: 100%;
     height: 100%;
     min-height: 260px;
-    object-fit: cover;
-    display: block;
+    position: relative;
+    overflow: hidden;
   }
+  .destaque-kraft__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: zoom-in;
+  }
+  .destaque-kraft:hover .carrossel-btn { opacity: 1; }
   .destaque-kraft__info {
     padding: 40px 44px;
     display: flex;
@@ -997,7 +1004,18 @@
   <div class="catalogo__inner">
 
     <div class="destaque-kraft">
-      <img class="destaque-kraft__img" src="images/sacos-kraft.jpg" alt="Sacos e Sacolas Kraft nos tamanhos 18, 20, 25 e 30" onclick="abrirImagem(this.src, this.alt)">
+      <div class="destaque-kraft__img carrossel">
+        <div class="carrossel-inner">
+          <img src="images/sacos-kraft.jpg" alt="Sacos Kraft nos tamanhos 18, 20, 25 e 30" class="carrossel-slide ativo" onclick="abrirImagem(this.src, this.alt)">
+          <img src="images/sacolas-kraft.jpg" alt="Sacolas Kraft nos tamanhos 18, 20, 25 e 30" class="carrossel-slide" onclick="abrirImagem(this.src, this.alt)">
+        </div>
+        <button class="carrossel-btn carrossel-prev" onclick="mudarSlide(this, -1)" aria-label="Anterior">‹</button>
+        <button class="carrossel-btn carrossel-next" onclick="mudarSlide(this, 1)" aria-label="Próximo">›</button>
+        <div class="carrossel-dots">
+          <span class="dot ativo" onclick="irParaSlide(this, 0)"></span>
+          <span class="dot" onclick="irParaSlide(this, 1)"></span>
+        </div>
+      </div>
       <div class="destaque-kraft__info">
         <span class="produto__cat">Kraft</span>
         <h3 class="destaque-kraft__title">Sacos e Sacolas Kraft</h3>
