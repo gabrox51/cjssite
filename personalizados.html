@@ -453,7 +453,7 @@
         <div>
           <span class="sk-l">2 · Tamanho da sacola</span>
           <div class="sk-seg" id="sk-size">
-            <button type="button" data-v="P">P</button><button type="button" data-v="M" class="on">M</button><button type="button" data-v="G">G</button>
+            <button type="button" data-v="18">nº 18</button><button type="button" data-v="20" class="on">nº 20</button><button type="button" data-v="25">nº 25</button><button type="button" data-v="30">nº 30</button>
           </div>
           <div class="sk-sub" id="sk-dims"></div>
         </div>
@@ -534,15 +534,16 @@
   /* ===== CONFIGURE AQUI ===== */
   const CONFIG = {
     whatsapp: '5511995535533',
-    sizes: {                      // medidas em metros (L, A, F)
-      P:{w:.25,h:.30,d:.12,label:'25 × 30 × 12 cm'},
-      M:{w:.32,h:.40,d:.16,label:'32 × 40 × 16 cm'},
-      G:{w:.40,h:.48,d:.18,label:'40 × 48 × 18 cm'}
+    sizes: {                      // medidas em metros: w = largura, h = altura, d = fole/fundo
+      '18':{w:.18,h:.26,d:.10,label:'18 × 10 × 26 cm'},
+      '20':{w:.20,h:.34,d:.11,label:'20 × 11 × 34 cm'},
+      '25':{w:.25,h:.34,d:.14,label:'25 × 14 × 34 cm'},
+      '30':{w:.30,h:.32,d:.19,label:'30 × 19 × 32 cm'}
     }
   };
   /* ========================== */
 
-  const state = {size:'M', scale:.55, posY:.45, mode:'color', both:false};
+  const state = {size:'20', scale:.55, posY:.45, mode:'color', both:false};
   let logo = null;
 
   const stage = document.getElementById('sk-stage');
@@ -755,7 +756,7 @@
 
     scene.add(bag);
     controls.target.set(0, h*.6, 0);
-    document.getElementById('sk-dims').textContent = CONFIG.sizes[state.size].label + ' (L × A × F)';
+    document.getElementById('sk-dims').textContent = CONFIG.sizes[state.size].label + ' (L × F × A)';
   }
 
   // ---------- Loop / resize ----------
@@ -804,7 +805,7 @@
   document.getElementById('sk-quote').addEventListener('click', () => {
     const cor = {color:'colorida', black:'preta', white:'branca'}[state.mode];
     const msg = `Olá! Vim pelo simulador do site e quero um orçamento de sacola kraft personalizada:\n` +
-      `• Tamanho ${state.size} (${CONFIG.sizes[state.size].label})\n` +
+      `• Sacola kraft nº ${state.size} (${CONFIG.sizes[state.size].label})\n` +
       `• Impressão ${cor}, ${state.both ? 'frente e verso' : 'só na frente'}\n` +
       `Vou enviar meu logo e a imagem da prévia aqui.`;
     try{gtag('event','conversion',{'send_to':'AW-17972588049/3G85CLHE8oYcEJHc__lC'});}catch(e){}
