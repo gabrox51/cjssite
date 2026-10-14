@@ -36,7 +36,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Pacifico&display=swap" rel="stylesheet">
 
 <style>
   :root {
@@ -279,6 +279,44 @@
   .sk-bg { margin-top: 14px; }
   .sk-l--mt { margin-top: 14px; }
   .sk-row--sm { font-size: 13px; margin-top: 10px; color: var(--ink-soft); }
+  .sk-in {
+    width: 100%; padding: 11px 12px; font-family: var(--font-body); font-size: 14px; color: var(--ink);
+    background: var(--paper); border: 1px solid var(--kraft-200); border-radius: 2px; outline: none;
+    transition: border-color 0.2s;
+  }
+  .sk-in:focus { border-color: var(--leaf-500); }
+  .sk-seg--sm { margin-top: 8px; }
+  .sk-seg--sm button { font-size: 12px; padding: 8px 6px; }
+  #sk-lines { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+  .sk-line { display: grid; grid-template-columns: 38px 1fr 30px; gap: 6px; align-items: center; }
+  .sk-ico {
+    position: relative; width: 38px; height: 40px; border: 1px solid var(--kraft-200); border-radius: 2px;
+    background: var(--paper); display: flex; align-items: center; justify-content: center; cursor: pointer;
+  }
+  .sk-ico svg, .sk-ico img { width: 20px; height: 20px; object-fit: contain; }
+  .sk-ico select { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; }
+  .sk-del {
+    width: 30px; height: 40px; border: none; background: transparent; cursor: pointer;
+    color: var(--kraft-500); font-size: 20px; line-height: 1;
+  }
+  .sk-del:hover { color: var(--accent); }
+  .sk-add {
+    margin-top: 10px; width: 100%; padding: 10px; cursor: pointer; font-family: var(--font-body); font-size: 13px;
+    color: var(--leaf-700); background: transparent; border: 1px dashed var(--kraft-300); border-radius: 2px;
+  }
+  .sk-add:hover { border-color: var(--leaf-500); background: var(--leaf-50); }
+  .sk-add[hidden] { display: none; }
+  .sk-sw { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .sk-sw button, .sk-sw__custom {
+    width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--kraft-300); cursor: pointer; padding: 0;
+  }
+  .sk-sw button.on { outline: 2px solid var(--leaf-500); outline-offset: 2px; }
+  .sk-sw__custom {
+    display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;
+    background: conic-gradient(#e53, #fc3, #3c6, #39f, #a3f, #e53); color: #fff; font-weight: 600; font-size: 16px;
+  }
+  .sk-sw__custom.on { outline: 2px solid var(--leaf-500); outline-offset: 2px; }
+  .sk-sw__custom input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
   .sk-drop small { color: var(--ink-soft); font-weight: 300; }
   .sk-seg { display: flex; gap: 6px; }
   .sk-seg button {
@@ -491,6 +529,39 @@
           <input type="range" id="sk-pos" min="20" max="80" value="45">
         </div>
 
+        <div class="sk-txt">
+          <span class="sk-l">4 · Textos e contatos</span>
+          <input type="text" class="sk-in" id="sk-main" maxlength="40" placeholder="Frase ou nome (ex: Obrigado pela preferência!)">
+          <div class="sk-seg sk-seg--sm" id="sk-mainpos">
+            <button type="button" data-v="below" class="on">Frase abaixo do logo</button><button type="button" data-v="above">Acima do logo</button>
+          </div>
+          <div id="sk-lines"></div>
+          <button type="button" class="sk-add" id="sk-addline">+ Adicionar contato</button>
+
+          <span class="sk-l sk-l--mt">Fonte</span>
+          <div class="sk-seg" id="sk-font">
+            <button type="button" data-v="sans" class="on" style="font-family:'Inter Tight',sans-serif;font-weight:600">Moderna</button><button type="button" data-v="serif" style="font-family:Fraunces,serif">Elegante</button><button type="button" data-v="script" style="font-family:Pacifico,cursive">Manuscrita</button>
+          </div>
+
+          <div id="sk-colorbox">
+            <span class="sk-l sk-l--mt">Cor do texto</span>
+            <div class="sk-sw" id="sk-sw">
+              <button type="button" data-c="#1a1a1a" class="on" style="background:#1a1a1a" aria-label="Preto"></button>
+              <button type="button" data-c="#ffffff" style="background:#fff" aria-label="Branco"></button>
+              <button type="button" data-c="#3d2d14" style="background:#3d2d14" aria-label="Marrom"></button>
+              <button type="button" data-c="#2d5020" style="background:#2d5020" aria-label="Verde"></button>
+              <button type="button" data-c="#c0261d" style="background:#c0261d" aria-label="Vermelho"></button>
+              <button type="button" data-c="#1d4f9c" style="background:#1d4f9c" aria-label="Azul"></button>
+              <label class="sk-sw__custom" title="Outra cor"><input type="color" id="sk-tcolor" value="#d94e1f">+</label>
+            </div>
+          </div>
+
+          <span class="sk-l sk-l--mt">Tamanho dos textos</span>
+          <input type="range" id="sk-tsize" min="50" max="170" value="100">
+          <span class="sk-l sk-l--mt">Posição dos contatos</span>
+          <input type="range" id="sk-tpos" min="50" max="94" value="84">
+        </div>
+
         <label class="sk-row"><input type="checkbox" id="sk-both"> Imprimir nos dois lados</label>
 
         <div class="sk-actions">
@@ -560,7 +631,9 @@
   };
   /* ========================== */
 
-  const state = {size:'20', scale:.55, posY:.45, mode:'color', both:false, bg:'none', tol:22, bgAll:true};
+  const state = {size:'20', scale:.55, posY:.45, mode:'color', both:false, bg:'none', tol:22, bgAll:true,
+    main:'', mainPos:'below', font:'sans', tcolor:'#1a1a1a', tsize:1, tpos:.84,
+    lines:[{icon:'phone', text:'', img:null}]};
   let logo = null, srcImg = null, srcUrl = null;
 
   const stage = document.getElementById('sk-stage');
@@ -724,41 +797,121 @@
     return 'none';
   }
 
-  function drawLogo(x, W, H){
-    const white = state.mode === 'white';
-    x.save();
-    x.globalCompositeOperation = white ? 'source-over' : 'multiply';
-    if (!logo){
-      x.globalAlpha = .9;
-      x.fillStyle = white ? '#f7f1e8' : '#2a1d12';
-      x.textAlign = 'center'; x.textBaseline = 'middle';
-      x.font = `800 ${W*state.scale*.2}px system-ui, sans-serif`;
-      x.fillText('SUA LOGO', W/2, H*state.posY);
-      x.font = `500 ${W*state.scale*.07}px system-ui, sans-serif`;
-      x.fillText('envie o arquivo ao lado', W/2, H*state.posY + W*state.scale*.17);
-      x.restore(); return;
+  // ---------- Ícones (traço simples, desenhados no canvas) ----------
+  const ICONS = {
+    phone:  {label:'Telefone', d:['M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z']},
+    chat:   {label:'Mensagem', d:['M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z']},
+    at:     {label:'@ Rede social', d:['M12 8a4 4 0 1 0 0 8a4 4 0 1 0 0-8z','M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94']},
+    pin:    {label:'Endereço', d:['M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z','M12 7a3 3 0 1 0 0 6a3 3 0 1 0 0-6z']},
+    globe:  {label:'Site', d:['M12 2a10 10 0 1 0 0 20a10 10 0 1 0 0-20z','M2 12h20','M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z']},
+    clock:  {label:'Horário', d:['M12 2a10 10 0 1 0 0 20a10 10 0 1 0 0-20z','M12 6v6l4 2']},
+    truck:  {label:'Delivery', d:['M1 3h15v13H1z','M16 8h4l3 3v5h-7V8z','M5.5 16a2.5 2.5 0 1 0 0 5a2.5 2.5 0 1 0 0-5z','M18.5 16a2.5 2.5 0 1 0 0 5a2.5 2.5 0 1 0 0-5z']},
+    none:   {label:'Sem ícone', d:[]},
+    custom: {label:'Imagem própria…', d:[]}
+  };
+  const iconPaths = {};
+  for (const k in ICONS) iconPaths[k] = ICONS[k].d.map(s => new Path2D(s));
+  const iconSvg = k => `<svg viewBox="0 0 24 24" fill="none" stroke="#3d2d14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICONS[k].d.map(s=>`<path d="${s}"/>`).join('')}</svg>`;
+
+  function inkColor(){
+    return state.mode === 'black' ? '#1a130d' : state.mode === 'white' ? '#faf6ee' : state.tcolor;
+  }
+  function fontFor(kind, px){
+    if (state.font === 'serif') return `${kind==='main'?600:500} ${px}px Fraunces, Georgia, serif`;
+    if (state.font === 'script' && kind === 'main') return `${px}px Pacifico, cursive`;
+    return `${kind==='main'?700:500} ${px}px "Inter Tight", system-ui, sans-serif`;
+  }
+  function fitFont(x, kind, text, px, maxW){
+    x.font = fontFor(kind, px);
+    const w = x.measureText(text).width;
+    if (w > maxW){ px *= maxW / w; x.font = fontFor(kind, px); }
+    return px;
+  }
+  function tinted(img, w, h, color){
+    const c = document.createElement('canvas'); c.width = Math.max(1,Math.round(w)); c.height = Math.max(1,Math.round(h));
+    const cx = c.getContext('2d'); cx.drawImage(img, 0, 0, c.width, c.height);
+    if (color){ cx.globalCompositeOperation = 'source-in'; cx.fillStyle = color; cx.fillRect(0,0,c.width,c.height); }
+    return c;
+  }
+
+  // Desenha tudo o que é impresso (logo + textos + contatos) numa camada e aplica sobre o kraft
+  function drawInk(x, W, H){
+    const L = document.createElement('canvas'); L.width = W; L.height = H;
+    const lx = L.getContext('2d');
+    const ink = inkColor();
+    const lines = state.lines.filter(l => l.text.trim() || (l.icon === 'custom' && l.img));
+    const hasText = state.main.trim() || lines.length;
+
+    // logo
+    let top = H*state.posY, bottom = H*state.posY;
+    if (logo){
+      const src = logo[state.mode], ratio = src.height/src.width;
+      let lw = W*state.scale, lh = lw*ratio;
+      if (lh > H*.6){ lh = H*.6; lw = lh/ratio; }
+      const px = W/2-lw/2, py = H*state.posY-lh/2;
+      lx.drawImage(src, px, py, lw, lh);
+      top = py; bottom = py+lh;
+    } else if (!hasText){
+      lx.fillStyle = ink; lx.globalAlpha = .9;
+      lx.textAlign = 'center'; lx.textBaseline = 'middle';
+      lx.font = `800 ${W*state.scale*.2}px system-ui, sans-serif`;
+      lx.fillText('SUA LOGO', W/2, H*state.posY);
+      lx.font = `500 ${W*state.scale*.07}px system-ui, sans-serif`;
+      lx.fillText('envie o arquivo ao lado', W/2, H*state.posY + W*state.scale*.17);
+      lx.globalAlpha = 1;
     }
-    const src = logo[state.mode];
-    const ratio = src.height/src.width;
-    let lw = W*state.scale, lh = lw*ratio;
-    if (lh > H*.6){ lh = H*.6; lw = lh/ratio; }
-    const px = W/2-lw/2, py = H*state.posY-lh/2;
+
+    lx.fillStyle = ink; lx.textAlign = 'center'; lx.textBaseline = 'middle';
+
+    // frase principal
+    const main = state.main.trim();
+    if (main){
+      const fs = fitFont(lx, 'main', main, W*.075*state.tsize, W*.86);
+      const y = !logo ? H*state.posY : state.mainPos === 'above' ? top - fs*.85 : bottom + fs*.95;
+      lx.fillText(main, W/2, y);
+    }
+
+    // contatos com ícones
+    if (lines.length){
+      const base = W*.042*state.tsize, lh = base*1.65;
+      let y = H*state.tpos - (lines.length-1)*lh/2;
+      for (const l of lines){
+        const t = l.text.trim();
+        const hasIcon = l.icon !== 'none' && (l.icon !== 'custom' || l.img);
+        let fs = base, is = fs*1.15, gap = t && hasIcon ? fs*.5 : 0;
+        lx.font = fontFor('line', fs);
+        let tw = t ? lx.measureText(t).width : 0;
+        const total = (hasIcon ? is : 0) + gap + tw, maxW = W*.86;
+        if (total > maxW){ const k = maxW/total; fs*=k; is*=k; gap*=k; lx.font = fontFor('line', fs); tw = t ? lx.measureText(t).width : 0; }
+        let cx = W/2 - ((hasIcon ? is : 0) + gap + tw)/2;
+        if (hasIcon){
+          if (l.icon === 'custom'){
+            const r = l.img.height/l.img.width; let iw = is, ih = is*r; if (ih > is*1.1){ ih = is*1.1; iw = ih/r; }
+            const im = tinted(l.img, iw, ih, state.mode === 'color' ? null : ink);
+            lx.drawImage(im, cx + (is-iw)/2, y-ih/2, iw, ih);
+          } else {
+            lx.save(); lx.translate(cx, y-is/2); lx.scale(is/24, is/24);
+            lx.strokeStyle = ink; lx.lineWidth = 2.1; lx.lineCap = 'round'; lx.lineJoin = 'round';
+            iconPaths[l.icon].forEach(pth => lx.stroke(pth));
+            lx.restore();
+          }
+          cx += is + gap;
+        }
+        if (t){ lx.textAlign = 'left'; lx.fillText(t, cx, y + fs*.04); lx.textAlign = 'center'; }
+        y += lh;
+      }
+    }
+
+    // aplica a camada de tinta sobre o papel
+    x.save();
     if (state.mode === 'black'){
-      // tinta preta: multiplicar sobre o kraft fica natural
-      x.globalAlpha = .95;
-      x.drawImage(src, px, py, lw, lh);
+      x.globalCompositeOperation = 'multiply'; x.globalAlpha = .95;
+      x.drawImage(L, 0, 0);
     } else {
-      // colorido e branco: tinta opaca (senão o branco some), com a textura do papel por cima
-      const tw = Math.max(1, Math.round(lw)), th = Math.max(1, Math.round(lh));
-      const tmp = document.createElement('canvas'); tmp.width = tw; tmp.height = th;
-      const tx = tmp.getContext('2d');
-      tx.drawImage(src, 0, 0, tw, th);
-      tx.globalCompositeOperation = 'source-atop';
-      tx.globalAlpha = .16;
-      tx.drawImage(kraftBase, px, py, tw, th, 0, 0, tw, th);
-      x.globalCompositeOperation = 'source-over';
-      x.globalAlpha = .96;
-      x.drawImage(tmp, px, py, lw, lh);
+      lx.globalCompositeOperation = 'source-atop'; lx.globalAlpha = .16;
+      lx.drawImage(kraftBase, 0, 0, W, H);
+      x.globalCompositeOperation = 'source-over'; x.globalAlpha = .96;
+      x.drawImage(L, 0, 0);
     }
     x.restore();
   }
@@ -785,7 +938,7 @@
       x.lineWidth = 2; x.strokeStyle = 'rgba(255,235,200,.25)';
       x.beginPath(); x.moveTo(W/2+3,0); x.lineTo(W/2+3,cy); x.stroke();
     }
-    if (withLogo) drawLogo(x,W,H);
+    if (withLogo) drawInk(x,W,H);
     f.tex.needsUpdate = true;
   }
   function repaint(){
@@ -904,8 +1057,73 @@
   });
   document.getElementById('sk-keepin').addEventListener('change', e => { state.bgAll = !e.target.checked; reprocess(); });
 
+  // textos e contatos
+  const linesBox = document.getElementById('sk-lines'), addBtn = document.getElementById('sk-addline');
+  const MAX_LINES = 5;
+  const placeholders = {phone:'(11) 99999-9999', chat:'(11) 99999-9999', at:'@seurestaurante', pin:'Rua Exemplo, 123 - Bairro', globe:'www.seusite.com.br', clock:'Seg a Sáb · 18h às 23h', truck:'Peça pelo app ou telefone', none:'Texto livre', custom:'Texto ao lado do ícone'};
+  function renderLines(){
+    linesBox.innerHTML = '';
+    state.lines.forEach((l, i) => {
+      const row = document.createElement('div'); row.className = 'sk-line';
+      const ico = document.createElement('label'); ico.className = 'sk-ico'; ico.title = 'Escolher ícone';
+      ico.innerHTML = l.icon === 'custom' && l.img ? `<img src="${l.img.src}" alt="">` : l.icon === 'custom' ? '<span style="font-size:11px;color:#8f6f42">img</span>' : l.icon === 'none' ? '<span style="font-size:13px;color:#8f6f42">—</span>' : iconSvg(l.icon);
+      const sel = document.createElement('select'); sel.setAttribute('aria-label','Ícone');
+      for (const k in ICONS){ const o = document.createElement('option'); o.value = k; o.textContent = ICONS[k].label; if (k===l.icon) o.selected = true; sel.appendChild(o); }
+      sel.addEventListener('change', () => {
+        if (sel.value === 'custom'){
+          const f = document.createElement('input'); f.type = 'file'; f.accept = 'image/png,image/jpeg,image/svg+xml,image/webp';
+          f.addEventListener('change', () => {
+            const file = f.files[0]; if (!file) return;
+            const im = new Image(); im.onload = () => { l.icon = 'custom'; l.img = im; renderLines(); repaint(); };
+            im.src = URL.createObjectURL(file);
+          });
+          f.click();
+          sel.value = l.icon; // só muda quando a imagem chegar
+          return;
+        }
+        l.icon = sel.value; l.img = null; renderLines(); repaint();
+      });
+      ico.appendChild(sel);
+      const inp = document.createElement('input'); inp.type = 'text'; inp.className = 'sk-in'; inp.maxLength = 45;
+      inp.value = l.text; inp.placeholder = placeholders[l.icon];
+      inp.addEventListener('input', () => { l.text = inp.value; repaint(); });
+      const del = document.createElement('button'); del.type = 'button'; del.className = 'sk-del'; del.innerHTML = '×'; del.setAttribute('aria-label','Remover linha');
+      del.addEventListener('click', () => { state.lines.splice(i,1); renderLines(); repaint(); });
+      row.append(ico, inp, del); linesBox.appendChild(row);
+    });
+    addBtn.hidden = state.lines.length >= MAX_LINES;
+  }
+  addBtn.addEventListener('click', () => {
+    const used = state.lines.map(l => l.icon);
+    const next = ['phone','at','pin','globe','clock'].find(k => !used.includes(k)) || 'none';
+    state.lines.push({icon:next, text:'', img:null}); renderLines();
+    const ins = linesBox.querySelectorAll('input.sk-in'); ins[ins.length-1].focus();
+  });
+  renderLines();
+
+  document.getElementById('sk-main').addEventListener('input', e => { state.main = e.target.value; repaint(); });
+  seg('sk-mainpos','mainPos',repaint);
+  seg('sk-font','font',repaint);
+  const swBtns = document.querySelectorAll('#sk-sw button'), swCustom = document.querySelector('.sk-sw__custom');
+  swBtns.forEach(b => b.addEventListener('click', () => {
+    swBtns.forEach(x => x.classList.remove('on')); swCustom.classList.remove('on');
+    b.classList.add('on'); state.tcolor = b.dataset.c; repaint();
+  }));
+  document.getElementById('sk-tcolor').addEventListener('input', e => {
+    swBtns.forEach(x => x.classList.remove('on')); swCustom.classList.add('on');
+    state.tcolor = e.target.value; repaint();
+  });
+  document.getElementById('sk-tsize').addEventListener('input', e => { state.tsize = e.target.value/100; repaint(); });
+  document.getElementById('sk-tpos').addEventListener('input', e => { state.tpos = e.target.value/100; repaint(); });
+  const syncColorBox = () => { document.getElementById('sk-colorbox').hidden = state.mode !== 'color'; };
+  syncColorBox();
+  if (document.fonts){
+    Promise.all(['700 40px "Inter Tight"','500 40px "Inter Tight"','600 40px Fraunces','500 40px Fraunces','40px Pacifico']
+      .map(f => document.fonts.load(f).catch(()=>{}))).then(() => repaint());
+  }
+
   seg('sk-size','size',buildBag);
-  seg('sk-mode','mode',repaint);
+  seg('sk-mode','mode',() => { syncColorBox(); repaint(); });
   document.getElementById('sk-scale').addEventListener('input', e => {state.scale = e.target.value/100; repaint();});
   document.getElementById('sk-pos').addEventListener('input', e => {state.posY = e.target.value/100; repaint();});
   document.getElementById('sk-both').addEventListener('change', e => {state.both = e.target.checked; repaint();});
@@ -920,6 +1138,8 @@
     const msg = `Olá! Vim pelo simulador do site e quero um orçamento de sacola kraft personalizada:\n` +
       `• Sacola kraft nº ${state.size} (${CONFIG.sizes[state.size].label})\n` +
       `• Impressão ${cor}, ${state.both ? 'frente e verso' : 'só na frente'}\n` +
+      (state.main.trim() ? `• Frase: "${state.main.trim()}"\n` : '') +
+      (state.lines.some(l => l.text.trim()) ? `• Contatos: ${state.lines.filter(l => l.text.trim()).map(l => l.text.trim()).join(' | ')}\n` : '') +
       `Vou enviar meu logo e a imagem da prévia aqui.`;
     try{gtag('event','conversion',{'send_to':'AW-17972588049/3G85CLHE8oYcEJHc__lC'});}catch(e){}
     window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank');
