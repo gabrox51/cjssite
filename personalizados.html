@@ -291,6 +291,97 @@
     .gallery__grid { grid-template-columns: 1fr; }
   }
 
+  /* ————— SIMULADOR 3D ————— */
+  .sim { padding: 100px 40px 110px; background: var(--paper); }
+  .sim__inner { max-width: 1400px; margin: 0 auto; }
+  .sim__head { max-width: 760px; margin-bottom: 44px; }
+  .sim .section-tag { color: var(--kraft-500); }
+  .sim .section-tag::before { background: var(--kraft-500); }
+  .sim__title {
+    font-family: var(--font-display);
+    font-size: clamp(30px, 4.4vw, 56px);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    font-variation-settings: "opsz" 144;
+    color: var(--leaf-800);
+    margin-bottom: 18px;
+  }
+  .sim__title em { font-style: italic; color: var(--kraft-500); font-weight: 300; }
+  .sim__desc { font-size: 16px; line-height: 1.6; color: var(--ink-soft); font-weight: 300; max-width: 600px; }
+
+  .sk-wrap { display: grid; grid-template-columns: 1fr 360px; gap: 20px; }
+  .sk-stage {
+    position: relative;
+    background: radial-gradient(ellipse at 50% 38%, #fff 0%, var(--kraft-100) 78%);
+    border: 1px solid var(--kraft-200);
+    border-radius: 2px;
+    min-height: 560px;
+    overflow: hidden;
+  }
+  #sk-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: grab; touch-action: none; }
+  #sk-canvas:active { cursor: grabbing; }
+  .sk-hint {
+    position: absolute; bottom: 14px; left: 0; right: 0; text-align: center; pointer-events: none;
+    font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--kraft-500);
+  }
+  .sk-panel {
+    background: var(--cream);
+    border: 1px solid var(--kraft-200);
+    border-radius: 2px;
+    padding: 26px 24px;
+    display: flex; flex-direction: column; gap: 20px;
+  }
+  .sk-l {
+    display: block; margin-bottom: 8px;
+    font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--kraft-600);
+  }
+  .sk-sub { margin-top: 6px; font-size: 12.5px; color: var(--ink-soft); font-weight: 300; }
+  .sk-drop {
+    display: block; text-align: center; cursor: pointer; font-size: 14px;
+    border: 1.5px dashed var(--kraft-300); border-radius: 2px; padding: 20px 16px; background: var(--paper);
+    transition: all 0.3s var(--ease-out-quart);
+  }
+  .sk-drop:hover, .sk-drop.over { border-color: var(--leaf-500); background: var(--leaf-50); }
+  .sk-drop img { max-width: 100%; max-height: 70px; margin: 0 auto 8px; }
+  .sk-drop small { color: var(--ink-soft); font-weight: 300; }
+  .sk-seg { display: flex; gap: 6px; }
+  .sk-seg button {
+    flex: 1; padding: 10px 6px; cursor: pointer; font-family: var(--font-body); font-size: 13px; color: var(--ink);
+    background: var(--paper); border: 1px solid var(--kraft-200); border-radius: 999px;
+    transition: all 0.25s var(--ease-out-quart);
+  }
+  .sk-seg button:hover { border-color: var(--leaf-500); }
+  .sk-seg button.on { background: var(--leaf-600); border-color: var(--leaf-600); color: var(--paper); }
+  .sk-panel input[type=range] { width: 100%; accent-color: var(--leaf-500); }
+  .sk-row { display: flex; align-items: center; gap: 10px; font-size: 14px; cursor: pointer; }
+  .sk-row input { accent-color: var(--leaf-500); width: 16px; height: 16px; }
+  .sk-actions { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+  .sk-btn {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 15px 20px; border-radius: 999px; border: none; cursor: pointer;
+    font-family: var(--font-body); font-size: 14.5px; font-weight: 500;
+    transition: all 0.3s var(--ease-out-quart);
+  }
+  .sk-btn--pri { background: var(--leaf-600); color: var(--paper); }
+  .sk-btn--pri:hover { background: var(--leaf-800); transform: translateY(-2px); }
+  .sk-btn--sec { background: transparent; color: var(--leaf-700); border: 1px solid var(--kraft-300); }
+  .sk-btn--sec:hover { border-color: var(--leaf-600); }
+
+  .hero-sim-link {
+    display: inline-flex; align-items: center; gap: 10px; margin-top: 34px;
+    padding: 14px 26px; border-radius: 999px; font-size: 14.5px; font-weight: 500;
+    background: var(--kraft-300); color: var(--leaf-800);
+    transition: all 0.4s var(--ease-out-quart);
+  }
+  .hero-sim-link:hover { background: var(--paper); transform: translateY(-2px); }
+
+  @media (max-width: 1024px) {
+    .sim { padding: 70px 22px 80px; }
+    .sk-wrap { grid-template-columns: 1fr; }
+    .sk-stage { min-height: 440px; }
+  }
+
   /* ————— CTA ————— */
   .cta-band {
     padding: 70px 40px;
@@ -398,6 +489,73 @@
     <p class="page-hero__desc">
       Uma seleção de embalagens que desenvolvemos com a identidade visual de clientes reais do ABC Paulista. Cada peça é pensada junto com o cliente, do material ao acabamento.
     </p>
+    <a href="#simulador" class="hero-sim-link">
+      Testar com o meu logo
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- SIMULADOR 3D -->
+<section class="sim" id="simulador">
+  <div class="sim__inner">
+    <div class="sim__head">
+      <div class="section-tag">Simulador 3D</div>
+      <h2 class="sim__title">Veja a <em>sua marca</em> numa sacola kraft.</h2>
+      <p class="sim__desc">Envie seu logo e gire a sacola para ver como ela fica antes de fazer o pedido. A imagem fica só no seu aparelho, nada é enviado.</p>
+    </div>
+
+    <div class="sk-wrap">
+      <div class="sk-stage" id="sk-stage">
+        <canvas id="sk-canvas" aria-label="Prévia 3D da sacola kraft"></canvas>
+        <div class="sk-hint">Arraste para girar · pinça ou scroll para zoom</div>
+      </div>
+
+      <div class="sk-panel">
+        <div>
+          <span class="sk-l">1 · Seu logo</span>
+          <label class="sk-drop" id="sk-drop">
+            <img id="sk-thumb" alt="" hidden>
+            <span id="sk-droptxt">Clique ou arraste o arquivo aqui<br><small>PNG, JPG ou SVG — PNG com fundo transparente fica melhor</small></span>
+            <input type="file" id="sk-file" accept="image/png,image/jpeg,image/svg+xml,image/webp" hidden>
+          </label>
+        </div>
+
+        <div>
+          <span class="sk-l">2 · Tamanho da sacola</span>
+          <div class="sk-seg" id="sk-size">
+            <button type="button" data-v="P">P</button><button type="button" data-v="M" class="on">M</button><button type="button" data-v="G">G</button>
+          </div>
+          <div class="sk-sub" id="sk-dims"></div>
+        </div>
+
+        <div>
+          <span class="sk-l">3 · Cor da impressão</span>
+          <div class="sk-seg" id="sk-mode">
+            <button type="button" data-v="color" class="on">Colorido</button><button type="button" data-v="black">Preto</button><button type="button" data-v="white">Branco</button>
+          </div>
+        </div>
+
+        <div>
+          <span class="sk-l">Tamanho do logo</span>
+          <input type="range" id="sk-scale" min="15" max="90" value="55">
+        </div>
+        <div>
+          <span class="sk-l">Posição vertical</span>
+          <input type="range" id="sk-pos" min="20" max="80" value="45">
+        </div>
+
+        <label class="sk-row"><input type="checkbox" id="sk-both"> Imprimir nos dois lados</label>
+
+        <div class="sk-actions">
+          <button type="button" class="sk-btn sk-btn--pri" id="sk-quote">
+            Pedir orçamento desta sacola
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </button>
+          <button type="button" class="sk-btn sk-btn--sec" id="sk-shot">Baixar imagem da prévia</button>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -477,6 +635,295 @@
     });
   }, { threshold: 0.15, rootMargin: '0px 0px -80px 0px' });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+<!-- Simulador 3D da sacola kraft -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script>
+(function(){
+  /* ===== CONFIGURE AQUI ===== */
+  const CONFIG = {
+    whatsapp: '5511995535533',
+    sizes: {                      // medidas em metros (L, A, F)
+      P:{w:.25,h:.30,d:.12,label:'25 × 30 × 12 cm'},
+      M:{w:.32,h:.40,d:.16,label:'32 × 40 × 16 cm'},
+      G:{w:.40,h:.48,d:.18,label:'40 × 48 × 18 cm'}
+    }
+  };
+  /* ========================== */
+
+  const state = {size:'M', scale:.55, posY:.45, mode:'color', both:false};
+  let logo = null;
+
+  const stage = document.getElementById('sk-stage');
+  const canvas = document.getElementById('sk-canvas');
+
+  // ---------- Renderer / cena ----------
+  const renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:true, preserveDrawingBuffer:true});
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.1;
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  const aniso = renderer.capabilities.getMaxAnisotropy();
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(35, 1, .01, 20);
+  camera.position.set(.62, .42, 1.05);
+
+  const controls = new THREE.OrbitControls(camera, canvas);
+  controls.enableDamping = true;
+  controls.enablePan = false;
+  controls.minDistance = .45; controls.maxDistance = 2.4;
+  controls.maxPolarAngle = Math.PI/2 - .04;
+  controls.autoRotate = true; controls.autoRotateSpeed = .9;
+  controls.addEventListener('start', () => controls.autoRotate = false);
+
+  scene.add(new THREE.HemisphereLight(0xfff6ea, 0xb39a80, .8));
+  const key = new THREE.DirectionalLight(0xffffff, 1.15);
+  key.position.set(.8, 1.5, 1.1);
+  key.castShadow = true;
+  key.shadow.mapSize.set(2048, 2048);
+  Object.assign(key.shadow.camera, {left:-.7, right:.7, top:.7, bottom:-.7, near:.1, far:5});
+  key.shadow.bias = -.0005; key.shadow.radius = 5;
+  scene.add(key);
+  const fill = new THREE.DirectionalLight(0xffe6cc, .4);
+  fill.position.set(-1, .6, -.6); scene.add(fill);
+
+  const ground = new THREE.Mesh(new THREE.PlaneGeometry(6,6), new THREE.ShadowMaterial({opacity:.2}));
+  ground.rotation.x = -Math.PI/2; ground.receiveShadow = true; scene.add(ground);
+
+  // ---------- Texturas procedurais ----------
+  function makeKraft(w, h){
+    const c = document.createElement('canvas'); c.width = w; c.height = h;
+    const x = c.getContext('2d');
+    x.fillStyle = '#b8895a'; x.fillRect(0,0,w,h);
+    const img = x.getImageData(0,0,w,h), d = img.data;
+    for (let i=0;i<d.length;i+=4){ const n=(Math.random()-.5)*20; d[i]+=n; d[i+1]+=n*.9; d[i+2]+=n*.75; }
+    x.putImageData(img,0,0);
+    for (let i=0;i<w*h/700;i++){
+      x.strokeStyle = Math.random()<.5 ? 'rgba(90,58,28,.10)' : 'rgba(235,205,165,.12)';
+      x.lineWidth = Math.random()*1.2+.3;
+      const px=Math.random()*w, py=Math.random()*h, a=Math.random()*Math.PI, l=Math.random()*16+4;
+      x.beginPath(); x.moveTo(px,py); x.lineTo(px+Math.cos(a)*l, py+Math.sin(a)*l); x.stroke();
+    }
+    for (let i=0;i<w*h/2500;i++){ x.fillStyle='rgba(60,35,15,'+(Math.random()*.3)+')'; x.fillRect(Math.random()*w,Math.random()*h,1.6,1.6); }
+    return c;
+  }
+  const kraftBase = makeKraft(1024,1024);
+  const kraftTex = new THREE.CanvasTexture(kraftBase);
+  kraftTex.encoding = THREE.sRGBEncoding; kraftTex.anisotropy = aniso;
+
+  function makeRopeTex(){
+    const c = document.createElement('canvas'); c.width=64; c.height=64;
+    const x = c.getContext('2d');
+    x.fillStyle='#a77849'; x.fillRect(0,0,64,64);
+    x.lineWidth=7; x.strokeStyle='rgba(70,44,18,.5)';
+    for(let i=-64;i<128;i+=16){ x.beginPath(); x.moveTo(i,0); x.lineTo(i+64,64); x.stroke(); }
+    x.lineWidth=3; x.strokeStyle='rgba(240,210,170,.35)';
+    for(let i=-58;i<128;i+=16){ x.beginPath(); x.moveTo(i,0); x.lineTo(i+64,64); x.stroke(); }
+    const t = new THREE.CanvasTexture(c);
+    t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(60,1); t.encoding = THREE.sRGBEncoding;
+    return t;
+  }
+  const ropeTex = makeRopeTex();
+
+  // ---------- Logo ----------
+  function processLogo(img){
+    let w = img.naturalWidth || 600, h = img.naturalHeight || 600;
+    const s = Math.min(1, 1024/Math.max(w,h)); w=Math.round(w*s); h=Math.round(h*s);
+    const base = document.createElement('canvas'); base.width=w; base.height=h;
+    const bx = base.getContext('2d'); bx.drawImage(img,0,0,w,h);
+    const data = bx.getImageData(0,0,w,h).data;
+    let transp = 0; for (let i=3;i<data.length;i+=4) if (data[i]<250) transp++;
+    const hasAlpha = transp > w*h*.02;
+    const mono = (r,g,b) => {
+      const c = document.createElement('canvas'); c.width=w; c.height=h;
+      const cx = c.getContext('2d'), id = cx.createImageData(w,h), o = id.data;
+      for (let i=0;i<data.length;i+=4){
+        const lum = (.299*data[i]+.587*data[i+1]+.114*data[i+2])/255;
+        const ink = hasAlpha ? data[i+3]/255 : Math.max(0, Math.min(1, (.9-lum)/.45));
+        o[i]=r; o[i+1]=g; o[i+2]=b; o[i+3]=ink*255;
+      }
+      cx.putImageData(id,0,0); return c;
+    };
+    logo = {color:base, black:mono(26,19,13), white:mono(250,246,238)};
+  }
+
+  function drawLogo(x, W, H){
+    const white = state.mode === 'white';
+    x.save();
+    x.globalCompositeOperation = white ? 'source-over' : 'multiply';
+    if (!logo){
+      x.globalAlpha = .9;
+      x.fillStyle = white ? '#f7f1e8' : '#2a1d12';
+      x.textAlign = 'center'; x.textBaseline = 'middle';
+      x.font = `800 ${W*state.scale*.2}px system-ui, sans-serif`;
+      x.fillText('SUA LOGO', W/2, H*state.posY);
+      x.font = `500 ${W*state.scale*.07}px system-ui, sans-serif`;
+      x.fillText('envie o arquivo ao lado', W/2, H*state.posY + W*state.scale*.17);
+      x.restore(); return;
+    }
+    const src = logo[state.mode];
+    const ratio = src.height/src.width;
+    let lw = W*state.scale, lh = lw*ratio;
+    if (lh > H*.6){ lh = H*.6; lw = lh/ratio; }
+    x.globalAlpha = white ? .92 : .95;
+    x.drawImage(src, W/2-lw/2, H*state.posY-lh/2, lw, lh);
+    x.restore();
+  }
+
+  // ---------- Faces ----------
+  const faces = {};
+  function mkFace(w, h){
+    const c = document.createElement('canvas'); c.width=w; c.height=h;
+    const tex = new THREE.CanvasTexture(c); tex.encoding = THREE.sRGBEncoding; tex.anisotropy = aniso;
+    return {c, tex};
+  }
+  function paintFace(f, isSide, withLogo){
+    const x = f.c.getContext('2d'), W = f.c.width, H = f.c.height;
+    x.globalCompositeOperation='source-over'; x.globalAlpha=1;
+    x.drawImage(kraftBase,0,0,W,H);
+    const g = x.createLinearGradient(0,0,W,0);
+    g.addColorStop(0,'rgba(60,35,15,.12)'); g.addColorStop(.07,'rgba(0,0,0,0)');
+    g.addColorStop(.93,'rgba(0,0,0,0)'); g.addColorStop(1,'rgba(60,35,15,.12)');
+    x.fillStyle=g; x.fillRect(0,0,W,H);
+    if (isSide){
+      const cy = H - W/2;
+      x.lineWidth = 3; x.strokeStyle = 'rgba(70,45,20,.35)';
+      x.beginPath(); x.moveTo(W/2,0); x.lineTo(W/2,cy); x.lineTo(0,H); x.moveTo(W/2,cy); x.lineTo(W,H); x.stroke();
+      x.lineWidth = 2; x.strokeStyle = 'rgba(255,235,200,.25)';
+      x.beginPath(); x.moveTo(W/2+3,0); x.lineTo(W/2+3,cy); x.stroke();
+    }
+    if (withLogo) drawLogo(x,W,H);
+    f.tex.needsUpdate = true;
+  }
+  function repaint(){
+    paintFace(faces.front,false,true);
+    paintFace(faces.back,false,state.both);
+  }
+
+  // ---------- Geometria da sacola ----------
+  let bag = null;
+  const innerMat = new THREE.MeshStandardMaterial({map:kraftTex, color:0xcfc0ad, roughness:.95, side:THREE.BackSide});
+  const rimMat   = new THREE.MeshStandardMaterial({map:kraftTex, color:0xe6d6c2, roughness:.95, side:THREE.DoubleSide});
+  const ropeMat  = new THREE.MeshStandardMaterial({map:ropeTex, roughness:.85});
+
+  function panelGeo(gw, gh, bulge, type){
+    const g = new THREE.PlaneGeometry(gw, gh, 32, 4);
+    const p = g.attributes.position;
+    for (let i=0;i<p.count;i++){
+      const u = (p.getX(i)+gw/2)/gw;
+      p.setZ(i, type==='face' ? bulge*Math.sin(Math.PI*u) : -bulge*(1-Math.abs(2*u-1)));
+    }
+    g.computeVertexNormals(); return g;
+  }
+
+  function buildBag(){
+    if (bag){ scene.remove(bag); bag.traverse(o => o.geometry && o.geometry.dispose()); }
+    const {w,h,d} = CONFIG.sizes[state.size];
+    const fold = Math.min(.04, h*.1), fBulge = .005, sBulge = d*.1;
+    bag = new THREE.Group();
+
+    ['front','back','side'].forEach(k => faces[k] && faces[k].tex.dispose());
+    faces.front = mkFace(1024, Math.round(1024*h/w));
+    faces.back  = mkFace(1024, Math.round(1024*h/w));
+    faces.side  = mkFace(512,  Math.round(512*h/d));
+    paintFace(faces.side,true,false); repaint();
+
+    const outMat = t => new THREE.MeshStandardMaterial({map:t, roughness:.92, bumpMap:kraftTex, bumpScale:.0012});
+    const mF = outMat(faces.front.tex), mB = outMat(faces.back.tex), mS = outMat(faces.side.tex);
+
+    function wall(gw, mat, type, bulge, pos, rotY, inset){
+      const geo = panelGeo(gw, h, bulge, type);
+      const o = new THREE.Mesh(geo, mat); o.castShadow = o.receiveShadow = true;
+      const i = new THREE.Mesh(geo, innerMat); i.receiveShadow = true;
+      const rim = new THREE.Mesh(panelGeo(gw-.003, fold, bulge, type), rimMat);
+      rim.position.set(0, h/2-fold/2, -inset);
+      const grp = new THREE.Group(); grp.add(o,i,rim);
+      grp.position.copy(pos); grp.rotation.y = rotY; bag.add(grp);
+    }
+    wall(w, mF, 'face', fBulge, new THREE.Vector3(0,h/2, d/2),  0,           .0025);
+    wall(w, mB, 'face', fBulge, new THREE.Vector3(0,h/2,-d/2),  Math.PI,     .0025);
+    wall(d, mS, 'side', sBulge, new THREE.Vector3( w/2,h/2,0),  Math.PI/2,   .0025);
+    wall(d, mS, 'side', sBulge, new THREE.Vector3(-w/2,h/2,0), -Math.PI/2,   .0025);
+
+    const bottom = new THREE.Mesh(new THREE.PlaneGeometry(w,d), new THREE.MeshStandardMaterial({map:kraftTex,color:0xcfc0ad,roughness:.95}));
+    bottom.rotation.x = -Math.PI/2; bottom.position.y = .002; bottom.receiveShadow = true; bag.add(bottom);
+
+    const a = w*.18, top = h + Math.min(.12, h*.3);
+    [1,-1].forEach(s => {
+      const z = s*(d/2 - .008), V = THREE.Vector3;
+      const curve = new THREE.CatmullRomCurve3([
+        new V(-a, h-fold*.8, z), new V(-a*1.06, h+.02, z), new V(-a*.75, top-.022, z),
+        new V(0, top, z), new V(a*.75, top-.022, z), new V(a*1.06, h+.02, z), new V(a, h-fold*.8, z)
+      ]);
+      const m = new THREE.Mesh(new THREE.TubeGeometry(curve, 96, .0036, 10, false), ropeMat);
+      m.castShadow = true; bag.add(m);
+    });
+
+    scene.add(bag);
+    controls.target.set(0, h*.6, 0);
+    document.getElementById('sk-dims').textContent = CONFIG.sizes[state.size].label + ' (L × A × F)';
+  }
+
+  // ---------- Loop / resize ----------
+  function resize(){
+    const r = stage.getBoundingClientRect();
+    renderer.setSize(r.width, r.height, false);
+    camera.aspect = r.width / r.height; camera.updateProjectionMatrix();
+  }
+  new ResizeObserver(resize).observe(stage);
+  (function loop(){ requestAnimationFrame(loop); controls.update(); renderer.render(scene,camera); })();
+
+  // ---------- UI ----------
+  const fileIn = document.getElementById('sk-file'), drop = document.getElementById('sk-drop');
+  function loadFile(file){
+    if (!file || !file.type.startsWith('image/')) return;
+    const url = URL.createObjectURL(file), img = new Image();
+    img.onload = () => {
+      processLogo(img); repaint();
+      const t = document.getElementById('sk-thumb'); t.src = url; t.hidden = false;
+      document.getElementById('sk-droptxt').innerHTML = '<small>Clique para trocar o logo</small>';
+    };
+    img.src = url;
+  }
+  fileIn.addEventListener('change', e => loadFile(e.target.files[0]));
+  ['dragenter','dragover'].forEach(ev => drop.addEventListener(ev, e => {e.preventDefault(); drop.classList.add('over');}));
+  ['dragleave','drop'].forEach(ev => drop.addEventListener(ev, e => {e.preventDefault(); drop.classList.remove('over');}));
+  drop.addEventListener('drop', e => loadFile(e.dataTransfer.files[0]));
+
+  function seg(id, key, onChange){
+    document.querySelectorAll('#'+id+' button').forEach(b => b.addEventListener('click', () => {
+      document.querySelectorAll('#'+id+' button').forEach(x => x.classList.remove('on'));
+      b.classList.add('on'); state[key] = b.dataset.v; onChange();
+    }));
+  }
+  seg('sk-size','size',buildBag);
+  seg('sk-mode','mode',repaint);
+  document.getElementById('sk-scale').addEventListener('input', e => {state.scale = e.target.value/100; repaint();});
+  document.getElementById('sk-pos').addEventListener('input', e => {state.posY = e.target.value/100; repaint();});
+  document.getElementById('sk-both').addEventListener('change', e => {state.both = e.target.checked; repaint();});
+
+  document.getElementById('sk-shot').addEventListener('click', () => {
+    renderer.render(scene,camera);
+    const a = document.createElement('a');
+    a.download = 'minha-sacola-kraft.png'; a.href = renderer.domElement.toDataURL('image/png'); a.click();
+  });
+  document.getElementById('sk-quote').addEventListener('click', () => {
+    const cor = {color:'colorida', black:'preta', white:'branca'}[state.mode];
+    const msg = `Olá! Vim pelo simulador do site e quero um orçamento de sacola kraft personalizada:\n` +
+      `• Tamanho ${state.size} (${CONFIG.sizes[state.size].label})\n` +
+      `• Impressão ${cor}, ${state.both ? 'frente e verso' : 'só na frente'}\n` +
+      `Vou enviar meu logo e a imagem da prévia aqui.`;
+    try{gtag('event','conversion',{'send_to':'AW-17972588049/3G85CLHE8oYcEJHc__lC'});}catch(e){}
+    window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank');
+  });
+
+  buildBag(); resize();
+})();
 </script>
 
 </body>
