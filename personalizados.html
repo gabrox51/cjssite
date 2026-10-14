@@ -216,79 +216,8 @@
     font-weight: 300;
   }
 
-  /* ————— GALERIA ————— */
-  .gallery {
-    padding: 100px 40px 140px;
-    background: var(--cream);
-  }
-  .gallery__inner { max-width: 1400px; margin: 0 auto; }
-
-  .gallery__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
-
-  .gallery-item {
-    background: var(--paper);
-    border: 1px solid var(--kraft-200);
-    border-radius: 2px;
-    overflow: hidden;
-    position: relative;
-    transition: all 0.4s var(--ease-out-quart);
-  }
-  .gallery-item:hover {
-    transform: translateY(-6px);
-    border-color: var(--leaf-500);
-    box-shadow: 0 24px 40px -20px rgba(61, 45, 20, 0.2);
-  }
-
-  .gallery-item__img {
-    aspect-ratio: 4 / 3;
-    width: 100%;
-    object-fit: cover;
-    background: linear-gradient(135deg, var(--kraft-100), var(--kraft-200));
-    transition: transform 0.5s var(--ease-out-quart);
-  }
-  .gallery-item:hover .gallery-item__img { transform: scale(1.05); }
-
-  .gallery-item__caption {
-    padding: 20px 22px 24px;
-  }
-  .gallery-item__name {
-    font-family: var(--font-display);
-    font-size: 19px;
-    font-weight: 500;
-    color: var(--leaf-800);
-    margin-bottom: 4px;
-  }
-  .gallery-item__desc {
-    font-size: 13.5px;
-    color: var(--ink-soft);
-    font-weight: 300;
-  }
-
-  /* placeholder para quando ainda não há foto */
-  .gallery-item__img--empty {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--kraft-500);
-    text-align: center;
-    padding: 20px;
-  }
-
   @media (max-width: 1024px) {
     .page-hero { padding: 140px 22px 60px; }
-    .gallery { padding: 70px 22px 90px; }
-    .gallery__grid { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (max-width: 560px) {
-    .gallery__grid { grid-template-columns: 1fr; }
   }
 
   /* ————— SIMULADOR 3D ————— */
@@ -555,46 +484,6 @@
           <button type="button" class="sk-btn sk-btn--sec" id="sk-shot">Baixar imagem da prévia</button>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- GALERIA -->
-<section class="gallery">
-  <div class="gallery__inner">
-    <div class="gallery__grid">
-
-      <!--
-        COMO ADICIONAR UM NOVO EXEMPLO:
-        1. Suba a foto na pasta /images/personalizados/ do repositório (ex: images/personalizados/exemplo-01.jpg)
-        2. Copie um bloco <div class="gallery-item reveal"> ... </div> abaixo
-        3. Troque o src, o alt, o nome e a descrição
-      -->
-
-      <div class="gallery-item reveal">
-        <img class="gallery-item__img" src="images/personalizados/exemplo-01.jpg" alt="Caixa personalizada exemplo 1" onerror="this.classList.add('gallery-item__img--empty'); this.replaceWith(Object.assign(document.createElement('div'), {className:'gallery-item__img gallery-item__img--empty', innerText:'Foto em breve'}))">
-        <div class="gallery-item__caption">
-          <div class="gallery-item__name">Caixa Hambúrguer</div>
-          <div class="gallery-item__desc">Impressão personalizada com logo do cliente.</div>
-        </div>
-      </div>
-
-      <div class="gallery-item reveal">
-        <img class="gallery-item__img" src="images/personalizados/exemplo-02.jpg" alt="Sacola kraft personalizada exemplo 2" onerror="this.classList.add('gallery-item__img--empty'); this.replaceWith(Object.assign(document.createElement('div'), {className:'gallery-item__img gallery-item__img--empty', innerText:'Foto em breve'}))">
-        <div class="gallery-item__caption">
-          <div class="gallery-item__name">Sacola Kraft</div>
-          <div class="gallery-item__desc">Sacola com alça e identidade visual da marca.</div>
-        </div>
-      </div>
-
-      <div class="gallery-item reveal">
-        <img class="gallery-item__img" src="images/personalizados/exemplo-03.jpg" alt="Embalagem para doceria exemplo 3" onerror="this.classList.add('gallery-item__img--empty'); this.replaceWith(Object.assign(document.createElement('div'), {className:'gallery-item__img gallery-item__img--empty', innerText:'Foto em breve'}))">
-        <div class="gallery-item__caption">
-          <div class="gallery-item__name">Embalagem Doceria</div>
-          <div class="gallery-item__desc">Acabamento personalizado para docinhos e bolos.</div>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
