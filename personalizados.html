@@ -462,7 +462,7 @@
             <div id="sk-bgopts" hidden>
               <span class="sk-l sk-l--mt">Intensidade da remoção</span>
               <input type="range" id="sk-tol" min="4" max="60" value="22">
-              <label class="sk-row sk-row--sm"><input type="checkbox" id="sk-bgall"> Remover também dentro das letras e formas</label>
+              <label class="sk-row sk-row--sm"><input type="checkbox" id="sk-keepin"> Manter essa cor dentro do desenho do logo</label>
             </div>
           </div>
         </div>
@@ -560,7 +560,7 @@
   };
   /* ========================== */
 
-  const state = {size:'20', scale:.55, posY:.45, mode:'color', both:false, bg:'none', tol:22, bgAll:false};
+  const state = {size:'20', scale:.55, posY:.45, mode:'color', both:false, bg:'none', tol:22, bgAll:true};
   let logo = null, srcImg = null, srcUrl = null;
 
   const stage = document.getElementById('sk-stage');
@@ -742,8 +742,24 @@
     const ratio = src.height/src.width;
     let lw = W*state.scale, lh = lw*ratio;
     if (lh > H*.6){ lh = H*.6; lw = lh/ratio; }
-    x.globalAlpha = white ? .92 : .95;
-    x.drawImage(src, W/2-lw/2, H*state.posY-lh/2, lw, lh);
+    const px = W/2-lw/2, py = H*state.posY-lh/2;
+    if (state.mode === 'black'){
+      // tinta preta: multiplicar sobre o kraft fica natural
+      x.globalAlpha = .95;
+      x.drawImage(src, px, py, lw, lh);
+    } else {
+      // colorido e branco: tinta opaca (senão o branco some), com a textura do papel por cima
+      const tw = Math.max(1, Math.round(lw)), th = Math.max(1, Math.round(lh));
+      const tmp = document.createElement('canvas'); tmp.width = tw; tmp.height = th;
+      const tx = tmp.getContext('2d');
+      tx.drawImage(src, 0, 0, tw, th);
+      tx.globalCompositeOperation = 'source-atop';
+      tx.globalAlpha = .16;
+      tx.drawImage(kraftBase, px, py, tw, th, 0, 0, tw, th);
+      x.globalCompositeOperation = 'source-over';
+      x.globalAlpha = .96;
+      x.drawImage(tmp, px, py, lw, lh);
+    }
     x.restore();
   }
 
@@ -837,7 +853,7 @@
     });
 
     scene.add(bag);
-    controls.target.set(0, h*.6, 0);
+    controls.target.set(0, (h + Math.min(.12, h*.3))*.5, 0);
     document.getElementById('sk-dims').textContent = CONFIG.sizes[state.size].label + ' (L × F × A)';
   }
 
@@ -886,7 +902,7 @@
   document.getElementById('sk-tol').addEventListener('input', e => {
     state.tol = +e.target.value; clearTimeout(tolTimer); tolTimer = setTimeout(reprocess, 60);
   });
-  document.getElementById('sk-bgall').addEventListener('change', e => { state.bgAll = e.target.checked; reprocess(); });
+  document.getElementById('sk-keepin').addEventListener('change', e => { state.bgAll = !e.target.checked; reprocess(); });
 
   seg('sk-size','size',buildBag);
   seg('sk-mode','mode',repaint);
