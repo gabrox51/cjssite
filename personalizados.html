@@ -558,8 +558,10 @@
 
           <span class="sk-l sk-l--mt">Tamanho dos textos</span>
           <input type="range" id="sk-tsize" min="50" max="170" value="100">
-          <span class="sk-l sk-l--mt">Posição dos contatos</span>
+          <span class="sk-l sk-l--mt">Posição dos contatos · altura</span>
           <input type="range" id="sk-tpos" min="50" max="94" value="84">
+          <span class="sk-l sk-l--mt">Posição dos contatos · esquerda ↔ direita</span>
+          <input type="range" id="sk-tposx" min="0" max="100" value="50">
         </div>
 
         <label class="sk-row"><input type="checkbox" id="sk-both"> Imprimir nos dois lados</label>
@@ -632,7 +634,7 @@
   /* ========================== */
 
   const state = {size:'20', scale:.55, posY:.45, mode:'color', both:false, bg:'none', tol:22, bgAll:true,
-    main:'', mainPos:'below', font:'sans', tcolor:'#1a1a1a', tsize:1, tpos:.84,
+    main:'', mainPos:'below', font:'sans', tcolor:'#1a1a1a', tsize:1, tpos:.84, tposx:.5,
     lines:[{icon:'phone', text:'', img:null}]};
   let logo = null, srcImg = null, srcUrl = null;
 
@@ -875,15 +877,26 @@
     if (lines.length){
       const base = W*.042*state.tsize, lh = base*1.65;
       let y = H*state.tpos - (lines.length-1)*lh/2;
-      for (const l of lines){
+      // 1ª passada: mede cada linha
+      const maxW = W*.86;
+      const ms = lines.map(l => {
         const t = l.text.trim();
         const hasIcon = l.icon !== 'none' && (l.icon !== 'custom' || l.img);
         let fs = base, is = fs*1.15, gap = t && hasIcon ? fs*.5 : 0;
         lx.font = fontFor('line', fs);
         let tw = t ? lx.measureText(t).width : 0;
-        const total = (hasIcon ? is : 0) + gap + tw, maxW = W*.86;
-        if (total > maxW){ const k = maxW/total; fs*=k; is*=k; gap*=k; lx.font = fontFor('line', fs); tw = t ? lx.measureText(t).width : 0; }
-        let cx = W/2 - ((hasIcon ? is : 0) + gap + tw)/2;
+        let total = (hasIcon ? is : 0) + gap + tw;
+        if (total > maxW){ const k = maxW/total; fs*=k; is*=k; gap*=k; tw*=k; total*=k; }
+        return {l, t, hasIcon, fs, is, gap, total};
+      });
+      // posição horizontal do bloco (sem sair da sacola) e alinhamento das linhas
+      const blockW = Math.max(...ms.map(m => m.total)), margin = W*.06;
+      const bx = Math.min(Math.max(W*state.tposx, blockW/2 + margin), W - blockW/2 - margin);
+      const align = state.tposx < .45 ? 'left' : state.tposx > .55 ? 'right' : 'center';
+      for (const m of ms){
+        const {l, t, hasIcon, fs, is, gap, total} = m;
+        lx.font = fontFor('line', fs);
+        let cx = align === 'left' ? bx - blockW/2 : align === 'right' ? bx + blockW/2 - total : bx - total/2;
         if (hasIcon){
           if (l.icon === 'custom'){
             const r = l.img.height/l.img.width; let iw = is, ih = is*r; if (ih > is*1.1){ ih = is*1.1; iw = ih/r; }
@@ -1115,6 +1128,10 @@
   });
   document.getElementById('sk-tsize').addEventListener('input', e => { state.tsize = e.target.value/100; repaint(); });
   document.getElementById('sk-tpos').addEventListener('input', e => { state.tpos = e.target.value/100; repaint(); });
+  document.getElementById('sk-tposx').addEventListener('input', e => {
+    let v = e.target.value/100; if (Math.abs(v-.5) < .03){ v = .5; e.target.value = 50; } // "gruda" no centro
+    state.tposx = v; repaint();
+  });
   const syncColorBox = () => { document.getElementById('sk-colorbox').hidden = state.mode !== 'color'; };
   syncColorBox();
   if (document.fonts){
