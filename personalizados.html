@@ -451,6 +451,14 @@
   }
 
   /* ——— editor de camadas ——— */
+  .sk-copyto { display: flex; gap: 4px; flex-wrap: wrap; }
+  .sk-copyto .sk-ib { flex: 1 0 auto; }
+  .sk-toast {
+    position: absolute; left: 50%; top: 18px; z-index: 5; transform: translate(-50%, -12px); opacity: 0; pointer-events: none;
+    padding: 10px 16px; background: var(--leaf-800); color: var(--paper); border-radius: 4px; font-size: 13px;
+    transition: all .3s var(--ease-out-quart); white-space: nowrap; max-width: 90%; overflow: hidden; text-overflow: ellipsis;
+  }
+  .sk-toast.on { opacity: 1; transform: translate(-50%, 0); }
   #sk-flat { cursor: pointer; }
   .sk-faces { display: flex; gap: 4px; margin: 0 0 14px; }
   .sk-faces .sk-facebtn {
@@ -716,7 +724,7 @@
             <button type="button" class="sk-tpl" data-tpl="band"><b>Faixa</b><small>Faixa colorida no rodapé</small></button>
             <button type="button" class="sk-tpl" data-tpl="sides"><b>Laterais</b><small>@ e telefone nas laterais</small></button>
           </div>
-          <button type="button" class="sk-add" id="sk-copyback">Copiar a arte da frente para o verso</button>
+          <div class="sk-copy"><span class="sk-l sk-l--mt">Copiar a arte da <b class="sk-copyfrom">frente</b> para</span><div class="sk-copyto"></div></div>
         </div>
 
         <!-- EDITAR -->
@@ -724,6 +732,7 @@
           <div id="sk-props"></div>
           <span class="sk-l sk-l--mt">Itens nesta face</span>
           <div id="sk-layers" class="sk-layers"></div>
+          <div class="sk-copy"><span class="sk-l sk-l--mt">Copiar a arte da <b class="sk-copyfrom">frente</b> para</span><div class="sk-copyto"></div></div>
         </div>
 
         <!-- SACOLA -->
@@ -767,7 +776,8 @@
               </div>
               <div class="sk-sub" id="sk-sharemsg"></div>
             </div>
-            <button type="button" class="sk-btn sk-btn--sec" id="sk-shot">Baixar imagem da prévia</button>
+            <button type="button" class="sk-btn sk-btn--sec" id="sk-shot">Baixar foto em alta resolução</button>
+            <p class="sk-sub">Gera uma foto da sacola no ângulo atual, em alta definição e com fundo de estúdio. Gire a sacola antes para escolher o melhor ângulo.</p>
           </div>
         </div>
 
@@ -866,6 +876,7 @@
 <!-- Simulador 3D da sacola kraft -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/environments/RoomEnvironment.js"></script>
 <script>
 (function(){
   /* ===== CONFIGURE AQUI ===== */
@@ -945,7 +956,10 @@
   controls.autoRotate = true; controls.autoRotateSpeed = .9;
   controls.addEventListener('start', () => { controls.autoRotate = false; const b = document.getElementById('sk-spin'); if (b) b.classList.remove('on'); });
 
-  scene.add(new THREE.HemisphereLight(0xfff6ea, 0xb39a80, .8));
+  if (THREE.RoomEnvironment && THREE.PMREMGenerator){
+    try { const pm = new THREE.PMREMGenerator(renderer); scene.environment = pm.fromScene(new THREE.RoomEnvironment(), .04).texture; } catch(e){}
+  }
+  scene.add(new THREE.HemisphereLight(0xfff6ea, 0xb39a80, scene.environment ? .55 : .8));
   const key = new THREE.DirectionalLight(0xffffff, 1.15);
   key.position.set(.8, 1.5, 1.1);
   key.castShadow = true;
@@ -978,6 +992,22 @@
   }
   const noise = makeNoise(1024,1024);
   const noiseTex = new THREE.CanvasTexture(noise); noiseTex.anisotropy = aniso;
+  // resolução das faces: 2048px no computador, 1024px em aparelhos mais fracos
+  const maxTex = renderer.capabilities.maxTextureSize || 4096;
+  const FACE_RES = (window.innerWidth > 900 && (navigator.deviceMemory || 8) >= 4 && maxTex >= 4096) ? 2048 : 1024;
+  // relevo do papel: fibras + leves vincos de uso
+  const crease = document.createElement('canvas'); crease.width = crease.height = 1024;
+  (function(){
+    const x = crease.getContext('2d'); x.drawImage(noise, 0, 0);
+    x.globalAlpha = .18;
+    for (let i=0;i<9;i++){
+      const y0 = Math.random()*1024, y1 = y0 + (Math.random()-.5)*260, wv = 6 + Math.random()*16;
+      const g = x.createLinearGradient(0, y0-wv, 0, y0+wv); g.addColorStop(0,'rgba(128,128,128,0)'); g.addColorStop(.5, Math.random()<.5 ? '#5a5a5a' : '#b0b0b0'); g.addColorStop(1,'rgba(128,128,128,0)');
+      x.strokeStyle = g; x.lineWidth = wv; x.beginPath(); x.moveTo(0,y0); x.bezierCurveTo(340, y0+(Math.random()-.5)*80, 680, y1+(Math.random()-.5)*80, 1024, y1); x.stroke();
+    }
+    x.globalAlpha = 1;
+  })();
+  const creaseTex = new THREE.CanvasTexture(crease); creaseTex.anisotropy = aniso;
   const paperC = document.createElement('canvas'); paperC.width = paperC.height = 1024;
   function paintPaper(){
     const x = paperC.getContext('2d');
@@ -1012,11 +1042,13 @@
   // ---------- Imagens: remoção de fundo e máscara de cor ----------
   function removeBg(id, w, h, bg, tolPct, all){
     const d = id.data, n = w*h;
-    const t = tolPct * 4.4, feather = 38;
+    // "distância" do fundo que considera a saturação: vermelho/azul escuros não são confundidos com preto,
+    // nem amarelo/rosa claros com branco
+    const t = tolPct * 2.2, feather = 30, white = bg[0] > 127;
     const dist = new Float32Array(n);
     for (let i=0;i<n;i++){
-      const r=d[i*4]-bg[0], g=d[i*4+1]-bg[1], b=d[i*4+2]-bg[2];
-      dist[i] = d[i*4+3] < 10 ? 0 : Math.sqrt(r*r+g*g+b*b);
+      const r=d[i*4], g=d[i*4+1], b=d[i*4+2], mx=Math.max(r,g,b), mn=Math.min(r,g,b);
+      dist[i] = d[i*4+3] < 10 ? 0 : (white ? 255-mn : mx) + .6*(mx-mn);
     }
     const mark = new Uint8Array(n);
     if (all){
@@ -1066,7 +1098,7 @@
   function processImage(el){
     const img = el.src;
     let w = img.naturalWidth || img.width || 600, h = img.naturalHeight || img.height || 600;
-    const s = Math.min(1, 1024/Math.max(w,h)); w=Math.max(1,Math.round(w*s)); h=Math.max(1,Math.round(h*s));
+    const s = Math.min(1, 2048/Math.max(w,h)); w=Math.max(1,Math.round(w*s)); h=Math.max(1,Math.round(h*s));
     const c = document.createElement('canvas'); c.width=w; c.height=h;
     const x = c.getContext('2d'); x.drawImage(img,0,0,w,h);
     if (el.bg !== 'none'){
@@ -1273,13 +1305,14 @@
     bag = new THREE.Group(); handles = null;
 
     FACE_ORDER.forEach(k => faces[k] && faces[k].tex.dispose());
-    faces.front = mkFace(1024, Math.round(1024*h/w));
-    faces.back  = mkFace(1024, Math.round(1024*h/w));
-    faces.left  = mkFace(512,  Math.round(512*h/d));
-    faces.right = mkFace(512,  Math.round(512*h/d));
+    const R = FACE_RES, Rs = Math.max(512, Math.round(R*d/w/256)*256);
+    faces.front = mkFace(R,  Math.round(R*h/w));
+    faces.back  = mkFace(R,  Math.round(R*h/w));
+    faces.left  = mkFace(Rs, Math.round(Rs*h/d));
+    faces.right = mkFace(Rs, Math.round(Rs*h/d));
     FACE_ORDER.forEach(paintFace);
 
-    FACE_ORDER.forEach(k => { if (outMats[k]) outMats[k].dispose(); outMats[k] = new THREE.MeshStandardMaterial({map:faces[k].tex, roughness:.92, bumpMap:noiseTex, bumpScale:.0012}); });
+    FACE_ORDER.forEach(k => { if (outMats[k]) outMats[k].dispose(); outMats[k] = new THREE.MeshStandardMaterial({map:faces[k].tex, roughness:.92, bumpMap:creaseTex, bumpScale:.0016, envMapIntensity:.45}); });
     applyFinish();
 
     function wall(face, gw, type, bulge, pos, rotY){
@@ -1364,7 +1397,7 @@
   function setFace(f){
     ui.face = f;
     document.querySelectorAll('.sk-facebtn').forEach(b => b.classList.toggle('on', b.dataset.face === f));
-    $('sk-addface').textContent = FACE_NAMES[f];
+    $('sk-addface').textContent = FACE_NAMES[f]; renderCopy();
     const s = selEl(); if (s && findEl(s.id).f !== f) ui.sel = null;
     drawFlat(); renderProps(); if (ui.mode === '2d') render2D();
   }
@@ -1791,10 +1824,30 @@
     }
     paintAll(); setMode(t === 'sides' ? '2d' : '3d'); setFace(t === 'sides' ? 'left' : 'front'); renderProps();
   }));
-  $('sk-copyback').addEventListener('click', () => {
-    doc.faces.back = doc.faces.front.filter(e => !e.placeholder).map(e => Object.assign({}, e, {id:newId()}));
-    paintFace('back'); changed(); setFace('back'); setMode('2d');
-  });
+  // copiar a arte de uma face para outra(s)
+  const SHORT = {left:'Lat. esq.', front:'Frente', right:'Lat. dir.', back:'Verso'};
+  function copyFace(from, targets){
+    const src = doc.faces[from].filter(e => !e.placeholder);
+    if (!src.length){ toast('Esta face ainda está vazia.'); return; }
+    targets.forEach(t => { doc.faces[t] = src.map(e => Object.assign({}, e, {id:newId()})); paintFace(t); });
+    changed();
+    toast(`Copiado para ${targets.length > 1 ? 'todas as faces' : FACE_NAMES[targets[0]]}. Se não gostar, use desfazer.`);
+  }
+  function renderCopy(){
+    document.querySelectorAll('.sk-copyfrom').forEach(b => b.textContent = FACE_NAMES[ui.face]);
+    document.querySelectorAll('.sk-copyto').forEach(box => {
+      box.innerHTML = '';
+      const others = FACE_ORDER.filter(f => f !== ui.face);
+      others.forEach(f => { const b = document.createElement('button'); b.type = 'button'; b.className = 'sk-ib'; b.textContent = SHORT[f]; b.addEventListener('click', () => copyFace(ui.face, [f])); box.appendChild(b); });
+      const all = document.createElement('button'); all.type = 'button'; all.className = 'sk-ib'; all.textContent = 'Todas'; all.addEventListener('click', () => copyFace(ui.face, others)); box.appendChild(all);
+    });
+  }
+  let toastT;
+  function toast(msg){
+    let t = $('sk-toast');
+    if (!t){ t = document.createElement('div'); t.id = 'sk-toast'; t.className = 'sk-toast'; stage.appendChild(t); }
+    t.textContent = msg; t.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('on'), 2600);
+  }
 
   // ---------- Sacola: tamanho, papel, alça, acabamento ----------
   segBind('sk-size', v => { doc.size = v; buildBag(); });
@@ -1890,11 +1943,32 @@
 
   // ---------- Baixar / orçamento ----------
   $('sk-shot').addEventListener('click', () => {
-    const was = ui.mode; if (was !== '3d') setMode('3d');
-    renderer.render(scene,camera);
-    const a = document.createElement('a');
-    a.download = 'minha-sacola-kraft.png'; a.href = renderer.domElement.toDataURL('image/png'); a.click();
-    if (was !== '3d') setMode(was);
+    const btn = $('sk-shot'), label = btn.textContent;
+    btn.textContent = 'Gerando foto…'; btn.disabled = true;
+    setTimeout(() => {
+      const was = ui.mode; if (was !== '3d') setMode('3d');
+      const size = renderer.getSize(new THREE.Vector2()), pr0 = renderer.getPixelRatio();
+      const target = Math.min(3600, maxTex), pr = Math.max(pr0, target / Math.max(size.x, size.y));
+      const spin = controls.autoRotate; controls.autoRotate = false;
+      renderer.setPixelRatio(pr); renderer.setSize(size.x, size.y, false);
+      renderer.render(scene, camera);
+      const W = renderer.domElement.width, H = renderer.domElement.height;
+      const out = document.createElement('canvas'); out.width = W; out.height = H;
+      const x = out.getContext('2d');
+      const g = x.createRadialGradient(W/2, H*.42, 0, W/2, H*.42, Math.max(W,H)*.75);
+      g.addColorStop(0, '#ffffff'); g.addColorStop(1, '#eadfcc');
+      x.fillStyle = g; x.fillRect(0, 0, W, H);
+      x.drawImage(renderer.domElement, 0, 0);
+      x.font = `500 ${Math.round(W*.012)}px "Inter Tight", sans-serif`; x.fillStyle = 'rgba(61,45,20,.45)'; x.textAlign = 'right';
+      x.fillText('Prévia · CJS Embalagens', W - W*.02, H - W*.02);
+      renderer.setPixelRatio(pr0); renderer.setSize(size.x, size.y, false); controls.autoRotate = spin;
+      out.toBlob(blob => {
+        const a = document.createElement('a'); a.download = 'minha-sacola-cjs.png'; a.href = URL.createObjectURL(blob); a.click();
+        setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+        btn.textContent = label; btn.disabled = false;
+      }, 'image/png');
+      if (was !== '3d') setMode(was);
+    }, 30);
   });
   function colorName(list, c){ const p = list.find(p => p.c.toLowerCase() === c.toLowerCase()); return p ? p.n.toLowerCase() : c.toUpperCase(); }
   function summary(){
@@ -2028,7 +2102,7 @@
   shareInp.addEventListener('focus', () => shareInp.select());
 
   // ---------- Início ----------
-  buildBag(); resize(); renderBagUI();
+  buildBag(); resize(); renderBagUI(); renderCopy();
   ready = true; changed(); renderProps(); pushHist();
   if (document.fonts){
     Promise.all(['700 40px "Inter Tight"','400 40px "Inter Tight"','600 40px Fraunces','400 40px Fraunces','40px Pacifico','40px "Bebas Neue"','40px Caveat','700 40px Caveat','400 40px "JetBrains Mono"']
