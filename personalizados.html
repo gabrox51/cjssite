@@ -239,15 +239,86 @@
   .sim__title em { font-style: italic; color: var(--kraft-500); font-weight: 300; }
   .sim__desc { font-size: 16px; line-height: 1.6; color: var(--ink-soft); font-weight: 300; max-width: 600px; }
 
-  .sk-wrap { display: grid; grid-template-columns: 1fr 360px; gap: 20px; }
+  /* editor: barra de ferramentas | painel | palco */
+  .sk-editor {
+    display: grid; grid-template-columns: 76px 340px 1fr; height: 740px;
+    border: 1px solid var(--kraft-200); border-radius: 4px; overflow: hidden; background: var(--cream);
+    box-shadow: 0 30px 60px -40px rgba(61, 45, 20, .35);
+  }
+  .sk-editor:fullscreen { height: 100vh; border: 0; border-radius: 0; }
+  .sk-rail {
+    display: flex; flex-direction: column; align-items: stretch; gap: 4px; padding: 14px 8px;
+    background: var(--leaf-800); 
+  }
+  .sk-tab {
+    display: flex; flex-direction: column; align-items: center; gap: 5px; padding: 11px 4px;
+    background: transparent; border: 0; border-radius: 4px; cursor: pointer;
+    color: rgba(250, 246, 239, .62); font-family: var(--font-body); font-size: 11px; letter-spacing: .02em;
+    transition: all .2s var(--ease-out-quart);
+  }
+  .sk-tab svg { width: 22px; height: 22px; }
+  .sk-tab:hover { color: var(--paper); background: rgba(250, 246, 239, .06); }
+  .sk-tab.on { color: var(--leaf-800); background: var(--kraft-300); }
+  .sk-rail__sep { height: 1px; margin: 8px 10px; background: rgba(250, 246, 239, .15); }
+
+  .sk-flatbox {
+    position: relative; margin: -2px 0 6px; padding: 10px; background: var(--paper);
+    border: 1px solid var(--kraft-200); border-radius: 4px;
+  }
+  #sk-flat { display: block; width: 100%; height: auto; }
+  .sk-flatbox__tag {
+    position: absolute; top: 8px; left: 10px; font-family: var(--font-mono); font-size: 9.5px;
+    letter-spacing: .14em; text-transform: uppercase; color: var(--kraft-500);
+  }
+  .sk-pane { display: none; }
+  .sk-pane.on { display: block; animation: skIn .25s var(--ease-out-quart); }
+  @keyframes skIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  .sk-ptitle {
+    font-family: var(--font-display); font-weight: 500; font-size: 21px; letter-spacing: -.01em;
+    color: var(--leaf-800); margin: 4px 0 14px;
+  }
+  .sk-spec { margin-top: auto; display: flex; flex-direction: column; gap: 6px; padding-top: 16px; }
+  .sk-spec div {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 10px;
+    padding: 11px 14px; background: var(--paper); border: 1px solid var(--kraft-200); border-radius: 4px;
+  }
+  .sk-spec span { font-size: 12px; color: var(--ink-soft); }
+  .sk-spec strong { font-size: 13.5px; font-weight: 500; color: var(--ink); }
+
   .sk-stage {
-    position: relative;
-    background: radial-gradient(ellipse at 50% 38%, #fff 0%, var(--kraft-100) 78%);
-    border: 1px solid var(--kraft-200);
-    border-radius: 2px;
-    min-height: 560px;
+    position: relative; min-height: 0;
+    background: radial-gradient(ellipse at 50% 40%, #fff 0%, var(--kraft-100) 80%);
     overflow: hidden;
   }
+  .sk-tools {
+    position: absolute; top: 16px; right: 16px; z-index: 3; display: flex; flex-direction: column; gap: 4px;
+    padding: 6px; background: rgba(250, 246, 239, .94); border: 1px solid var(--kraft-200); border-radius: 6px;
+    box-shadow: 0 10px 24px -14px rgba(61, 45, 20, .4);
+  }
+  .sk-tool {
+    width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;
+    background: transparent; border: 0; border-radius: 4px; cursor: pointer; color: var(--leaf-700);
+  }
+  .sk-tool svg { width: 19px; height: 19px; }
+  .sk-tool:hover:not(:disabled) { background: var(--kraft-100); }
+  .sk-tool.on { background: var(--leaf-600); color: var(--paper); }
+  .sk-tool:disabled { opacity: .3; cursor: default; }
+  .sk-tools__sep { height: 1px; margin: 3px 6px; background: var(--kraft-200); }
+  .sk-viewbar {
+    position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%); z-index: 3;
+    display: flex; align-items: center; gap: 2px; padding: 5px;
+    background: rgba(250, 246, 239, .94); border: 1px solid var(--kraft-200); border-radius: 6px;
+    box-shadow: 0 10px 24px -14px rgba(61, 45, 20, .4); white-space: nowrap;
+  }
+  .sk-vb {
+    min-width: 36px; height: 34px; padding: 0 8px; background: transparent; border: 0; border-radius: 4px;
+    cursor: pointer; color: var(--leaf-800); font-family: var(--font-body); font-size: 20px; line-height: 1;
+  }
+  .sk-vb--txt { font-size: 12.5px; padding: 0 10px; }
+  .sk-vb:hover { background: var(--kraft-100); }
+  .sk-vb.on { background: var(--kraft-200); }
+  .sk-viewbar__sep { width: 1px; height: 20px; margin: 0 4px; background: var(--kraft-200); }
+  .sk-cta { position: absolute; right: 16px; bottom: 18px; z-index: 3; padding: 13px 20px; box-shadow: 0 14px 30px -12px rgba(18, 35, 13, .5); }
   #sk-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: grab; touch-action: none; }
   #sk-canvas:active { cursor: grabbing; }
   .sk-hint {
@@ -255,11 +326,8 @@
     font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--kraft-500);
   }
   .sk-panel {
-    background: var(--cream);
-    border: 1px solid var(--kraft-200);
-    border-radius: 2px;
-    padding: 26px 24px;
-    display: flex; flex-direction: column; gap: 20px;
+    background: var(--cream); border-right: 1px solid var(--kraft-200);
+    padding: 16px 18px 18px; display: flex; flex-direction: column; overflow-y: auto; min-height: 0;
   }
   .sk-l {
     display: block; margin-bottom: 8px;
@@ -348,7 +416,7 @@
   .sk-btn--wa { background: var(--leaf-500); color: var(--paper); }
   .sk-btn--wa:hover { background: var(--leaf-600); }
   .sk-shared {
-    position: absolute; top: 14px; left: 14px; right: 14px; z-index: 2; text-align: center;
+    position: absolute; top: 16px; left: 16px; right: 76px; z-index: 2; text-align: center;
     padding: 10px 14px; background: rgba(45, 80, 32, .92); color: var(--paper); border-radius: 2px;
     font-size: 13px; pointer-events: none;
   }
@@ -361,10 +429,25 @@
   }
   .hero-sim-link:hover { background: var(--paper); transform: translateY(-2px); }
 
-  @media (max-width: 1024px) {
-    .sim { padding: 70px 22px 80px; }
-    .sk-wrap { grid-template-columns: 1fr; }
-    .sk-stage { min-height: 440px; }
+  @media (max-width: 1100px) {
+    .sk-editor { grid-template-columns: 76px 300px 1fr; }
+    .sk-cta { left: 16px; right: auto; top: 16px; bottom: auto; }
+  }
+  @media (max-width: 900px) {
+    .sim { padding: 70px 16px 80px; }
+    .sk-editor { grid-template-columns: 1fr; grid-template-rows: auto auto auto; height: auto; }
+    .sk-stage { order: 1; height: 62vh; min-height: 380px; max-height: 520px; }
+    .sk-rail { order: 2; flex-direction: row; overflow-x: auto; padding: 8px; gap: 4px; }
+    .sk-tab { flex: 1 0 64px; padding: 8px 4px; }
+    .sk-rail__sep { width: 1px; height: auto; margin: 6px 2px; }
+    .sk-panel { order: 3; border-right: 0; overflow: visible; }
+    .sk-flatbox { display: none; }
+    .sk-viewbar { bottom: 12px; }
+    .sk-vb--txt { padding: 0 7px; font-size: 12px; }
+    .sk-cta { left: auto; right: 12px; top: 12px; bottom: auto; padding: 10px 14px; font-size: 13px; }
+    .sk-tools { top: auto; right: 12px; bottom: 64px; flex-direction: row; }
+    .sk-tools__sep { width: 1px; height: auto; margin: 6px 3px; }
+    .sk-shared { right: 16px; top: 64px; }
   }
 
   /* ————— CTA ————— */
@@ -490,16 +573,26 @@
       <p class="sim__desc">Envie seu logo e gire a sacola para ver como ela fica antes de fazer o pedido. A imagem fica só no seu aparelho, nada é enviado.</p>
     </div>
 
-    <div class="sk-wrap">
-      <div class="sk-stage" id="sk-stage">
-        <div class="sk-shared" id="sk-shared" hidden>Você está vendo uma sacola compartilhada · edite à vontade e monte a sua</div>
-        <canvas id="sk-canvas" aria-label="Prévia 3D da sacola kraft"></canvas>
-        <div class="sk-hint">Arraste para girar · pinça ou scroll para zoom</div>
-      </div>
+    <div class="sk-editor" id="sk-editor">
+      <!-- barra de ferramentas -->
+      <nav class="sk-rail" aria-label="Ferramentas">
+        <button type="button" class="sk-tab on" data-tab="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>Logo</span></button>
+        <button type="button" class="sk-tab" data-tab="texto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg><span>Texto</span></button>
+        <button type="button" class="sk-tab" data-tab="contatos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Contatos</span></button>
+        <button type="button" class="sk-tab" data-tab="sacola"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l1 14H5L6 7z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/></svg><span>Sacola</span></button>
+        <span class="sk-rail__sep"></span>
+        <button type="button" class="sk-tab" data-tab="enviar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg><span>Enviar</span></button>
+      </nav>
 
-      <div class="sk-panel">
-        <div>
-          <span class="sk-l">1 · Seu logo</span>
+      <!-- painel de opções -->
+      <aside class="sk-panel">
+        <div class="sk-flatbox">
+          <canvas id="sk-flat" width="640" height="300" aria-label="Planificação da sacola"></canvas>
+          <span class="sk-flatbox__tag">Planificação</span>
+        </div>
+
+        <div class="sk-pane on" data-pane="logo">
+          <h3 class="sk-ptitle">Seu logo</h3>
           <label class="sk-drop" id="sk-drop">
             <img id="sk-thumb" alt="" hidden>
             <span id="sk-droptxt">Clique ou arraste o arquivo aqui<br><small>PNG, JPG ou SVG — se tiver fundo branco ou preto, dá para remover</small></span>
@@ -516,46 +609,22 @@
               <label class="sk-row sk-row--sm"><input type="checkbox" id="sk-keepin"> Manter essa cor dentro do desenho do logo</label>
             </div>
           </div>
-        </div>
-
-        <div>
-          <span class="sk-l">2 · Tamanho da sacola</span>
-          <div class="sk-seg" id="sk-size">
-            <button type="button" data-v="18">nº 18</button><button type="button" data-v="20" class="on">nº 20</button><button type="button" data-v="25">nº 25</button><button type="button" data-v="30">nº 30</button>
-          </div>
-          <div class="sk-sub" id="sk-dims"></div>
-        </div>
-
-        <div>
-          <span class="sk-l">3 · Cor da impressão</span>
-          <div class="sk-seg" id="sk-mode">
-            <button type="button" data-v="color" class="on">Colorido</button><button type="button" data-v="black">Preto</button><button type="button" data-v="white">Branco</button>
-          </div>
-        </div>
-
-        <div>
-          <span class="sk-l">Tamanho do logo</span>
+          <span class="sk-l sk-l--mt">Tamanho do logo</span>
           <input type="range" id="sk-scale" min="15" max="90" value="55">
-        </div>
-        <div>
-          <span class="sk-l">Posição vertical</span>
+          <span class="sk-l sk-l--mt">Posição vertical</span>
           <input type="range" id="sk-pos" min="20" max="80" value="45">
         </div>
 
-        <div class="sk-txt">
-          <span class="sk-l">4 · Textos e contatos</span>
-          <input type="text" class="sk-in" id="sk-main" maxlength="40" placeholder="Frase ou nome (ex: Obrigado pela preferência!)">
+        <div class="sk-pane" data-pane="texto">
+          <h3 class="sk-ptitle">Frase ou nome</h3>
+          <input type="text" class="sk-in" id="sk-main" maxlength="40" placeholder="Ex: Obrigado pela preferência!">
           <div class="sk-seg sk-seg--sm" id="sk-mainpos">
-            <button type="button" data-v="below" class="on">Frase abaixo do logo</button><button type="button" data-v="above">Acima do logo</button>
+            <button type="button" data-v="below" class="on">Abaixo do logo</button><button type="button" data-v="above">Acima do logo</button>
           </div>
-          <div id="sk-lines"></div>
-          <button type="button" class="sk-add" id="sk-addline">+ Adicionar contato</button>
-
           <span class="sk-l sk-l--mt">Fonte</span>
           <div class="sk-seg" id="sk-font">
             <button type="button" data-v="sans" class="on" style="font-family:'Inter Tight',sans-serif;font-weight:600">Moderna</button><button type="button" data-v="serif" style="font-family:Fraunces,serif">Elegante</button><button type="button" data-v="script" style="font-family:Pacifico,cursive">Manuscrita</button>
           </div>
-
           <div id="sk-colorbox">
             <span class="sk-l sk-l--mt">Cor do texto</span>
             <div class="sk-sw" id="sk-sw">
@@ -568,36 +637,89 @@
               <label class="sk-sw__custom" title="Outra cor"><input type="color" id="sk-tcolor" value="#d94e1f">+</label>
             </div>
           </div>
-
           <span class="sk-l sk-l--mt">Tamanho dos textos</span>
           <input type="range" id="sk-tsize" min="50" max="170" value="100">
-          <span class="sk-l sk-l--mt">Posição dos contatos · altura</span>
+        </div>
+
+        <div class="sk-pane" data-pane="contatos">
+          <h3 class="sk-ptitle">Contatos</h3>
+          <p class="sk-sub">Toque no ícone para trocar. Em "Imagem própria…" dá para usar o ícone oficial do WhatsApp ou Instagram.</p>
+          <div id="sk-lines"></div>
+          <button type="button" class="sk-add" id="sk-addline">+ Adicionar contato</button>
+          <span class="sk-l sk-l--mt">Posição · altura</span>
           <input type="range" id="sk-tpos" min="50" max="94" value="84">
-          <span class="sk-l sk-l--mt">Posição dos contatos · esquerda ↔ direita</span>
+          <span class="sk-l sk-l--mt">Posição · esquerda ↔ direita</span>
           <input type="range" id="sk-tposx" min="0" max="100" value="50">
         </div>
 
-        <label class="sk-row"><input type="checkbox" id="sk-both"> Imprimir nos dois lados</label>
-
-        <div class="sk-actions">
-          <button type="button" class="sk-btn sk-btn--pri" id="sk-quote">
-            Pedir orçamento desta sacola
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </button>
-          <button type="button" class="sk-btn sk-btn--sec" id="sk-share">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-            Gerar link para compartilhar
-          </button>
-          <div class="sk-sharebox" id="sk-sharebox" hidden>
-            <input type="text" class="sk-in" id="sk-sharelink" readonly aria-label="Link da sua sacola">
-            <div class="sk-sharebtns">
-              <button type="button" class="sk-btn sk-btn--sm" id="sk-copy">Copiar link</button>
-              <a class="sk-btn sk-btn--sm sk-btn--wa" id="sk-sharewa" target="_blank" rel="noopener">WhatsApp</a>
-            </div>
-            <div class="sk-sub" id="sk-sharemsg"></div>
+        <div class="sk-pane" data-pane="sacola">
+          <h3 class="sk-ptitle">Sacola</h3>
+          <span class="sk-l">Tamanho</span>
+          <div class="sk-seg" id="sk-size">
+            <button type="button" data-v="18">nº 18</button><button type="button" data-v="20" class="on">nº 20</button><button type="button" data-v="25">nº 25</button><button type="button" data-v="30">nº 30</button>
           </div>
-          <button type="button" class="sk-btn sk-btn--sec" id="sk-shot">Baixar imagem da prévia</button>
+          <div class="sk-sub" id="sk-dims"></div>
+          <span class="sk-l sk-l--mt">Cor da impressão</span>
+          <div class="sk-seg" id="sk-mode">
+            <button type="button" data-v="color" class="on">Colorido</button><button type="button" data-v="black">Preto</button><button type="button" data-v="white">Branco</button>
+          </div>
+          <label class="sk-row sk-l--mt"><input type="checkbox" id="sk-both"> Imprimir nos dois lados</label>
         </div>
+
+        <div class="sk-pane" data-pane="enviar">
+          <h3 class="sk-ptitle">Compartilhar e baixar</h3>
+          <div class="sk-actions">
+            <button type="button" class="sk-btn sk-btn--sec" id="sk-share">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+              Gerar link para compartilhar
+            </button>
+            <div class="sk-sharebox" id="sk-sharebox" hidden>
+              <input type="text" class="sk-in" id="sk-sharelink" readonly aria-label="Link da sua sacola">
+              <div class="sk-sharebtns">
+                <button type="button" class="sk-btn sk-btn--sm" id="sk-copy">Copiar link</button>
+                <a class="sk-btn sk-btn--sm sk-btn--wa" id="sk-sharewa" target="_blank" rel="noopener">WhatsApp</a>
+              </div>
+              <div class="sk-sub" id="sk-sharemsg"></div>
+            </div>
+            <button type="button" class="sk-btn sk-btn--sec" id="sk-shot">Baixar imagem da prévia</button>
+          </div>
+        </div>
+
+        <div class="sk-spec">
+          <div><span>Material</span><strong>Papel kraft</strong></div>
+          <div><span>Tamanho</span><strong id="sk-spec-size">20 × 11 × 34 cm</strong></div>
+        </div>
+      </aside>
+
+      <!-- palco 3D -->
+      <div class="sk-stage" id="sk-stage">
+        <div class="sk-shared" id="sk-shared" hidden>Você está vendo uma sacola compartilhada · edite à vontade e monte a sua</div>
+        <canvas id="sk-canvas" aria-label="Prévia 3D da sacola kraft"></canvas>
+
+        <div class="sk-tools" aria-label="Ferramentas de visualização">
+          <button type="button" class="sk-tool on" id="sk-spin" title="Girar sozinha"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></button>
+          <button type="button" class="sk-tool" id="sk-reset" title="Voltar à vista inicial"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/><circle cx="12" cy="12" r="1.5"/></svg></button>
+          <span class="sk-tools__sep"></span>
+          <button type="button" class="sk-tool" id="sk-undo" title="Desfazer" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14L4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-3"/></svg></button>
+          <button type="button" class="sk-tool" id="sk-redo" title="Refazer" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14l5-5-5-5"/><path d="M20 9H9a5 5 0 0 0 0 10h3"/></svg></button>
+          <span class="sk-tools__sep"></span>
+          <button type="button" class="sk-tool" id="sk-full" title="Tela cheia"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3M21 8V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3M16 21h3a2 2 0 0 0 2-2v-3"/></svg></button>
+        </div>
+
+        <div class="sk-viewbar">
+          <button type="button" class="sk-vb" id="sk-zout" title="Afastar">−</button>
+          <button type="button" class="sk-vb" id="sk-zin" title="Aproximar">+</button>
+          <span class="sk-viewbar__sep"></span>
+          <button type="button" class="sk-vb sk-vb--txt" data-view="front">Frente</button>
+          <button type="button" class="sk-vb sk-vb--txt" data-view="three">3/4</button>
+          <button type="button" class="sk-vb sk-vb--txt" data-view="side">Lateral</button>
+          <button type="button" class="sk-vb sk-vb--txt" data-view="back">Costas</button>
+        </div>
+
+        <button type="button" class="sk-btn sk-btn--pri sk-cta" id="sk-quote">
+          Pedir orçamento
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </button>
       </div>
     </div>
   </div>
@@ -662,6 +784,8 @@
     main:'', mainPos:'below', font:'sans', tcolor:'#1a1a1a', tsize:1, tpos:.84, tposx:.5,
     lines:[{icon:'phone', text:'', img:null}]};
   let logo = null, srcImg = null, srcUrl = null;
+  var editorReady = false, afterPaintHook = null;
+  function afterPaint(){ if (editorReady && afterPaintHook) afterPaintHook(); }
 
   const stage = document.getElementById('sk-stage');
   const canvas = document.getElementById('sk-canvas');
@@ -686,7 +810,7 @@
   controls.minDistance = .45; controls.maxDistance = 2.4;
   controls.maxPolarAngle = Math.PI/2 - .04;
   controls.autoRotate = true; controls.autoRotateSpeed = .9;
-  controls.addEventListener('start', () => controls.autoRotate = false);
+  controls.addEventListener('start', () => { controls.autoRotate = false; var b = document.getElementById('sk-spin'); if (b) b.classList.remove('on'); });
 
   scene.add(new THREE.HemisphereLight(0xfff6ea, 0xb39a80, .8));
   const key = new THREE.DirectionalLight(0xffffff, 1.15);
@@ -982,6 +1106,7 @@
   function repaint(){
     paintFace(faces.front,false,true);
     paintFace(faces.back,false,state.both);
+    afterPaint();
   }
 
   // ---------- Geometria da sacola ----------
@@ -1046,6 +1171,7 @@
     scene.add(bag);
     controls.target.set(0, (h + Math.min(.12, h*.3))*.5, 0);
     document.getElementById('sk-dims').textContent = CONFIG.sizes[state.size].label + ' (L × F × A)';
+    document.getElementById('sk-spec-size').textContent = CONFIG.sizes[state.size].label;
   }
 
   // ---------- Loop / resize ----------
@@ -1244,6 +1370,10 @@
     sw.forEach(b => b.classList.toggle('on', b === hit));
     swCustom.classList.toggle('on', !hit);
     if (!hit) document.getElementById('sk-tcolor').value = state.tcolor;
+    document.querySelectorAll('#sk-bg button').forEach(b => b.classList.toggle('on', b.dataset.v === state.bg));
+    document.getElementById('sk-bgopts').hidden = state.bg === 'none';
+    document.getElementById('sk-tol').value = state.tol;
+    document.getElementById('sk-keepin').checked = !state.bgAll;
     syncColorBox(); renderLines();
   }
 
@@ -1297,6 +1427,138 @@
 
   buildBag(); resize();
   loadShared();
+
+  // ---------- Editor: abas ----------
+  const tabs = document.querySelectorAll('.sk-tab'), panes = document.querySelectorAll('.sk-pane');
+  function openTab(name){
+    tabs.forEach(t => t.classList.toggle('on', t.dataset.tab === name));
+    panes.forEach(pn => pn.classList.toggle('on', pn.dataset.pane === name));
+    try { localStorage.setItem('sk-tab', name); } catch(e){}
+  }
+  tabs.forEach(t => t.addEventListener('click', () => openTab(t.dataset.tab)));
+  try { const saved = localStorage.getItem('sk-tab'); if (saved && document.querySelector('.sk-pane[data-pane="'+saved+'"]')) openTab(saved); } catch(e){}
+
+  // ---------- Planificação (prévia 2D das faces) ----------
+  function drawFlat(){
+    const cv = document.getElementById('sk-flat'); if (!cv || !faces.front) return;
+    const x = cv.getContext('2d'), {w, h, d} = CONFIG.sizes[state.size];
+    const glue = d*.18, fold = Math.min(.04, h*.1), bot = d*.62;
+    const totalW = glue + d + w + d + w, totalH = fold + h + bot;
+    const pad = 14, top = 26;
+    const s = Math.min((cv.width - pad*2)/totalW, (cv.height - top - pad)/totalH);
+    const ox = (cv.width - totalW*s)/2, oy = top + (cv.height - top - pad - totalH*s)/2;
+    x.clearRect(0,0,cv.width,cv.height);
+    const cols = [['glue',glue],['side',d],['front',w],['side',d],['back',w]];
+    let cx = ox;
+    const kraft = x.createPattern(kraftBase, 'repeat');
+    for (const [k, cw] of cols){
+      const X = cx, W = cw*s, Y0 = oy, Hf = fold*s, Hb = h*s, Hg = bot*s;
+      x.fillStyle = kraft; x.fillRect(X, Y0, W, Hf + Hb + Hg);
+      if (k !== 'glue') x.drawImage(faces[k].c, X, Y0 + Hf, W, Hb);
+      x.fillStyle = 'rgba(60,35,15,.10)'; x.fillRect(X, Y0, W, Hf); x.fillRect(X, Y0+Hf+Hb, W, Hg);
+      cx += W;
+    }
+    // contorno e vincos
+    x.strokeStyle = '#3d2d14'; x.lineWidth = 1.2; x.setLineDash([]);
+    x.strokeRect(ox, oy, totalW*s, totalH*s);
+    x.setLineDash([4,3]); x.strokeStyle = 'rgba(61,45,20,.55)'; x.lineWidth = 1;
+    let fx = ox;
+    cols.slice(0,-1).forEach(([,cw]) => { fx += cw*s; x.beginPath(); x.moveTo(fx, oy); x.lineTo(fx, oy+totalH*s); x.stroke(); });
+    [fold, fold+h].forEach(yy => { x.beginPath(); x.moveTo(ox, oy+yy*s); x.lineTo(ox+totalW*s, oy+yy*s); x.stroke(); });
+    x.setLineDash([]);
+  }
+
+  // ---------- Desfazer / refazer ----------
+  const hist = [], redoStack = [];
+  let applying = false, histTimer = null;
+  const undoBtn = document.getElementById('sk-undo'), redoBtn = document.getElementById('sk-redo');
+  function snap(){
+    const st = JSON.parse(JSON.stringify(Object.assign({}, state, {lines: []})));
+    st.lines = state.lines.map(l => ({icon:l.icon, text:l.text, img:l.img}));
+    return {st, srcImg, srcUrl};
+  }
+  function snapKey(sn){
+    return JSON.stringify(Object.assign({}, sn.st, {lines: sn.st.lines.map(l => [l.icon, l.text, l.img ? l.img.src.length + l.img.src.slice(-32) : 0])})) + '|' + (sn.srcUrl ? sn.srcUrl.length + sn.srcUrl.slice(-32) : '');
+  }
+  function syncHistBtns(){ undoBtn.disabled = hist.length < 2; redoBtn.disabled = !redoStack.length; }
+  function pushHist(){
+    if (applying) return;
+    const sn = snap(), k = snapKey(sn);
+    if (hist.length && hist[hist.length-1].k === k) return;
+    hist.push({sn, k}); if (hist.length > 60) hist.shift();
+    redoStack.length = 0; syncHistBtns();
+  }
+  function applySnap(sn){
+    applying = true;
+    const sizeChanged = sn.st.size !== state.size;
+    Object.assign(state, sn.st, {lines: sn.st.lines.map(l => Object.assign({}, l))});
+    srcImg = sn.srcImg; srcUrl = sn.srcUrl;
+    if (srcImg){ processLogo(srcImg); document.getElementById('sk-bgbox').hidden = false; }
+    else {
+      logo = null; document.getElementById('sk-thumb').hidden = true; document.getElementById('sk-bgbox').hidden = true;
+      document.getElementById('sk-droptxt').innerHTML = 'Clique ou arraste o arquivo aqui<br><small>PNG, JPG ou SVG — se tiver fundo branco ou preto, dá para remover</small>';
+    }
+    if (sizeChanged) buildBag();
+    syncUI(); repaint();
+    applying = false; syncHistBtns();
+  }
+  undoBtn.addEventListener('click', () => { if (hist.length < 2) return; redoStack.push(hist.pop()); applySnap(hist[hist.length-1].sn); });
+  redoBtn.addEventListener('click', () => { const it = redoStack.pop(); if (!it) return; hist.push(it); applySnap(it.sn); });
+  document.addEventListener('keydown', e => {
+    if (!(e.ctrlKey || e.metaKey) || /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)) return;
+    const k = e.key.toLowerCase();
+    if (k === 'z' && !e.shiftKey){ e.preventDefault(); undoBtn.click(); }
+    else if (k === 'y' || (k === 'z' && e.shiftKey)){ e.preventDefault(); redoBtn.click(); }
+  });
+
+  editorReady = true;
+  function afterPaintImpl(){
+    drawFlat();
+    if (!applying){ clearTimeout(histTimer); histTimer = setTimeout(pushHist, 350); }
+  }
+  afterPaintHook = afterPaintImpl;
+  afterPaintImpl();
+
+  // ---------- Câmera: vistas, zoom, girar, tela cheia ----------
+  const spinBtn = document.getElementById('sk-spin');
+  let camAnim = null;
+  function camTo(az, el, r){
+    const t = controls.target, cur = camera.position.clone().sub(t);
+    const r0 = cur.length(), el0 = Math.asin(cur.y / r0), az0 = Math.atan2(cur.x, cur.z);
+    if (az === null) az = az0; if (el === null) el = el0;
+    r = Math.min(controls.maxDistance, Math.max(controls.minDistance, r === null ? r0 : r));
+    let da = az - az0; da = Math.atan2(Math.sin(da), Math.cos(da));
+    const t0 = performance.now(), dur = 520;
+    cancelAnimationFrame(camAnim);
+    controls.autoRotate = false; spinBtn.classList.remove('on');
+    (function step(now){
+      const k = Math.min(1, (now - t0)/dur), e = 1 - Math.pow(1-k, 3);
+      const A = az0 + da*e, E = el0 + (el-el0)*e, R = r0 + (r-r0)*e;
+      camera.position.set(t.x + R*Math.cos(E)*Math.sin(A), t.y + R*Math.sin(E), t.z + R*Math.cos(E)*Math.cos(A));
+      camera.lookAt(t);
+      if (k < 1) camAnim = requestAnimationFrame(step);
+    })(t0);
+  }
+  const VIEWS = {front:[0,.12], three:[.6,.3], side:[Math.PI/2,.15], back:[Math.PI,.15]};
+  document.querySelectorAll('.sk-vb[data-view]').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('.sk-vb[data-view]').forEach(x => x.classList.toggle('on', x === b));
+    const [az, el] = VIEWS[b.dataset.view]; camTo(az, el, null);
+  }));
+  document.getElementById('sk-zin').addEventListener('click', () => camTo(null, null, camera.position.distanceTo(controls.target)*.82));
+  document.getElementById('sk-zout').addEventListener('click', () => camTo(null, null, camera.position.distanceTo(controls.target)*1.22));
+  document.getElementById('sk-reset').addEventListener('click', () => {
+    document.querySelectorAll('.sk-vb[data-view]').forEach(x => x.classList.remove('on'));
+    camTo(Math.atan2(.62, 1.05), .32, 1.29);
+  });
+  spinBtn.addEventListener('click', () => {
+    controls.autoRotate = !controls.autoRotate; spinBtn.classList.toggle('on', controls.autoRotate);
+    document.querySelectorAll('.sk-vb[data-view]').forEach(x => x.classList.remove('on'));
+  });
+  const editorEl = document.getElementById('sk-editor'), fullBtn = document.getElementById('sk-full');
+  if (!editorEl.requestFullscreen) fullBtn.hidden = true;
+  fullBtn.addEventListener('click', () => {
+    if (document.fullscreenElement) document.exitFullscreen(); else editorEl.requestFullscreen().catch(()=>{});
+  });
   window.addEventListener('hashchange', () => { if (/^#s=/.test(location.hash)) loadShared(); });
 })();
 </script>
