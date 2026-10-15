@@ -36,7 +36,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Pacifico&family=Bebas+Neue&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
   :root {
@@ -450,6 +450,104 @@
     .sk-shared { right: 16px; top: 64px; }
   }
 
+  /* ——— editor de camadas ——— */
+  #sk-flat { cursor: pointer; }
+  .sk-faces { display: flex; gap: 4px; margin: 0 0 14px; }
+  .sk-faces .sk-facebtn {
+    flex: 1; padding: 8px 4px; border: 1px solid var(--kraft-200); background: var(--paper); border-radius: 4px;
+    font-family: var(--font-body); font-size: 12px; color: var(--ink); cursor: pointer;
+  }
+  .sk-faces .sk-facebtn:hover { border-color: var(--leaf-500); }
+  .sk-faces .sk-facebtn.on { background: var(--leaf-600); border-color: var(--leaf-600); color: var(--paper); }
+  .sk-addgrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+  .sk-addbtn {
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+    aspect-ratio: 1; padding: 6px 2px; cursor: pointer; text-align: center;
+    background: var(--paper); border: 1px solid var(--kraft-200); border-radius: 4px;
+    font-family: var(--font-body); font-size: 11px; line-height: 1.15; color: var(--leaf-800);
+    transition: all .2s var(--ease-out-quart);
+  }
+  .sk-addbtn svg { width: 22px; height: 22px; color: var(--leaf-600); }
+  .sk-addbtn:hover, .sk-addbtn.over { border-color: var(--leaf-500); background: var(--leaf-50); transform: translateY(-1px); }
+  .sk-tpls { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .sk-tpl {
+    padding: 10px 8px; text-align: left; cursor: pointer; background: var(--paper);
+    border: 1px solid var(--kraft-200); border-radius: 4px; font-family: var(--font-body); color: var(--ink);
+  }
+  .sk-tpl b { display: block; font-size: 12.5px; font-weight: 600; color: var(--leaf-800); }
+  .sk-tpl small { display: block; font-size: 11px; color: var(--ink-soft); margin-top: 2px; line-height: 1.25; }
+  .sk-tpl:hover { border-color: var(--leaf-500); }
+  .sk-seg--wrap { flex-wrap: wrap; }
+  .sk-seg--wrap button { flex: 1 0 40%; }
+
+  .sk-props-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 2px 0 12px; }
+  .sk-props-head .sk-ptitle { margin: 0; }
+  .sk-iconbar { display: flex; gap: 4px; flex-wrap: wrap; }
+  .sk-ib {
+    min-width: 34px; height: 34px; padding: 0 8px; display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    background: var(--paper); border: 1px solid var(--kraft-200); border-radius: 4px; cursor: pointer;
+    color: var(--leaf-800); font-family: var(--font-body); font-size: 12px;
+  }
+  .sk-ib svg { width: 16px; height: 16px; }
+  .sk-ib:hover { border-color: var(--leaf-500); }
+  .sk-ib.on { background: var(--leaf-600); border-color: var(--leaf-600); color: var(--paper); }
+  .sk-ib--danger:hover { border-color: var(--accent); color: var(--accent); }
+  .sk-prow { margin-top: 12px; }
+  .sk-prow .sk-l { margin-bottom: 6px; }
+  .sk-range { display: grid; grid-template-columns: 1fr 44px; gap: 8px; align-items: center; }
+  .sk-range output { font-family: var(--font-mono); font-size: 11px; color: var(--ink-soft); text-align: right; }
+  .sk-panel textarea.sk-in { resize: vertical; min-height: 44px; line-height: 1.35; }
+  .sk-panel select.sk-in { cursor: pointer; }
+  .sk-fonts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+  .sk-fonts button {
+    padding: 8px 4px; background: var(--paper); border: 1px solid var(--kraft-200); border-radius: 4px; cursor: pointer;
+    font-size: 15px; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .sk-fonts button.on { border-color: var(--leaf-600); box-shadow: inset 0 0 0 1px var(--leaf-600); background: var(--leaf-50); }
+  .sk-imgprev {
+    display: flex; align-items: center; justify-content: center; height: 86px; padding: 6px; border-radius: 4px;
+    border: 1px solid var(--kraft-200); background: repeating-conic-gradient(#e9e2d4 0% 25%, #fff 0% 50%) 50% / 14px 14px;
+  }
+  .sk-imgprev img { max-width: 100%; max-height: 100%; }
+  .sk-empty {
+    padding: 18px 14px; text-align: center; font-size: 13px; color: var(--ink-soft);
+    background: var(--paper); border: 1px dashed var(--kraft-300); border-radius: 4px;
+  }
+  .sk-layers { display: flex; flex-direction: column; gap: 4px; }
+  .sk-layer {
+    display: flex; align-items: center; gap: 10px; padding: 8px 10px; cursor: pointer; text-align: left;
+    background: var(--paper); border: 1px solid var(--kraft-200); border-radius: 4px;
+    font-family: var(--font-body); font-size: 13px; color: var(--ink);
+  }
+  .sk-layer:hover { border-color: var(--leaf-500); }
+  .sk-layer.on { border-color: var(--leaf-600); box-shadow: inset 0 0 0 1px var(--leaf-600); }
+  .sk-layer svg, .sk-layer img { width: 18px; height: 18px; flex: none; object-fit: contain; color: var(--leaf-600); }
+  .sk-layer span { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .sk-sw button.sk-sw--light { border-color: var(--kraft-400); }
+
+  #sk-2d { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; z-index: 1; }
+  #sk-2d[hidden] { display: none; }
+  .sk-hint2d {
+    position: absolute; top: 18px; left: 18px; z-index: 2; padding: 7px 12px; pointer-events: none;
+    background: rgba(250, 246, 239, .9); border: 1px solid var(--kraft-200); border-radius: 4px;
+    font-size: 12px; color: var(--ink-soft);
+  }
+  .sk-mode { display: inline-flex; background: var(--kraft-100); border-radius: 4px; padding: 2px; }
+  .sk-modebtn {
+    height: 30px; padding: 0 12px; border: 0; border-radius: 3px; background: transparent; cursor: pointer;
+    font-family: var(--font-body); font-size: 12.5px; color: var(--leaf-800);
+  }
+  .sk-modebtn.on { background: var(--leaf-600); color: var(--paper); }
+  .sk-v3d, .sk-v2d { display: inline-flex; align-items: center; gap: 2px; }
+  .sk-v3d[hidden], .sk-v2d[hidden] { display: none; }
+  .sk-vb.sk-facebtn.on { background: var(--kraft-200); }
+  .sk-editor.is-2d .sk-3donly, .sk-editor.is-2d #sk-spin, .sk-editor.is-2d #sk-reset { display: none; }
+  @media (max-width: 900px) {
+    .sk-addgrid { grid-template-columns: repeat(4, 1fr); }
+    .sk-viewbar { left: 8px; right: 8px; transform: none; overflow-x: auto; }
+    .sk-hint2d { display: none; }
+  }
+
   /* ————— CTA ————— */
   .cta-band {
     padding: 70px 40px;
@@ -576,101 +674,89 @@
     <div class="sk-editor" id="sk-editor">
       <!-- barra de ferramentas -->
       <nav class="sk-rail" aria-label="Ferramentas">
-        <button type="button" class="sk-tab on" data-tab="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>Logo</span></button>
-        <button type="button" class="sk-tab" data-tab="texto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg><span>Texto</span></button>
-        <button type="button" class="sk-tab" data-tab="contatos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Contatos</span></button>
-        <button type="button" class="sk-tab" data-tab="sacola"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l1 14H5L6 7z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/></svg><span>Sacola</span></button>
+        <button type="button" class="sk-tab on" data-tab="add"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M12 8v8M8 12h8"/></svg><span>Adicionar</span></button>
+        <button type="button" class="sk-tab" data-tab="edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg><span>Editar</span></button>
+        <button type="button" class="sk-tab" data-tab="bag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l1 14H5L6 7z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/></svg><span>Sacola</span></button>
         <span class="sk-rail__sep"></span>
-        <button type="button" class="sk-tab" data-tab="enviar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg><span>Enviar</span></button>
+        <button type="button" class="sk-tab" data-tab="send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg><span>Enviar</span></button>
       </nav>
 
       <!-- painel de opções -->
-      <aside class="sk-panel">
-        <div class="sk-flatbox">
-          <canvas id="sk-flat" width="640" height="300" aria-label="Planificação da sacola"></canvas>
-          <span class="sk-flatbox__tag">Planificação</span>
+      <aside class="sk-panel" id="sk-panel">
+        <div class="sk-flatbox" title="Clique numa face para editar">
+          <canvas id="sk-flat" width="640" height="300" aria-label="Planificação da sacola — clique numa face para editar"></canvas>
+          <span class="sk-flatbox__tag">Planificação · clique numa face</span>
+        </div>
+        <div class="sk-faces" role="group" aria-label="Face da sacola">
+          <button type="button" class="sk-facebtn" data-face="left">Lat. esq.</button><button type="button" class="sk-facebtn on" data-face="front">Frente</button><button type="button" class="sk-facebtn" data-face="right">Lat. dir.</button><button type="button" class="sk-facebtn" data-face="back">Verso</button>
         </div>
 
-        <div class="sk-pane on" data-pane="logo">
-          <h3 class="sk-ptitle">Seu logo</h3>
-          <label class="sk-drop" id="sk-drop">
-            <img id="sk-thumb" alt="" hidden>
-            <span id="sk-droptxt">Clique ou arraste o arquivo aqui<br><small>PNG, JPG ou SVG — se tiver fundo branco ou preto, dá para remover</small></span>
-            <input type="file" id="sk-file" accept="image/png,image/jpeg,image/svg+xml,image/webp" hidden>
-          </label>
-          <div class="sk-bg" id="sk-bgbox" hidden>
-            <span class="sk-l">Fundo do logo</span>
-            <div class="sk-seg" id="sk-bg">
-              <button type="button" data-v="none" class="on">Manter</button><button type="button" data-v="white">Tirar branco</button><button type="button" data-v="black">Tirar preto</button>
-            </div>
-            <div id="sk-bgopts" hidden>
-              <span class="sk-l sk-l--mt">Intensidade da remoção</span>
-              <input type="range" id="sk-tol" min="4" max="60" value="22">
-              <label class="sk-row sk-row--sm"><input type="checkbox" id="sk-keepin"> Manter essa cor dentro do desenho do logo</label>
-            </div>
+        <!-- ADICIONAR -->
+        <div class="sk-pane on" data-pane="add">
+          <h3 class="sk-ptitle">Adicionar na <span id="sk-addface">frente</span></h3>
+          <div class="sk-addgrid">
+            <label class="sk-addbtn" id="sk-drop">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+              <span>Logo / imagem</span>
+              <input type="file" id="sk-file" accept="image/png,image/jpeg,image/svg+xml,image/webp" multiple hidden>
+            </label>
+            <button type="button" class="sk-addbtn" data-add="title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg><span>Título</span></button>
+            <button type="button" class="sk-addbtn" data-add="text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg><span>Texto</span></button>
+            <button type="button" class="sk-addbtn" data-add="contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Contato</span></button>
+            <button type="button" class="sk-addbtn" data-add="rect"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="6" width="16" height="12" rx="1"/></svg><span>Retângulo</span></button>
+            <button type="button" class="sk-addbtn" data-add="circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/></svg><span>Círculo</span></button>
+            <button type="button" class="sk-addbtn" data-add="band"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="15" width="20" height="5"/><path d="M2 4h20" stroke-dasharray="2 2"/></svg><span>Faixa</span></button>
+            <button type="button" class="sk-addbtn" data-add="line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 12h16"/></svg><span>Linha</span></button>
           </div>
-          <span class="sk-l sk-l--mt">Tamanho do logo</span>
-          <input type="range" id="sk-scale" min="15" max="90" value="55">
-          <span class="sk-l sk-l--mt">Posição vertical</span>
-          <input type="range" id="sk-pos" min="20" max="80" value="45">
+          <p class="sk-sub">Dica: você pode arrastar o arquivo do logo direto para cá. Dá para adicionar quantos logos quiser.</p>
+
+          <span class="sk-l sk-l--mt">Modelos rápidos</span>
+          <div class="sk-tpls">
+            <button type="button" class="sk-tpl" data-tpl="classic"><b>Clássico</b><small>Logo, frase e contatos</small></button>
+            <button type="button" class="sk-tpl" data-tpl="band"><b>Faixa</b><small>Faixa colorida no rodapé</small></button>
+            <button type="button" class="sk-tpl" data-tpl="sides"><b>Laterais</b><small>@ e telefone nas laterais</small></button>
+          </div>
+          <button type="button" class="sk-add" id="sk-copyback">Copiar a arte da frente para o verso</button>
         </div>
 
-        <div class="sk-pane" data-pane="texto">
-          <h3 class="sk-ptitle">Frase ou nome</h3>
-          <input type="text" class="sk-in" id="sk-main" maxlength="40" placeholder="Ex: Obrigado pela preferência!">
-          <div class="sk-seg sk-seg--sm" id="sk-mainpos">
-            <button type="button" data-v="below" class="on">Abaixo do logo</button><button type="button" data-v="above">Acima do logo</button>
-          </div>
-          <span class="sk-l sk-l--mt">Fonte</span>
-          <div class="sk-seg" id="sk-font">
-            <button type="button" data-v="sans" class="on" style="font-family:'Inter Tight',sans-serif;font-weight:600">Moderna</button><button type="button" data-v="serif" style="font-family:Fraunces,serif">Elegante</button><button type="button" data-v="script" style="font-family:Pacifico,cursive">Manuscrita</button>
-          </div>
-          <div id="sk-colorbox">
-            <span class="sk-l sk-l--mt">Cor do texto</span>
-            <div class="sk-sw" id="sk-sw">
-              <button type="button" data-c="#1a1a1a" class="on" style="background:#1a1a1a" aria-label="Preto"></button>
-              <button type="button" data-c="#ffffff" style="background:#fff" aria-label="Branco"></button>
-              <button type="button" data-c="#3d2d14" style="background:#3d2d14" aria-label="Marrom"></button>
-              <button type="button" data-c="#2d5020" style="background:#2d5020" aria-label="Verde"></button>
-              <button type="button" data-c="#c0261d" style="background:#c0261d" aria-label="Vermelho"></button>
-              <button type="button" data-c="#1d4f9c" style="background:#1d4f9c" aria-label="Azul"></button>
-              <label class="sk-sw__custom" title="Outra cor"><input type="color" id="sk-tcolor" value="#d94e1f">+</label>
-            </div>
-          </div>
-          <span class="sk-l sk-l--mt">Tamanho dos textos</span>
-          <input type="range" id="sk-tsize" min="50" max="170" value="100">
+        <!-- EDITAR -->
+        <div class="sk-pane" data-pane="edit">
+          <div id="sk-props"></div>
+          <span class="sk-l sk-l--mt">Itens nesta face</span>
+          <div id="sk-layers" class="sk-layers"></div>
         </div>
 
-        <div class="sk-pane" data-pane="contatos">
-          <h3 class="sk-ptitle">Contatos</h3>
-          <p class="sk-sub">Toque no ícone para trocar. Em "Imagem própria…" dá para usar o ícone oficial do WhatsApp ou Instagram.</p>
-          <div id="sk-lines"></div>
-          <button type="button" class="sk-add" id="sk-addline">+ Adicionar contato</button>
-          <span class="sk-l sk-l--mt">Posição · altura</span>
-          <input type="range" id="sk-tpos" min="50" max="94" value="84">
-          <span class="sk-l sk-l--mt">Posição · esquerda ↔ direita</span>
-          <input type="range" id="sk-tposx" min="0" max="100" value="50">
-        </div>
-
-        <div class="sk-pane" data-pane="sacola">
+        <!-- SACOLA -->
+        <div class="sk-pane" data-pane="bag">
           <h3 class="sk-ptitle">Sacola</h3>
           <span class="sk-l">Tamanho</span>
           <div class="sk-seg" id="sk-size">
             <button type="button" data-v="18">nº 18</button><button type="button" data-v="20" class="on">nº 20</button><button type="button" data-v="25">nº 25</button><button type="button" data-v="30">nº 30</button>
           </div>
           <div class="sk-sub" id="sk-dims"></div>
-          <span class="sk-l sk-l--mt">Cor da impressão</span>
-          <div class="sk-seg" id="sk-mode">
-            <button type="button" data-v="color" class="on">Colorido</button><button type="button" data-v="black">Preto</button><button type="button" data-v="white">Branco</button>
+
+          <span class="sk-l sk-l--mt">Cor do papel</span>
+          <div class="sk-sw" id="sk-paper"></div>
+
+          <span class="sk-l sk-l--mt">Alça</span>
+          <div class="sk-seg sk-seg--wrap" id="sk-htype">
+            <button type="button" data-v="twist" class="on">Torcida</button><button type="button" data-v="cord">Cordão</button><button type="button" data-v="flat">Fita</button><button type="button" data-v="none">Sem alça</button>
           </div>
-          <label class="sk-row sk-l--mt"><input type="checkbox" id="sk-both"> Imprimir nos dois lados</label>
+          <span class="sk-l sk-l--mt">Cor da alça</span>
+          <div class="sk-sw" id="sk-hcolor"></div>
+
+          <span class="sk-l sk-l--mt">Acabamento</span>
+          <div class="sk-seg" id="sk-finish">
+            <button type="button" data-v="matte" class="on">Fosco</button><button type="button" data-v="gloss">Brilho</button>
+          </div>
         </div>
 
-        <div class="sk-pane" data-pane="enviar">
+        <!-- ENVIAR -->
+        <div class="sk-pane" data-pane="send">
           <h3 class="sk-ptitle">Compartilhar e baixar</h3>
           <div class="sk-actions">
             <button type="button" class="sk-btn sk-btn--sec" id="sk-share">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
               Gerar link para compartilhar
             </button>
             <div class="sk-sharebox" id="sk-sharebox" hidden>
@@ -686,34 +772,48 @@
         </div>
 
         <div class="sk-spec">
-          <div><span>Material</span><strong>Papel kraft</strong></div>
+          <div><span>Papel</span><strong id="sk-spec-paper">Kraft</strong></div>
           <div><span>Tamanho</span><strong id="sk-spec-size">20 × 11 × 34 cm</strong></div>
         </div>
       </aside>
 
-      <!-- palco 3D -->
+      <!-- palco -->
       <div class="sk-stage" id="sk-stage">
         <div class="sk-shared" id="sk-shared" hidden>Você está vendo uma sacola compartilhada · edite à vontade e monte a sua</div>
         <canvas id="sk-canvas" aria-label="Prévia 3D da sacola kraft"></canvas>
+        <canvas id="sk-2d" hidden aria-label="Editor 2D da face da sacola"></canvas>
+        <div class="sk-hint2d" id="sk-hint2d" hidden>Arraste para mover · cantos: tamanho · bolinha: girar · Delete apaga</div>
 
         <div class="sk-tools" aria-label="Ferramentas de visualização">
           <button type="button" class="sk-tool on" id="sk-spin" title="Girar sozinha"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></button>
           <button type="button" class="sk-tool" id="sk-reset" title="Voltar à vista inicial"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/><circle cx="12" cy="12" r="1.5"/></svg></button>
-          <span class="sk-tools__sep"></span>
-          <button type="button" class="sk-tool" id="sk-undo" title="Desfazer" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14L4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-3"/></svg></button>
-          <button type="button" class="sk-tool" id="sk-redo" title="Refazer" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14l5-5-5-5"/><path d="M20 9H9a5 5 0 0 0 0 10h3"/></svg></button>
+          <span class="sk-tools__sep sk-3donly"></span>
+          <button type="button" class="sk-tool" id="sk-undo" title="Desfazer (Ctrl+Z)" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14L4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-3"/></svg></button>
+          <button type="button" class="sk-tool" id="sk-redo" title="Refazer (Ctrl+Y)" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14l5-5-5-5"/><path d="M20 9H9a5 5 0 0 0 0 10h3"/></svg></button>
           <span class="sk-tools__sep"></span>
           <button type="button" class="sk-tool" id="sk-full" title="Tela cheia"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3M21 8V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3M16 21h3a2 2 0 0 0 2-2v-3"/></svg></button>
         </div>
 
         <div class="sk-viewbar">
-          <button type="button" class="sk-vb" id="sk-zout" title="Afastar">−</button>
-          <button type="button" class="sk-vb" id="sk-zin" title="Aproximar">+</button>
+          <div class="sk-mode" role="group" aria-label="Modo">
+            <button type="button" class="sk-modebtn on" data-mode="3d">3D</button><button type="button" class="sk-modebtn" data-mode="2d">Editar 2D</button>
+          </div>
           <span class="sk-viewbar__sep"></span>
-          <button type="button" class="sk-vb sk-vb--txt" data-view="front">Frente</button>
-          <button type="button" class="sk-vb sk-vb--txt" data-view="three">3/4</button>
-          <button type="button" class="sk-vb sk-vb--txt" data-view="side">Lateral</button>
-          <button type="button" class="sk-vb sk-vb--txt" data-view="back">Costas</button>
+          <span class="sk-v3d">
+            <button type="button" class="sk-vb" id="sk-zout" title="Afastar">−</button>
+            <button type="button" class="sk-vb" id="sk-zin" title="Aproximar">+</button>
+            <span class="sk-viewbar__sep"></span>
+            <button type="button" class="sk-vb sk-vb--txt" data-view="front">Frente</button>
+            <button type="button" class="sk-vb sk-vb--txt" data-view="three">3/4</button>
+            <button type="button" class="sk-vb sk-vb--txt" data-view="side">Lateral</button>
+            <button type="button" class="sk-vb sk-vb--txt" data-view="back">Costas</button>
+          </span>
+          <span class="sk-v2d" hidden>
+            <button type="button" class="sk-vb sk-vb--txt sk-facebtn" data-face="left">Lat. esq.</button>
+            <button type="button" class="sk-vb sk-vb--txt sk-facebtn on" data-face="front">Frente</button>
+            <button type="button" class="sk-vb sk-vb--txt sk-facebtn" data-face="right">Lat. dir.</button>
+            <button type="button" class="sk-vb sk-vb--txt sk-facebtn" data-face="back">Verso</button>
+          </span>
         </div>
 
         <button type="button" class="sk-btn sk-btn--pri sk-cta" id="sk-quote">
@@ -776,19 +876,52 @@
       '20':{w:.20,h:.34,d:.11,label:'20 × 11 × 34 cm'},
       '25':{w:.25,h:.34,d:.14,label:'25 × 14 × 34 cm'},
       '30':{w:.30,h:.32,d:.19,label:'30 × 19 × 32 cm'}
-    }
+    },
+    papers: [
+      {c:'#b8895a', n:'Kraft'}, {c:'#d9bf94', n:'Kraft claro'}, {c:'#f3efe6', n:'Branco'}, {c:'#232323', n:'Preto'},
+      {c:'#9e2a2b', n:'Vinho'}, {c:'#2d5020', n:'Verde'}, {c:'#1f3b6e', n:'Azul'}, {c:'#e7b8c2', n:'Rosa'}
+    ],
+    handles: [
+      {c:'#a77849', n:'Kraft'}, {c:'#f3efe6', n:'Branca'}, {c:'#1e1e1e', n:'Preta'}, {c:'#a3262a', n:'Vermelha'},
+      {c:'#2d5020', n:'Verde'}, {c:'#1f3b6e', n:'Azul'}, {c:'#c9a24a', n:'Dourada'}
+    ],
+    inks: ['#1a1a1a','#ffffff','#3d2d14','#b8895a','#2d5020','#c0261d','#1d4f9c','#e0a526','#d94e1f','#e7b8c2']
   };
   /* ========================== */
 
-  const state = {size:'20', scale:.55, posY:.45, mode:'color', both:false, bg:'none', tol:22, bgAll:true,
-    main:'', mainPos:'below', font:'sans', tcolor:'#1a1a1a', tsize:1, tpos:.84, tposx:.5,
-    lines:[{icon:'phone', text:'', img:null}]};
-  let logo = null, srcImg = null, srcUrl = null;
-  var editorReady = false, afterPaintHook = null;
-  function afterPaint(){ if (editorReady && afterPaintHook) afterPaintHook(); }
+  const FACE_NAMES = {left:'lateral esquerda', front:'frente', right:'lateral direita', back:'verso'};
+  const FACE_ORDER = ['left','front','right','back'];
+  const FONTS = {
+    sans:   {n:'Moderna',    css:'"Inter Tight", system-ui, sans-serif', b:[400,700]},
+    serif:  {n:'Elegante',   css:'Fraunces, Georgia, serif',              b:[400,600]},
+    display:{n:'Impacto',    css:'"Bebas Neue", Impact, sans-serif',      b:[400,400]},
+    script: {n:'Manuscrita', css:'Pacifico, cursive',                     b:[400,400]},
+    hand:   {n:'Caneta',     css:'Caveat, cursive',                       b:[400,700]},
+    mono:   {n:'Técnica',    css:'"JetBrains Mono", monospace',           b:[400,500]}
+  };
+
+  // ---------- Documento (tudo o que o cliente monta) ----------
+  let uid = 1;
+  const newId = () => 'e' + (uid++);
+  function freshDoc(){
+    return {size:'20', paper:'#b8895a', handle:{type:'twist', color:'#a77849'}, finish:'matte',
+      faces:{left:[], front:[mkText({text:'SUA MARCA', s:.13, y:.42, font:'serif', placeholder:true})], right:[], back:[]}};
+  }
+  function mkText(o){ return Object.assign({id:newId(), type:'text', text:'Seu texto', font:'sans', bold:true, italic:false, upper:false, ls:0, color:'#1a1a1a', s:.08, x:.5, y:.5, rot:0, op:1}, o); }
+  function mkContact(o){ return Object.assign({id:newId(), type:'contact', icon:'phone', text:'(11) 99999-9999', font:'sans', bold:false, italic:false, upper:false, ls:0, color:'#1a1a1a', s:.045, x:.5, y:.82, rot:0, op:1, iconImg:null}, o); }
+  function mkShape(shape, o){
+    const base = {rect:{w:.5,h:.18,radius:0}, circle:{w:.35,h:.35}, band:{w:1,h:.14,y:.9}, line:{w:.6,h:.008}}[shape];
+    return Object.assign({id:newId(), type:'shape', shape: shape === 'band' ? 'rect' : shape, fill:'#2d5020', radius:0, x:.5, y:.5, rot:0, op:1}, base, o);
+  }
+  function mkImage(img, o){ return Object.assign({id:newId(), type:'image', src:img, bg:'none', tol:22, bgAll:true, tint:null, s:.5, x:.5, y:.45, rot:0, op:1, proc:null}, o); }
+
+  let doc = freshDoc();
+  const ui = {face:'front', sel:null, mode:'3d'};
 
   const stage = document.getElementById('sk-stage');
   const canvas = document.getElementById('sk-canvas');
+  const editorEl = document.getElementById('sk-editor');
+  var ready = false;
 
   // ---------- Renderer / cena ----------
   const renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:true, preserveDrawingBuffer:true});
@@ -810,7 +943,7 @@
   controls.minDistance = .45; controls.maxDistance = 2.4;
   controls.maxPolarAngle = Math.PI/2 - .04;
   controls.autoRotate = true; controls.autoRotateSpeed = .9;
-  controls.addEventListener('start', () => { controls.autoRotate = false; var b = document.getElementById('sk-spin'); if (b) b.classList.remove('on'); });
+  controls.addEventListener('start', () => { controls.autoRotate = false; const b = document.getElementById('sk-spin'); if (b) b.classList.remove('on'); });
 
   scene.add(new THREE.HemisphereLight(0xfff6ea, 0xb39a80, .8));
   const key = new THREE.DirectionalLight(0xffffff, 1.15);
@@ -826,72 +959,57 @@
   const ground = new THREE.Mesh(new THREE.PlaneGeometry(6,6), new THREE.ShadowMaterial({opacity:.2}));
   ground.rotation.x = -Math.PI/2; ground.receiveShadow = true; scene.add(ground);
 
-  // ---------- Texturas procedurais ----------
-  function makeKraft(w, h){
+  // ---------- Papel (textura neutra + cor escolhida) ----------
+  function makeNoise(w, h){
     const c = document.createElement('canvas'); c.width = w; c.height = h;
     const x = c.getContext('2d');
-    x.fillStyle = '#b8895a'; x.fillRect(0,0,w,h);
+    x.fillStyle = '#808080'; x.fillRect(0,0,w,h);
     const img = x.getImageData(0,0,w,h), d = img.data;
-    for (let i=0;i<d.length;i+=4){ const n=(Math.random()-.5)*20; d[i]+=n; d[i+1]+=n*.9; d[i+2]+=n*.75; }
+    for (let i=0;i<d.length;i+=4){ const n=(Math.random()-.5)*26; d[i]+=n; d[i+1]+=n; d[i+2]+=n; }
     x.putImageData(img,0,0);
     for (let i=0;i<w*h/700;i++){
-      x.strokeStyle = Math.random()<.5 ? 'rgba(90,58,28,.10)' : 'rgba(235,205,165,.12)';
+      x.strokeStyle = Math.random()<.5 ? 'rgba(40,40,40,.12)' : 'rgba(230,230,230,.14)';
       x.lineWidth = Math.random()*1.2+.3;
       const px=Math.random()*w, py=Math.random()*h, a=Math.random()*Math.PI, l=Math.random()*16+4;
       x.beginPath(); x.moveTo(px,py); x.lineTo(px+Math.cos(a)*l, py+Math.sin(a)*l); x.stroke();
     }
-    for (let i=0;i<w*h/2500;i++){ x.fillStyle='rgba(60,35,15,'+(Math.random()*.3)+')'; x.fillRect(Math.random()*w,Math.random()*h,1.6,1.6); }
+    for (let i=0;i<w*h/2500;i++){ x.fillStyle='rgba(30,30,30,'+(Math.random()*.25)+')'; x.fillRect(Math.random()*w,Math.random()*h,1.6,1.6); }
     return c;
   }
-  const kraftBase = makeKraft(1024,1024);
-  const kraftTex = new THREE.CanvasTexture(kraftBase);
-  kraftTex.encoding = THREE.sRGBEncoding; kraftTex.anisotropy = aniso;
+  const noise = makeNoise(1024,1024);
+  const noiseTex = new THREE.CanvasTexture(noise); noiseTex.anisotropy = aniso;
+  const paperC = document.createElement('canvas'); paperC.width = paperC.height = 1024;
+  function paintPaper(){
+    const x = paperC.getContext('2d');
+    x.globalCompositeOperation = 'source-over'; x.globalAlpha = 1;
+    x.fillStyle = doc.paper; x.fillRect(0,0,1024,1024);
+    x.globalCompositeOperation = 'overlay'; x.globalAlpha = .55; x.drawImage(noise,0,0);
+    x.globalCompositeOperation = 'source-over'; x.globalAlpha = 1;
+  }
+  paintPaper();
+  const paperTex = new THREE.CanvasTexture(paperC); paperTex.encoding = THREE.sRGBEncoding; paperTex.anisotropy = aniso;
 
-  function makeRopeTex(){
+  function shade(hex, f){ // f<1 escurece, f>1 clareia
+    const n = parseInt(hex.slice(1),16); let r=n>>16, g=n>>8&255, b=n&255;
+    if (f < 1){ r*=f; g*=f; b*=f; } else { const k=f-1; r+=(255-r)*k; g+=(255-g)*k; b+=(255-b)*k; }
+    return '#' + [r,g,b].map(v => Math.round(Math.max(0,Math.min(255,v))).toString(16).padStart(2,'0')).join('');
+  }
+  const isDark = hex => { const n=parseInt(hex.slice(1),16); return (.299*(n>>16)+.587*(n>>8&255)+.114*(n&255)) < 110; };
+
+  function makeRopeTex(color){
     const c = document.createElement('canvas'); c.width=64; c.height=64;
     const x = c.getContext('2d');
-    x.fillStyle='#a77849'; x.fillRect(0,0,64,64);
-    x.lineWidth=7; x.strokeStyle='rgba(70,44,18,.5)';
+    x.fillStyle=color; x.fillRect(0,0,64,64);
+    x.lineWidth=7; x.strokeStyle=shade(color,.6)+'99';
     for(let i=-64;i<128;i+=16){ x.beginPath(); x.moveTo(i,0); x.lineTo(i+64,64); x.stroke(); }
-    x.lineWidth=3; x.strokeStyle='rgba(240,210,170,.35)';
+    x.lineWidth=3; x.strokeStyle=shade(color,1.45)+'66';
     for(let i=-58;i<128;i+=16){ x.beginPath(); x.moveTo(i,0); x.lineTo(i+64,64); x.stroke(); }
     const t = new THREE.CanvasTexture(c);
     t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(60,1); t.encoding = THREE.sRGBEncoding;
     return t;
   }
-  const ropeTex = makeRopeTex();
 
-  // ---------- Logo ----------
-  function processLogo(img){
-    let w = img.naturalWidth || 600, h = img.naturalHeight || 600;
-    const s = Math.min(1, 1024/Math.max(w,h)); w=Math.round(w*s); h=Math.round(h*s);
-    const base = document.createElement('canvas'); base.width=w; base.height=h;
-    const bx = base.getContext('2d'); bx.drawImage(img,0,0,w,h);
-    if (state.bg !== 'none'){
-      const id = bx.getImageData(0,0,w,h);
-      removeBg(id, w, h, state.bg === 'white' ? [255,255,255] : [0,0,0], state.tol, state.bgAll);
-      bx.putImageData(id,0,0);
-    }
-    const data = bx.getImageData(0,0,w,h).data;
-    let transp = 0; for (let i=3;i<data.length;i+=4) if (data[i]<250) transp++;
-    const hasAlpha = transp > w*h*.02;
-    const mono = (r,g,b) => {
-      const c = document.createElement('canvas'); c.width=w; c.height=h;
-      const cx = c.getContext('2d'), id = cx.createImageData(w,h), o = id.data;
-      for (let i=0;i<data.length;i+=4){
-        const lum = (.299*data[i]+.587*data[i+1]+.114*data[i+2])/255;
-        const ink = hasAlpha ? data[i+3]/255 : Math.max(0, Math.min(1, (.9-lum)/.45));
-        o[i]=r; o[i+1]=g; o[i+2]=b; o[i+3]=ink*255;
-      }
-      cx.putImageData(id,0,0); return c;
-    };
-    logo = {color:base, black:mono(26,19,13), white:mono(250,246,238)};
-    const t = document.getElementById('sk-thumb');
-    t.src = state.bg === 'none' ? srcUrl : base.toDataURL('image/png'); t.hidden = false;
-  }
-
-  // Remove fundo branco ou preto: a partir das bordas (padrão) ou em toda a imagem.
-  // Bordas suaves ganham transparência parcial e a cor do fundo é descontada (sem halo).
+  // ---------- Imagens: remoção de fundo e máscara de cor ----------
   function removeBg(id, w, h, bg, tolPct, all){
     const d = id.data, n = w*h;
     const t = tolPct * 4.4, feather = 38;
@@ -900,7 +1018,7 @@
       const r=d[i*4]-bg[0], g=d[i*4+1]-bg[1], b=d[i*4+2]-bg[2];
       dist[i] = d[i*4+3] < 10 ? 0 : Math.sqrt(r*r+g*g+b*b);
     }
-    const mark = new Uint8Array(n); // 1 = fundo, 2 = borda suave
+    const mark = new Uint8Array(n);
     if (all){
       for (let i=0;i<n;i++) mark[i] = dist[i] <= t ? 1 : (dist[i] < t+feather ? 2 : 0);
     } else {
@@ -927,19 +1045,17 @@
       d[k+3] = Math.round(d[k+3]*a);
     }
   }
-
-  // Sugere automaticamente qual fundo remover olhando as bordas da imagem
   function guessBg(img){
     const c = document.createElement('canvas'), S = 120;
     c.width = S; c.height = S;
     const x = c.getContext('2d'); x.drawImage(img,0,0,S,S);
     const d = x.getImageData(0,0,S,S).data;
-    let transp=0, sum=0, cnt=0, wh=0, bk=0;
+    let transp=0, cnt=0, wh=0, bk=0;
     const px = (X,Y) => {
       const k=(Y*S+X)*4;
       if (d[k+3]<250){ transp++; return; }
       const l=(.299*d[k]+.587*d[k+1]+.114*d[k+2])/255;
-      sum+=l; cnt++; if (l>.9) wh++; if (l<.1) bk++;
+      cnt++; if (l>.9) wh++; if (l<.1) bk++;
     };
     for (let i=0;i<S;i++){ px(i,0); px(i,S-1); px(0,i); px(S-1,i); }
     if (transp > S) return 'none';
@@ -947,8 +1063,43 @@
     if (bk > cnt*.8) return 'black';
     return 'none';
   }
+  function processImage(el){
+    const img = el.src;
+    let w = img.naturalWidth || img.width || 600, h = img.naturalHeight || img.height || 600;
+    const s = Math.min(1, 1024/Math.max(w,h)); w=Math.max(1,Math.round(w*s)); h=Math.max(1,Math.round(h*s));
+    const c = document.createElement('canvas'); c.width=w; c.height=h;
+    const x = c.getContext('2d'); x.drawImage(img,0,0,w,h);
+    if (el.bg !== 'none'){
+      const id = x.getImageData(0,0,w,h);
+      removeBg(id, w, h, el.bg === 'white' ? [255,255,255] : [0,0,0], el.tol, el.bgAll);
+      x.putImageData(id,0,0);
+    }
+    el.proc = c; el._mask = null; el._tint = null;
+  }
+  function tintOf(el){
+    if (!el.proc) processImage(el);
+    if (!el.tint) return el.proc;
+    if (el._tint && el._tint.color === el.tint && el._tint.proc === el.proc) return el._tint.c;
+    if (!el._mask || el._mask.proc !== el.proc){
+      const p = el.proc, w = p.width, h = p.height;
+      const d = p.getContext('2d').getImageData(0,0,w,h).data;
+      let transp = 0; for (let i=3;i<d.length;i+=4) if (d[i]<250) transp++;
+      const hasAlpha = transp > w*h*.02;
+      const m = document.createElement('canvas'); m.width=w; m.height=h;
+      const mx = m.getContext('2d'), id = mx.createImageData(w,h), o = id.data;
+      for (let i=0;i<d.length;i+=4){
+        const lum = (.299*d[i]+.587*d[i+1]+.114*d[i+2])/255;
+        o[i]=o[i+1]=o[i+2]=0; o[i+3] = hasAlpha ? d[i+3] : Math.max(0, Math.min(1, (.9-lum)/.45))*255;
+      }
+      mx.putImageData(id,0,0); el._mask = {proc:el.proc, c:m};
+    }
+    const m = el._mask.c, t = document.createElement('canvas'); t.width = m.width; t.height = m.height;
+    const tx = t.getContext('2d'); tx.drawImage(m,0,0); tx.globalCompositeOperation='source-in'; tx.fillStyle=el.tint; tx.fillRect(0,0,t.width,t.height);
+    el._tint = {color:el.tint, proc:el.proc, c:t};
+    return t;
+  }
 
-  // ---------- Ícones (traço simples, desenhados no canvas) ----------
+  // ---------- Ícones ----------
   const ICONS = {
     phone:  {label:'Telefone', d:['M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z']},
     chat:   {label:'Mensagem', d:['M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z']},
@@ -957,163 +1108,121 @@
     globe:  {label:'Site', d:['M12 2a10 10 0 1 0 0 20a10 10 0 1 0 0-20z','M2 12h20','M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z']},
     clock:  {label:'Horário', d:['M12 2a10 10 0 1 0 0 20a10 10 0 1 0 0-20z','M12 6v6l4 2']},
     truck:  {label:'Delivery', d:['M1 3h15v13H1z','M16 8h4l3 3v5h-7V8z','M5.5 16a2.5 2.5 0 1 0 0 5a2.5 2.5 0 1 0 0-5z','M18.5 16a2.5 2.5 0 1 0 0 5a2.5 2.5 0 1 0 0-5z']},
+    heart:  {label:'Coração', d:['M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z']},
+    star:   {label:'Estrela', d:['M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z']},
     none:   {label:'Sem ícone', d:[]},
     custom: {label:'Imagem própria…', d:[]}
   };
   const iconPaths = {};
   for (const k in ICONS) iconPaths[k] = ICONS[k].d.map(s => new Path2D(s));
-  const iconSvg = k => `<svg viewBox="0 0 24 24" fill="none" stroke="#3d2d14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICONS[k].d.map(s=>`<path d="${s}"/>`).join('')}</svg>`;
+  const iconSvg = (k, color) => `<svg viewBox="0 0 24 24" fill="none" stroke="${color||'currentColor'}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICONS[k].d.map(s=>`<path d="${s}"/>`).join('')}</svg>`;
 
-  function inkColor(){
-    return state.mode === 'black' ? '#1a130d' : state.mode === 'white' ? '#faf6ee' : state.tcolor;
+  // ---------- Desenho dos elementos ----------
+  const mctx = document.createElement('canvas').getContext('2d');
+  function fontStr(el, px){
+    const f = FONTS[el.font] || FONTS.sans;
+    return `${el.italic ? 'italic ' : ''}${el.bold ? f.b[1] : f.b[0]} ${px}px ${f.css}`;
   }
-  function fontFor(kind, px){
-    if (state.font === 'serif') return `${kind==='main'?600:500} ${px}px Fraunces, Georgia, serif`;
-    if (state.font === 'script' && kind === 'main') return `${px}px Pacifico, cursive`;
-    return `${kind==='main'?700:500} ${px}px "Inter Tight", system-ui, sans-serif`;
-  }
-  function fitFont(x, kind, text, px, maxW){
-    x.font = fontFor(kind, px);
-    const w = x.measureText(text).width;
-    if (w > maxW){ px *= maxW / w; x.font = fontFor(kind, px); }
-    return px;
-  }
-  function tinted(img, w, h, color){
-    const c = document.createElement('canvas'); c.width = Math.max(1,Math.round(w)); c.height = Math.max(1,Math.round(h));
-    const cx = c.getContext('2d'); cx.drawImage(img, 0, 0, c.width, c.height);
-    if (color){ cx.globalCompositeOperation = 'source-in'; cx.fillStyle = color; cx.fillRect(0,0,c.width,c.height); }
-    return c;
-  }
-
-  // Desenha tudo o que é impresso (logo + textos + contatos) numa camada e aplica sobre o kraft
-  function drawInk(x, W, H){
-    const L = document.createElement('canvas'); L.width = W; L.height = H;
-    const lx = L.getContext('2d');
-    const ink = inkColor();
-    const lines = state.lines.filter(l => l.text.trim() || (l.icon === 'custom' && l.img));
-    const hasText = state.main.trim() || lines.length;
-
-    // logo
-    let top = H*state.posY, bottom = H*state.posY;
-    if (logo){
-      const src = logo[state.mode], ratio = src.height/src.width;
-      let lw = W*state.scale, lh = lw*ratio;
-      if (lh > H*.6){ lh = H*.6; lw = lh/ratio; }
-      const px = W/2-lw/2, py = H*state.posY-lh/2;
-      lx.drawImage(src, px, py, lw, lh);
-      top = py; bottom = py+lh;
-    } else if (!hasText){
-      lx.fillStyle = ink; lx.globalAlpha = .9;
-      lx.textAlign = 'center'; lx.textBaseline = 'middle';
-      lx.font = `800 ${W*state.scale*.2}px system-ui, sans-serif`;
-      lx.fillText('SUA LOGO', W/2, H*state.posY);
-      lx.font = `500 ${W*state.scale*.07}px system-ui, sans-serif`;
-      lx.fillText('envie o arquivo ao lado', W/2, H*state.posY + W*state.scale*.17);
-      lx.globalAlpha = 1;
+  const txt = el => el.upper ? el.text.toUpperCase() : el.text;
+  function setLS(x, px, ls){ if ('letterSpacing' in x) x.letterSpacing = (ls ? ls*px : 0) + 'px'; }
+  // tamanho (sem rotação) do elemento em px de uma face com largura W e altura H
+  function measure(el, W, H){
+    if (el.type === 'image'){
+      const p = el.proc || (processImage(el), el.proc);
+      const w = el.s*W; return {w, h: w*p.height/p.width};
     }
-
-    lx.fillStyle = ink; lx.textAlign = 'center'; lx.textBaseline = 'middle';
-
-    // frase principal
-    const main = state.main.trim();
-    if (main){
-      const fs = fitFont(lx, 'main', main, W*.075*state.tsize, W*.86);
-      const y = !logo ? H*state.posY : state.mainPos === 'above' ? top - fs*.85 : bottom + fs*.95;
-      lx.fillText(main, W/2, y);
+    if (el.type === 'shape') return {w: el.w*W, h: el.shape === 'line' ? Math.max(2, el.h*W) : el.h*W};
+    const px = el.s*W, x = mctx; x.font = fontStr(el, px); setLS(x, px, el.ls);
+    if (el.type === 'text'){
+      const lines = txt(el).split('\n');
+      const w = Math.max(1, ...lines.map(l => x.measureText(l).width));
+      return {w, h: px*1.2*lines.length, px, lines};
     }
-
-    // contatos com ícones
-    if (lines.length){
-      const base = W*.042*state.tsize, lh = base*1.65;
-      let y = H*state.tpos - (lines.length-1)*lh/2;
-      // 1ª passada: mede cada linha
-      const maxW = W*.86;
-      const ms = lines.map(l => {
-        const t = l.text.trim();
-        const hasIcon = l.icon !== 'none' && (l.icon !== 'custom' || l.img);
-        let fs = base, is = fs*1.15, gap = t && hasIcon ? fs*.5 : 0;
-        lx.font = fontFor('line', fs);
-        let tw = t ? lx.measureText(t).width : 0;
-        let total = (hasIcon ? is : 0) + gap + tw;
-        if (total > maxW){ const k = maxW/total; fs*=k; is*=k; gap*=k; tw*=k; total*=k; }
-        return {l, t, hasIcon, fs, is, gap, total};
-      });
-      // posição horizontal do bloco (sem sair da sacola) e alinhamento das linhas
-      const blockW = Math.max(...ms.map(m => m.total)), margin = W*.06;
-      const bx = Math.min(Math.max(W*state.tposx, blockW/2 + margin), W - blockW/2 - margin);
-      const align = state.tposx < .45 ? 'left' : state.tposx > .55 ? 'right' : 'center';
-      for (const m of ms){
-        const {l, t, hasIcon, fs, is, gap, total} = m;
-        lx.font = fontFor('line', fs);
-        let cx = align === 'left' ? bx - blockW/2 : align === 'right' ? bx + blockW/2 - total : bx - total/2;
-        if (hasIcon){
-          if (l.icon === 'custom'){
-            const r = l.img.height/l.img.width; let iw = is, ih = is*r; if (ih > is*1.1){ ih = is*1.1; iw = ih/r; }
-            const im = tinted(l.img, iw, ih, state.mode === 'color' ? null : ink);
-            lx.drawImage(im, cx + (is-iw)/2, y-ih/2, iw, ih);
-          } else {
-            lx.save(); lx.translate(cx, y-is/2); lx.scale(is/24, is/24);
-            lx.strokeStyle = ink; lx.lineWidth = 2.1; lx.lineCap = 'round'; lx.lineJoin = 'round';
-            iconPaths[l.icon].forEach(pth => lx.stroke(pth));
-            lx.restore();
-          }
-          cx += is + gap;
-        }
-        if (t){ lx.textAlign = 'left'; lx.fillText(t, cx, y + fs*.04); lx.textAlign = 'center'; }
-        y += lh;
-      }
-    }
-
-    // aplica a camada de tinta sobre o papel
+    const t = txt(el).trim(), hasIcon = el.icon !== 'none' && (el.icon !== 'custom' || el.iconImg);
+    const is = px*1.15, gap = t && hasIcon ? px*.5 : 0, tw = t ? x.measureText(t).width : 0;
+    return {w: Math.max(1, (hasIcon ? is : 0) + gap + tw), h: Math.max(px*1.25, is), px, is, gap, hasIcon, t};
+  }
+  function drawEl(x, el, W, H){
+    const m = measure(el, W, H);
     x.save();
-    if (state.mode === 'black'){
-      x.globalCompositeOperation = 'multiply'; x.globalAlpha = .95;
-      x.drawImage(L, 0, 0);
+    x.translate(el.x*W, el.y*H); x.rotate(el.rot*Math.PI/180); x.globalAlpha = el.op;
+    if (el.type === 'image'){
+      x.drawImage(tintOf(el), -m.w/2, -m.h/2, m.w, m.h);
+    } else if (el.type === 'shape'){
+      x.fillStyle = el.fill;
+      if (el.shape === 'circle'){ x.beginPath(); x.ellipse(0, 0, m.w/2, m.h/2, 0, 0, Math.PI*2); x.fill(); }
+      else if (el.shape === 'line'){ x.fillRect(-m.w/2, -m.h/2, m.w, m.h); }
+      else {
+        const r = Math.min(el.radius||0, .5) * Math.min(m.w, m.h);
+        x.beginPath();
+        if (x.roundRect) x.roundRect(-m.w/2, -m.h/2, m.w, m.h, r); else x.rect(-m.w/2, -m.h/2, m.w, m.h);
+        x.fill();
+      }
+    } else if (el.type === 'text'){
+      x.font = fontStr(el, m.px); setLS(x, m.px, el.ls);
+      x.fillStyle = el.color; x.textAlign = 'center'; x.textBaseline = 'middle';
+      m.lines.forEach((l, i) => x.fillText(l, 0, (i - (m.lines.length-1)/2) * m.px*1.2));
     } else {
-      lx.globalCompositeOperation = 'source-atop'; lx.globalAlpha = .16;
-      lx.drawImage(kraftBase, 0, 0, W, H);
-      x.globalCompositeOperation = 'source-over'; x.globalAlpha = .96;
-      x.drawImage(L, 0, 0);
+      x.font = fontStr(el, m.px); setLS(x, m.px, el.ls);
+      x.fillStyle = el.color; x.textBaseline = 'middle'; x.textAlign = 'left';
+      let cx = -m.w/2;
+      if (m.hasIcon){
+        if (el.icon === 'custom'){
+          const r = el.iconImg.height/el.iconImg.width; let iw = m.is, ih = m.is*r; if (ih > m.is*1.1){ ih = m.is*1.1; iw = ih/r; }
+          x.drawImage(el.iconImg, cx + (m.is-iw)/2, -ih/2, iw, ih);
+        } else {
+          x.save(); x.translate(cx, -m.is/2); x.scale(m.is/24, m.is/24);
+          x.strokeStyle = el.color; x.lineWidth = 2.1; x.lineCap = 'round'; x.lineJoin = 'round';
+          iconPaths[el.icon].forEach(p => x.stroke(p));
+          x.restore();
+        }
+        cx += m.is + m.gap;
+      }
+      if (m.t) x.fillText(m.t, cx, m.px*.04);
     }
     x.restore();
   }
 
-  // ---------- Faces ----------
+  // ---------- Faces (texturas da sacola) ----------
   const faces = {};
   function mkFace(w, h){
     const c = document.createElement('canvas'); c.width=w; c.height=h;
     const tex = new THREE.CanvasTexture(c); tex.encoding = THREE.sRGBEncoding; tex.anisotropy = aniso;
     return {c, tex};
   }
-  function paintFace(f, isSide, withLogo){
-    const x = f.c.getContext('2d'), W = f.c.width, H = f.c.height;
+  function paintFace(f){
+    const F = faces[f]; if (!F) return;
+    const x = F.c.getContext('2d'), W = F.c.width, H = F.c.height, side = f === 'left' || f === 'right';
     x.globalCompositeOperation='source-over'; x.globalAlpha=1;
-    x.drawImage(kraftBase,0,0,W,H);
+    x.drawImage(paperC, 0, 0, W, H);
     const g = x.createLinearGradient(0,0,W,0);
-    g.addColorStop(0,'rgba(60,35,15,.12)'); g.addColorStop(.07,'rgba(0,0,0,0)');
-    g.addColorStop(.93,'rgba(0,0,0,0)'); g.addColorStop(1,'rgba(60,35,15,.12)');
+    g.addColorStop(0,'rgba(0,0,0,.10)'); g.addColorStop(.07,'rgba(0,0,0,0)');
+    g.addColorStop(.93,'rgba(0,0,0,0)'); g.addColorStop(1,'rgba(0,0,0,.10)');
     x.fillStyle=g; x.fillRect(0,0,W,H);
-    if (isSide){
-      const cy = H - W/2;
-      x.lineWidth = 3; x.strokeStyle = 'rgba(70,45,20,.35)';
+    if (side){
+      const cy = H - W/2, dark = isDark(doc.paper);
+      x.lineWidth = 3; x.strokeStyle = dark ? 'rgba(255,255,255,.12)' : 'rgba(0,0,0,.22)';
       x.beginPath(); x.moveTo(W/2,0); x.lineTo(W/2,cy); x.lineTo(0,H); x.moveTo(W/2,cy); x.lineTo(W,H); x.stroke();
-      x.lineWidth = 2; x.strokeStyle = 'rgba(255,235,200,.25)';
-      x.beginPath(); x.moveTo(W/2+3,0); x.lineTo(W/2+3,cy); x.stroke();
     }
-    if (withLogo) drawInk(x,W,H);
-    f.tex.needsUpdate = true;
+    const els = doc.faces[f];
+    if (els.length){
+      const L = document.createElement('canvas'); L.width = W; L.height = H;
+      const lx = L.getContext('2d');
+      els.forEach(el => drawEl(lx, el, W, H));
+      lx.globalCompositeOperation = 'source-atop'; lx.globalAlpha = .13; lx.drawImage(noise, 0, 0, W, H);
+      x.globalAlpha = .97; x.drawImage(L, 0, 0); x.globalAlpha = 1;
+    }
+    F.tex.needsUpdate = true;
   }
-  function repaint(){
-    paintFace(faces.front,false,true);
-    paintFace(faces.back,false,state.both);
-    afterPaint();
-  }
+  function paintAll(){ FACE_ORDER.forEach(paintFace); changed(); }
 
   // ---------- Geometria da sacola ----------
-  let bag = null;
-  const innerMat = new THREE.MeshStandardMaterial({map:kraftTex, color:0xcfc0ad, roughness:.95, side:THREE.BackSide});
-  const rimMat   = new THREE.MeshStandardMaterial({map:kraftTex, color:0xe6d6c2, roughness:.95, side:THREE.DoubleSide});
-  const ropeMat  = new THREE.MeshStandardMaterial({map:ropeTex, roughness:.85});
+  let bag = null, handles = null;
+  const outerMeshes = [];
+  const innerMat = new THREE.MeshStandardMaterial({map:paperTex, color:0xd6d0c6, roughness:.95, side:THREE.BackSide});
+  const rimMat   = new THREE.MeshStandardMaterial({map:paperTex, color:0xeeeeee, roughness:.95, side:THREE.DoubleSide});
+  const bottomMat= new THREE.MeshStandardMaterial({map:paperTex, color:0xd6d0c6, roughness:.95});
+  const outMats = {};
 
   function panelGeo(gw, gh, bulge, type){
     const g = new THREE.PlaneGeometry(gw, gh, 32, 4);
@@ -1124,54 +1233,87 @@
     }
     g.computeVertexNormals(); return g;
   }
-
-  function buildBag(){
-    if (bag){ scene.remove(bag); bag.traverse(o => o.geometry && o.geometry.dispose()); }
-    const {w,h,d} = CONFIG.sizes[state.size];
-    const fold = Math.min(.04, h*.1), fBulge = .005, sBulge = d*.1;
-    bag = new THREE.Group();
-
-    ['front','back','side'].forEach(k => faces[k] && faces[k].tex.dispose());
-    faces.front = mkFace(1024, Math.round(1024*h/w));
-    faces.back  = mkFace(1024, Math.round(1024*h/w));
-    faces.side  = mkFace(512,  Math.round(512*h/d));
-    paintFace(faces.side,true,false); repaint();
-
-    const outMat = t => new THREE.MeshStandardMaterial({map:t, roughness:.92, bumpMap:kraftTex, bumpScale:.0012});
-    const mF = outMat(faces.front.tex), mB = outMat(faces.back.tex), mS = outMat(faces.side.tex);
-
-    function wall(gw, mat, type, bulge, pos, rotY, inset){
-      const geo = panelGeo(gw, h, bulge, type);
-      const o = new THREE.Mesh(geo, mat); o.castShadow = o.receiveShadow = true;
-      const i = new THREE.Mesh(geo, innerMat); i.receiveShadow = true;
-      const rim = new THREE.Mesh(panelGeo(gw-.003, fold, bulge, type), rimMat);
-      rim.position.set(0, h/2-fold/2, -inset);
-      const grp = new THREE.Group(); grp.add(o,i,rim);
-      grp.position.copy(pos); grp.rotation.y = rotY; bag.add(grp);
-    }
-    wall(w, mF, 'face', fBulge, new THREE.Vector3(0,h/2, d/2),  0,           .0025);
-    wall(w, mB, 'face', fBulge, new THREE.Vector3(0,h/2,-d/2),  Math.PI,     .0025);
-    wall(d, mS, 'side', sBulge, new THREE.Vector3( w/2,h/2,0),  Math.PI/2,   .0025);
-    wall(d, mS, 'side', sBulge, new THREE.Vector3(-w/2,h/2,0), -Math.PI/2,   .0025);
-
-    const bottom = new THREE.Mesh(new THREE.PlaneGeometry(w,d), new THREE.MeshStandardMaterial({map:kraftTex,color:0xcfc0ad,roughness:.95}));
-    bottom.rotation.x = -Math.PI/2; bottom.position.y = .002; bottom.receiveShadow = true; bag.add(bottom);
-
-    const a = w*.18, top = h + Math.min(.12, h*.3);
+  function applyFinish(){
+    const r = doc.finish === 'gloss' ? .32 : .92;
+    Object.values(outMats).forEach(m => { m.roughness = r; m.needsUpdate = true; });
+  }
+  function buildHandles(){
+    if (handles){ bag.remove(handles); handles.traverse(o => { if (o.geometry) o.geometry.dispose(); if (o.material){ if (o.material.map) o.material.map.dispose(); o.material.dispose(); } }); handles = null; }
+    if (doc.handle.type === 'none') return;
+    const {w,h,d} = CONFIG.sizes[doc.size];
+    const fold = Math.min(.04, h*.1);
+    handles = new THREE.Group();
+    const t = doc.handle.type, color = doc.handle.color;
+    const mat = t === 'twist' ? new THREE.MeshStandardMaterial({map: makeRopeTex(color), roughness:.85})
+                              : new THREE.MeshStandardMaterial({color: new THREE.Color(color).convertSRGBToLinear(), roughness: t === 'cord' ? .6 : .8});
+    const a = w*(t === 'flat' ? .2 : .18), top = h + Math.min(t === 'flat' ? .09 : .12, h*.3);
     [1,-1].forEach(s => {
-      const z = s*(d/2 - .008), V = THREE.Vector3;
+      const z = s*(d/2 - (t === 'flat' ? .004 : .008)), V = THREE.Vector3;
       const curve = new THREE.CatmullRomCurve3([
         new V(-a, h-fold*.8, z), new V(-a*1.06, h+.02, z), new V(-a*.75, top-.022, z),
         new V(0, top, z), new V(a*.75, top-.022, z), new V(a*1.06, h+.02, z), new V(a, h-fold*.8, z)
       ]);
-      const m = new THREE.Mesh(new THREE.TubeGeometry(curve, 96, .0036, 10, false), ropeMat);
-      m.castShadow = true; bag.add(m);
+      let geo;
+      if (t === 'flat'){
+        const sh = new THREE.Shape(); const hw = .0012, hh = .0075;
+        sh.moveTo(-hw,-hh); sh.lineTo(hw,-hh); sh.lineTo(hw,hh); sh.lineTo(-hw,hh); sh.lineTo(-hw,-hh);
+        geo = new THREE.ExtrudeGeometry(sh, {steps:90, bevelEnabled:false, extrudePath:curve});
+      } else {
+        geo = new THREE.TubeGeometry(curve, 96, t === 'cord' ? .0045 : .0036, 12, false);
+      }
+      const m = new THREE.Mesh(geo, mat); m.castShadow = true; handles.add(m);
     });
+    bag.add(handles);
+  }
+  function buildBag(){
+    if (bag){ scene.remove(bag); bag.traverse(o => o.geometry && o.geometry.dispose()); }
+    outerMeshes.length = 0;
+    const {w,h,d} = CONFIG.sizes[doc.size];
+    const fold = Math.min(.04, h*.1), fBulge = .005, sBulge = d*.1;
+    bag = new THREE.Group(); handles = null;
+
+    FACE_ORDER.forEach(k => faces[k] && faces[k].tex.dispose());
+    faces.front = mkFace(1024, Math.round(1024*h/w));
+    faces.back  = mkFace(1024, Math.round(1024*h/w));
+    faces.left  = mkFace(512,  Math.round(512*h/d));
+    faces.right = mkFace(512,  Math.round(512*h/d));
+    FACE_ORDER.forEach(paintFace);
+
+    FACE_ORDER.forEach(k => { if (outMats[k]) outMats[k].dispose(); outMats[k] = new THREE.MeshStandardMaterial({map:faces[k].tex, roughness:.92, bumpMap:noiseTex, bumpScale:.0012}); });
+    applyFinish();
+
+    function wall(face, gw, type, bulge, pos, rotY){
+      const geo = panelGeo(gw, h, bulge, type);
+      const o = new THREE.Mesh(geo, outMats[face]); o.castShadow = o.receiveShadow = true; o.userData.face = face;
+      outerMeshes.push(o);
+      const i = new THREE.Mesh(geo, innerMat); i.receiveShadow = true;
+      const rim = new THREE.Mesh(panelGeo(gw-.003, fold, bulge, type), rimMat);
+      rim.position.set(0, h/2-fold/2, -.0025);
+      const grp = new THREE.Group(); grp.add(o,i,rim);
+      grp.position.copy(pos); grp.rotation.y = rotY; bag.add(grp);
+    }
+    wall('front', w, 'face', fBulge, new THREE.Vector3(0,h/2, d/2),  0);
+    wall('back',  w, 'face', fBulge, new THREE.Vector3(0,h/2,-d/2),  Math.PI);
+    wall('right', d, 'side', sBulge, new THREE.Vector3( w/2,h/2,0),  Math.PI/2);
+    wall('left',  d, 'side', sBulge, new THREE.Vector3(-w/2,h/2,0), -Math.PI/2);
+
+    const bottom = new THREE.Mesh(new THREE.PlaneGeometry(w,d), bottomMat);
+    bottom.rotation.x = -Math.PI/2; bottom.position.y = .002; bottom.receiveShadow = true; bag.add(bottom);
+    buildHandles();
 
     scene.add(bag);
     controls.target.set(0, (h + Math.min(.12, h*.3))*.5, 0);
-    document.getElementById('sk-dims').textContent = CONFIG.sizes[state.size].label + ' (L × F × A)';
-    document.getElementById('sk-spec-size').textContent = CONFIG.sizes[state.size].label;
+    document.getElementById('sk-dims').textContent = CONFIG.sizes[doc.size].label + ' (L × F × A)';
+    document.getElementById('sk-spec-size').textContent = CONFIG.sizes[doc.size].label;
+    changed();
+  }
+  function setPaper(c){
+    doc.paper = c; paintPaper(); paperTex.needsUpdate = true;
+    const tint = isDark(c) ? 0xbdbdbd : 0xd6d0c6;
+    innerMat.color.setHex(tint); bottomMat.color.setHex(tint);
+    const p = CONFIG.papers.find(p => p.c.toLowerCase() === c.toLowerCase());
+    document.getElementById('sk-spec-paper').textContent = p ? p.n : c.toUpperCase();
+    paintAll();
   }
 
   // ---------- Loop / resize ----------
@@ -1179,286 +1321,86 @@
     const r = stage.getBoundingClientRect();
     renderer.setSize(r.width, r.height, false);
     camera.aspect = r.width / r.height; camera.updateProjectionMatrix();
+    if (ui.mode === '2d') render2D();
   }
   new ResizeObserver(resize).observe(stage);
-  (function loop(){ requestAnimationFrame(loop); controls.update(); renderer.render(scene,camera); })();
+  (function loop(){ requestAnimationFrame(loop); if (ui.mode === '3d'){ controls.update(); renderer.render(scene,camera); } })();
 
-  // ---------- UI ----------
-  const fileIn = document.getElementById('sk-file'), drop = document.getElementById('sk-drop');
-  function loadLogoUrl(url, bg){
-    const img = new Image();
-    img.onload = () => {
-      srcImg = img; srcUrl = url;
-      setBg(bg === undefined ? guessBg(img) : bg);
-      document.getElementById('sk-bgbox').hidden = false;
-      document.getElementById('sk-droptxt').innerHTML = '<small>Clique para trocar o logo</small>';
-    };
-    img.src = url;
-  }
-  function loadFile(file){
-    if (!file || !file.type.startsWith('image/')) return;
-    loadLogoUrl(URL.createObjectURL(file));
-  }
-  fileIn.addEventListener('change', e => loadFile(e.target.files[0]));
-  ['dragenter','dragover'].forEach(ev => drop.addEventListener(ev, e => {e.preventDefault(); drop.classList.add('over');}));
-  ['dragleave','drop'].forEach(ev => drop.addEventListener(ev, e => {e.preventDefault(); drop.classList.remove('over');}));
-  drop.addEventListener('drop', e => loadFile(e.dataTransfer.files[0]));
+  // ---------- Utilidades de UI ----------
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  function findEl(id){ for (const f of FACE_ORDER){ const i = doc.faces[f].findIndex(e => e.id === id); if (i >= 0) return {f, i, el: doc.faces[f][i]}; } return null; }
+  const selEl = () => { const r = ui.sel && findEl(ui.sel); return r ? r.el : null; };
 
-  function seg(id, key, onChange){
-    document.querySelectorAll('#'+id+' button').forEach(b => b.addEventListener('click', () => {
-      document.querySelectorAll('#'+id+' button').forEach(x => x.classList.remove('on'));
-      b.classList.add('on'); state[key] = b.dataset.v; onChange();
-    }));
-  }
-  const reprocess = () => { if (srcImg){ processLogo(srcImg); repaint(); } };
-  function setBg(v){
-    state.bg = v;
-    document.querySelectorAll('#sk-bg button').forEach(b => b.classList.toggle('on', b.dataset.v === v));
-    document.getElementById('sk-bgopts').hidden = v === 'none';
-    reprocess();
-  }
-  document.querySelectorAll('#sk-bg button').forEach(b => b.addEventListener('click', () => setBg(b.dataset.v)));
-  let tolTimer;
-  document.getElementById('sk-tol').addEventListener('input', e => {
-    state.tol = +e.target.value; clearTimeout(tolTimer); tolTimer = setTimeout(reprocess, 60);
-  });
-  document.getElementById('sk-keepin').addEventListener('change', e => { state.bgAll = !e.target.checked; reprocess(); });
-
-  // textos e contatos
-  const linesBox = document.getElementById('sk-lines'), addBtn = document.getElementById('sk-addline');
-  const MAX_LINES = 5;
-  const placeholders = {phone:'(11) 99999-9999', chat:'(11) 99999-9999', at:'@seurestaurante', pin:'Rua Exemplo, 123 - Bairro', globe:'www.seusite.com.br', clock:'Seg a Sáb · 18h às 23h', truck:'Peça pelo app ou telefone', none:'Texto livre', custom:'Texto ao lado do ícone'};
-  function renderLines(){
-    linesBox.innerHTML = '';
-    state.lines.forEach((l, i) => {
-      const row = document.createElement('div'); row.className = 'sk-line';
-      const ico = document.createElement('label'); ico.className = 'sk-ico'; ico.title = 'Escolher ícone';
-      ico.innerHTML = l.icon === 'custom' && l.img ? `<img src="${l.img.src}" alt="">` : l.icon === 'custom' ? '<span style="font-size:11px;color:#8f6f42">img</span>' : l.icon === 'none' ? '<span style="font-size:13px;color:#8f6f42">—</span>' : iconSvg(l.icon);
-      const sel = document.createElement('select'); sel.setAttribute('aria-label','Ícone');
-      for (const k in ICONS){ const o = document.createElement('option'); o.value = k; o.textContent = ICONS[k].label; if (k===l.icon) o.selected = true; sel.appendChild(o); }
-      sel.addEventListener('change', () => {
-        if (sel.value === 'custom'){
-          const f = document.createElement('input'); f.type = 'file'; f.accept = 'image/png,image/jpeg,image/svg+xml,image/webp';
-          f.addEventListener('change', () => {
-            const file = f.files[0]; if (!file) return;
-            const im = new Image(); im.onload = () => { l.icon = 'custom'; l.img = im; renderLines(); repaint(); };
-            im.src = URL.createObjectURL(file);
-          });
-          f.click();
-          sel.value = l.icon; // só muda quando a imagem chegar
-          return;
-        }
-        l.icon = sel.value; l.img = null; renderLines(); repaint();
-      });
-      ico.appendChild(sel);
-      const inp = document.createElement('input'); inp.type = 'text'; inp.className = 'sk-in'; inp.maxLength = 45;
-      inp.value = l.text; inp.placeholder = placeholders[l.icon];
-      inp.addEventListener('input', () => { l.text = inp.value; repaint(); });
-      const del = document.createElement('button'); del.type = 'button'; del.className = 'sk-del'; del.innerHTML = '×'; del.setAttribute('aria-label','Remover linha');
-      del.addEventListener('click', () => { state.lines.splice(i,1); renderLines(); repaint(); });
-      row.append(ico, inp, del); linesBox.appendChild(row);
+  function swatches(container, colors, current, onPick, opts){
+    container.innerHTML = '';
+    colors.forEach(c => {
+      const hex = typeof c === 'string' ? c : c.c, name = typeof c === 'string' ? hex : c.n;
+      const b = document.createElement('button'); b.type = 'button'; b.style.background = hex; b.title = name; b.setAttribute('aria-label', name);
+      if (!isDark(hex) && parseInt(hex.slice(1),16) > 0xe0e0e0) b.className = 'sk-sw--light';
+      if (current && hex.toLowerCase() === current.toLowerCase()) b.classList.add('on');
+      b.addEventListener('click', () => { onPick(hex); container.querySelectorAll('button,.sk-sw__custom').forEach(x => x.classList.remove('on')); b.classList.add('on'); });
+      container.appendChild(b);
     });
-    addBtn.hidden = state.lines.length >= MAX_LINES;
+    const lab = document.createElement('label'); lab.className = 'sk-sw__custom'; lab.title = 'Outra cor';
+    const inp = document.createElement('input'); inp.type = 'color'; inp.value = current && /^#[0-9a-f]{6}$/i.test(current) ? current : '#d94e1f';
+    lab.append(inp, document.createTextNode('+'));
+    if (current && !colors.some(c => (typeof c === 'string' ? c : c.c).toLowerCase() === current.toLowerCase())) lab.classList.add('on');
+    inp.addEventListener('input', () => { container.querySelectorAll('button').forEach(x => x.classList.remove('on')); lab.classList.add('on'); onPick(inp.value, true); });
+    container.appendChild(lab);
   }
-  addBtn.addEventListener('click', () => {
-    const used = state.lines.map(l => l.icon);
-    const next = ['phone','at','pin','globe','clock'].find(k => !used.includes(k)) || 'none';
-    state.lines.push({icon:next, text:'', img:null}); renderLines();
-    const ins = linesBox.querySelectorAll('input.sk-in'); ins[ins.length-1].focus();
-  });
-  renderLines();
+  function segSet(id, v){ document.querySelectorAll('#'+id+' button').forEach(b => b.classList.toggle('on', b.dataset.v === v)); }
+  function segBind(id, fn){ document.querySelectorAll('#'+id+' button').forEach(b => b.addEventListener('click', () => { segSet(id, b.dataset.v); fn(b.dataset.v); })); }
 
-  document.getElementById('sk-main').addEventListener('input', e => { state.main = e.target.value; repaint(); });
-  seg('sk-mainpos','mainPos',repaint);
-  seg('sk-font','font',repaint);
-  const swBtns = document.querySelectorAll('#sk-sw button'), swCustom = document.querySelector('.sk-sw__custom');
-  swBtns.forEach(b => b.addEventListener('click', () => {
-    swBtns.forEach(x => x.classList.remove('on')); swCustom.classList.remove('on');
-    b.classList.add('on'); state.tcolor = b.dataset.c; repaint();
-  }));
-  document.getElementById('sk-tcolor').addEventListener('input', e => {
-    swBtns.forEach(x => x.classList.remove('on')); swCustom.classList.add('on');
-    state.tcolor = e.target.value; repaint();
-  });
-  document.getElementById('sk-tsize').addEventListener('input', e => { state.tsize = e.target.value/100; repaint(); });
-  document.getElementById('sk-tpos').addEventListener('input', e => { state.tpos = e.target.value/100; repaint(); });
-  document.getElementById('sk-tposx').addEventListener('input', e => {
-    let v = e.target.value/100; if (Math.abs(v-.5) < .03){ v = .5; e.target.value = 50; } // "gruda" no centro
-    state.tposx = v; repaint();
-  });
-  const syncColorBox = () => { document.getElementById('sk-colorbox').hidden = state.mode !== 'color'; };
-  syncColorBox();
-  if (document.fonts){
-    Promise.all(['700 40px "Inter Tight"','500 40px "Inter Tight"','600 40px Fraunces','500 40px Fraunces','40px Pacifico']
-      .map(f => document.fonts.load(f).catch(()=>{}))).then(() => repaint());
-  }
-
-  seg('sk-size','size',buildBag);
-  seg('sk-mode','mode',() => { syncColorBox(); repaint(); });
-  document.getElementById('sk-scale').addEventListener('input', e => {state.scale = e.target.value/100; repaint();});
-  document.getElementById('sk-pos').addEventListener('input', e => {state.posY = e.target.value/100; repaint();});
-  document.getElementById('sk-both').addEventListener('change', e => {state.both = e.target.checked; repaint();});
-
-  document.getElementById('sk-shot').addEventListener('click', () => {
-    renderer.render(scene,camera);
-    const a = document.createElement('a');
-    a.download = 'minha-sacola-kraft.png'; a.href = renderer.domElement.toDataURL('image/png'); a.click();
-  });
-  document.getElementById('sk-quote').addEventListener('click', () => {
-    const cor = {color:'colorida', black:'preta', white:'branca'}[state.mode];
-    const msg = `Olá! Vim pelo simulador do site e quero um orçamento de sacola kraft personalizada:\n` +
-      `• Sacola kraft nº ${state.size} (${CONFIG.sizes[state.size].label})\n` +
-      `• Impressão ${cor}, ${state.both ? 'frente e verso' : 'só na frente'}\n` +
-      (state.main.trim() ? `• Frase: "${state.main.trim()}"\n` : '') +
-      (state.lines.some(l => l.text.trim()) ? `• Contatos: ${state.lines.filter(l => l.text.trim()).map(l => l.text.trim()).join(' | ')}\n` : '') +
-      `Vou enviar meu logo e a imagem da prévia aqui.`;
-    try{gtag('event','conversion',{'send_to':'AW-17972588049/3G85CLHE8oYcEJHc__lC'});}catch(e){}
-    window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank');
-  });
-
-  // ---------- Link para compartilhar ----------
-  // A sacola inteira (logo já tratado, textos, cores, tamanho) vai compactada no próprio link,
-  // depois do #. Nada é enviado para servidor.
-  const b64u = {
-    enc: buf => { let s=''; const b=new Uint8Array(buf); for (let i=0;i<b.length;i+=0x8000) s+=String.fromCharCode.apply(null,b.subarray(i,i+0x8000)); return btoa(s).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,''); },
-    dec: str => { str=str.replace(/-/g,'+').replace(/_/g,'/'); const s=atob(str); const b=new Uint8Array(s.length); for (let i=0;i<s.length;i++) b[i]=s.charCodeAt(i); return b; }
-  };
-  async function deflate(text){
-    if (!window.CompressionStream) return 'r' + b64u.enc(new TextEncoder().encode(text));
-    const buf = await new Response(new Blob([text]).stream().pipeThrough(new CompressionStream('deflate-raw'))).arrayBuffer();
-    return 'z' + b64u.enc(buf);
-  }
-  async function inflate(str){
-    const bytes = b64u.dec(str.slice(1));
-    if (str[0] === 'r') return new TextDecoder().decode(bytes);
-    return await new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream('deflate-raw'))).text();
-  }
-  function shrink(src, max, q){
-    const s = Math.min(1, max/Math.max(src.width, src.height));
-    const c = document.createElement('canvas'); c.width = Math.max(1,Math.round(src.width*s)); c.height = Math.max(1,Math.round(src.height*s));
-    c.getContext('2d').drawImage(src, 0, 0, c.width, c.height);
-    const webp = c.toDataURL('image/webp', q);
-    return webp.startsWith('data:image/webp') ? webp : c.toDataURL('image/png');
-  }
-  function logoData(){
-    if (!logo) return null;
-    for (const [max, q] of [[640,.9],[512,.85],[400,.8],[300,.75],[220,.7]]){
-      const d = shrink(logo.color, max, q);
-      if (d.length < 45000) return d;
-    }
-    return shrink(logo.color, 180, .6);
-  }
-  async function buildShareLink(){
-    const pick = ['size','mode','scale','posY','both','main','mainPos','font','tcolor','tsize','tpos','tposx'];
-    const s = {v:1};
-    pick.forEach(k => s[k] = state[k]);
-    s.lines = state.lines.map(l => ({icon:l.icon, text:l.text, img: l.icon==='custom' && l.img ? shrink(l.img, 96, .85) : null}));
-    s.logo = logoData();
-    const packed = await deflate(JSON.stringify(s));
-    return location.origin + location.pathname + '#s=' + packed;
-  }
-
-  function syncUI(){
-    const on = (id, v) => document.querySelectorAll('#'+id+' button').forEach(b => b.classList.toggle('on', b.dataset.v === v));
-    on('sk-size', state.size); on('sk-mode', state.mode); on('sk-mainpos', state.mainPos); on('sk-font', state.font);
-    const setR = (id, v) => { document.getElementById(id).value = v; };
-    setR('sk-scale', Math.round(state.scale*100)); setR('sk-pos', Math.round(state.posY*100));
-    setR('sk-tsize', Math.round(state.tsize*100)); setR('sk-tpos', Math.round(state.tpos*100)); setR('sk-tposx', Math.round(state.tposx*100));
-    document.getElementById('sk-both').checked = state.both;
-    document.getElementById('sk-main').value = state.main;
-    const sw = [...document.querySelectorAll('#sk-sw button')], hit = sw.find(b => b.dataset.c.toLowerCase() === String(state.tcolor).toLowerCase());
-    sw.forEach(b => b.classList.toggle('on', b === hit));
-    swCustom.classList.toggle('on', !hit);
-    if (!hit) document.getElementById('sk-tcolor').value = state.tcolor;
-    document.querySelectorAll('#sk-bg button').forEach(b => b.classList.toggle('on', b.dataset.v === state.bg));
-    document.getElementById('sk-bgopts').hidden = state.bg === 'none';
-    document.getElementById('sk-tol').value = state.tol;
-    document.getElementById('sk-keepin').checked = !state.bgAll;
-    syncColorBox(); renderLines();
-  }
-
-  async function loadShared(){
-    const m = location.hash.match(/^#s=([A-Za-z0-9_-]+)/);
-    if (!m) return false;
-    let s;
-    try { s = JSON.parse(await inflate(m[1])); } catch(e){ console.warn('Link de sacola inválido', e); return false; }
-    if (!s || !CONFIG.sizes[s.size]) return false;
-    const num = (v, d, a, b) => (typeof v === 'number' && v >= a && v <= b) ? v : d;
-    const str = (v, d, max) => typeof v === 'string' ? v.slice(0, max) : d;
-    state.size = s.size;
-    state.mode = ['color','black','white'].includes(s.mode) ? s.mode : 'color';
-    state.scale = num(s.scale, .55, .15, .9); state.posY = num(s.posY, .45, .2, .8);
-    state.both = !!s.both;
-    state.main = str(s.main, '', 40);
-    state.mainPos = s.mainPos === 'above' ? 'above' : 'below';
-    state.font = ['sans','serif','script'].includes(s.font) ? s.font : 'sans';
-    state.tcolor = /^#[0-9a-fA-F]{6}$/.test(s.tcolor) ? s.tcolor : '#1a1a1a';
-    state.tsize = num(s.tsize, 1, .5, 1.7); state.tpos = num(s.tpos, .84, .5, .94); state.tposx = num(s.tposx, .5, 0, 1);
-    const isImg = d => typeof d === 'string' && /^data:image\/(webp|png);base64,/.test(d);
-    state.lines = (Array.isArray(s.lines) ? s.lines : []).slice(0, MAX_LINES).map(l => ({
-      icon: ICONS[l && l.icon] ? l.icon : 'none', text: str(l && l.text, '', 45), img: null, _d: isImg(l && l.img) ? l.img : null
-    }));
-    state.lines.forEach(l => {
-      if (l.icon === 'custom' && l._d){ const im = new Image(); im.onload = () => { l.img = im; renderLines(); repaint(); }; im.src = l._d; }
-      delete l._d;
-    });
-    buildBag(); syncUI(); repaint();
-    if (isImg(s.logo)) loadLogoUrl(s.logo, 'none');
-    document.getElementById('sk-shared').hidden = false;
-    setTimeout(() => document.getElementById('simulador').scrollIntoView({behavior:'smooth'}), 300);
-    return true;
-  }
-
-  const shareBox = document.getElementById('sk-sharebox'), shareInp = document.getElementById('sk-sharelink'), shareMsg = document.getElementById('sk-sharemsg');
-  async function copyLink(){
-    try { await navigator.clipboard.writeText(shareInp.value); shareMsg.textContent = 'Link copiado! É só colar e enviar.'; }
-    catch(e){ shareInp.select(); document.execCommand && document.execCommand('copy'); shareMsg.textContent = 'Link selecionado — use Ctrl+C para copiar.'; }
-  }
-  document.getElementById('sk-share').addEventListener('click', async () => {
-    shareMsg.textContent = 'Gerando link…'; shareBox.hidden = false;
-    const link = await buildShareLink();
-    shareInp.value = link;
-    document.getElementById('sk-sharewa').href = 'https://wa.me/?text=' + encodeURIComponent('Olha como ficou a minha sacola kraft personalizada: ' + link);
-    try{gtag('event','share',{method:'link',content_type:'sacola_kraft'});}catch(e){}
-    await copyLink();
-  });
-  document.getElementById('sk-copy').addEventListener('click', copyLink);
-  shareInp.addEventListener('focus', () => shareInp.select());
-
-  buildBag(); resize();
-  loadShared();
-
-  // ---------- Editor: abas ----------
+  // ---------- Faces, abas, modos ----------
   const tabs = document.querySelectorAll('.sk-tab'), panes = document.querySelectorAll('.sk-pane');
   function openTab(name){
     tabs.forEach(t => t.classList.toggle('on', t.dataset.tab === name));
     panes.forEach(pn => pn.classList.toggle('on', pn.dataset.pane === name));
-    try { localStorage.setItem('sk-tab', name); } catch(e){}
+    if (name === 'edit') renderProps();
   }
   tabs.forEach(t => t.addEventListener('click', () => openTab(t.dataset.tab)));
-  try { const saved = localStorage.getItem('sk-tab'); if (saved && document.querySelector('.sk-pane[data-pane="'+saved+'"]')) openTab(saved); } catch(e){}
 
-  // ---------- Planificação (prévia 2D das faces) ----------
+  function setFace(f){
+    ui.face = f;
+    document.querySelectorAll('.sk-facebtn').forEach(b => b.classList.toggle('on', b.dataset.face === f));
+    $('sk-addface').textContent = FACE_NAMES[f];
+    const s = selEl(); if (s && findEl(s.id).f !== f) ui.sel = null;
+    drawFlat(); renderProps(); if (ui.mode === '2d') render2D();
+  }
+  document.querySelectorAll('.sk-facebtn').forEach(b => b.addEventListener('click', () => { setFace(b.dataset.face); if (b.closest('.sk-faces')) setMode('2d'); }));
+
+  const c2d = $('sk-2d');
+  function setMode(m){
+    ui.mode = m;
+    document.querySelectorAll('.sk-modebtn').forEach(b => b.classList.toggle('on', b.dataset.mode === m));
+    c2d.hidden = m !== '2d'; $('sk-hint2d').hidden = m !== '2d';
+    document.querySelector('.sk-v3d').hidden = m !== '3d'; document.querySelector('.sk-v2d').hidden = m !== '2d';
+    editorEl.classList.toggle('is-2d', m === '2d');
+    if (m === '2d') render2D();
+  }
+  document.querySelectorAll('.sk-modebtn').forEach(b => b.addEventListener('click', () => setMode(b.dataset.mode)));
+
+  // ---------- Planificação ----------
+  let flatRects = [];
   function drawFlat(){
-    const cv = document.getElementById('sk-flat'); if (!cv || !faces.front) return;
-    const x = cv.getContext('2d'), {w, h, d} = CONFIG.sizes[state.size];
+    const cv = $('sk-flat'); if (!cv || !faces.front) return;
+    const x = cv.getContext('2d'), {w, h, d} = CONFIG.sizes[doc.size];
     const glue = d*.18, fold = Math.min(.04, h*.1), bot = d*.62;
     const totalW = glue + d + w + d + w, totalH = fold + h + bot;
-    const pad = 14, top = 26;
+    const pad = 12, top = 26;
     const s = Math.min((cv.width - pad*2)/totalW, (cv.height - top - pad)/totalH);
     const ox = (cv.width - totalW*s)/2, oy = top + (cv.height - top - pad - totalH*s)/2;
     x.clearRect(0,0,cv.width,cv.height);
-    const cols = [['glue',glue],['side',d],['front',w],['side',d],['back',w]];
-    let cx = ox;
-    const kraft = x.createPattern(kraftBase, 'repeat');
+    const cols = [['glue',glue],['left',d],['front',w],['right',d],['back',w]];
+    let cx = ox; flatRects = [];
     for (const [k, cw] of cols){
-      const X = cx, W = cw*s, Y0 = oy, Hf = fold*s, Hb = h*s, Hg = bot*s;
-      x.fillStyle = kraft; x.fillRect(X, Y0, W, Hf + Hb + Hg);
-      if (k !== 'glue') x.drawImage(faces[k].c, X, Y0 + Hf, W, Hb);
-      x.fillStyle = 'rgba(60,35,15,.10)'; x.fillRect(X, Y0, W, Hf); x.fillRect(X, Y0+Hf+Hb, W, Hg);
+      const X = cx, W = cw*s, Hf = fold*s, Hb = h*s, Hg = bot*s;
+      x.drawImage(paperC, 0, 0, 200, 200, X, oy, W, Hf+Hb+Hg);
+      if (k !== 'glue'){ x.drawImage(faces[k].c, X, oy + Hf, W, Hb); flatRects.push({f:k, x:X, y:oy+Hf, w:W, h:Hb}); }
+      x.fillStyle = 'rgba(0,0,0,.10)'; x.fillRect(X, oy, W, Hf); x.fillRect(X, oy+Hf+Hb, W, Hg);
       cx += W;
     }
-    // contorno e vincos
     x.strokeStyle = '#3d2d14'; x.lineWidth = 1.2; x.setLineDash([]);
     x.strokeRect(ox, oy, totalW*s, totalH*s);
     x.setLineDash([4,3]); x.strokeStyle = 'rgba(61,45,20,.55)'; x.lineWidth = 1;
@@ -1466,44 +1408,439 @@
     cols.slice(0,-1).forEach(([,cw]) => { fx += cw*s; x.beginPath(); x.moveTo(fx, oy); x.lineTo(fx, oy+totalH*s); x.stroke(); });
     [fold, fold+h].forEach(yy => { x.beginPath(); x.moveTo(ox, oy+yy*s); x.lineTo(ox+totalW*s, oy+yy*s); x.stroke(); });
     x.setLineDash([]);
+    const r = flatRects.find(r => r.f === ui.face);
+    if (r){ x.strokeStyle = '#d94e1f'; x.lineWidth = 2.5; x.strokeRect(r.x+1, r.y+1, r.w-2, r.h-2); }
+  }
+  $('sk-flat').addEventListener('click', e => {
+    const cv = e.currentTarget, rc = cv.getBoundingClientRect();
+    const px = (e.clientX - rc.left) * cv.width / rc.width, py = (e.clientY - rc.top) * cv.height / rc.height;
+    const r = flatRects.find(r => px >= r.x && px <= r.x+r.w && py >= r.y && py <= r.y+r.h);
+    if (!r) return;
+    setFace(r.f); setMode('2d');
+    const hit = hitTest(r.f, (px - r.x)/r.w * faces[r.f].c.width, (py - r.y)/r.h * faces[r.f].c.height);
+    select(hit ? hit.id : null);
+  });
+
+  // ---------- Seleção e edição ----------
+  function select(id, openEdit){
+    ui.sel = id;
+    if (id){ const r = findEl(id); if (r && r.f !== ui.face) setFace(r.f); }
+    renderProps(); if (ui.mode === '2d') render2D();
+    if (id && openEdit !== false) openTab('edit');
+  }
+  function hitTest(f, fx, fy, pad){
+    const F = faces[f], W = F.c.width, H = F.c.height, els = doc.faces[f];
+    for (let i = els.length-1; i >= 0; i--){
+      const el = els[i], m = measure(el, W, H), a = -el.rot*Math.PI/180;
+      const dx = fx - el.x*W, dy = fy - el.y*H;
+      const lx = dx*Math.cos(a) - dy*Math.sin(a), ly = dx*Math.sin(a) + dy*Math.cos(a);
+      const p = pad || 6;
+      if (Math.abs(lx) <= m.w/2 + p && Math.abs(ly) <= Math.max(m.h, 10)/2 + p) return el;
+    }
+    return null;
+  }
+  function touchFace(f){ paintFace(f); changed(); }
+  function update(el, patch, opts){
+    Object.assign(el, patch); delete el.placeholder;
+    if (opts && opts.reprocess) processImage(el);
+    touchFace(findEl(el.id).f);
+    if (!opts || !opts.keepPanel) renderProps();
+  }
+  function addEl(el, f){
+    f = f || ui.face;
+    if (el.type === 'image') FACE_ORDER.forEach(k => doc.faces[k] = doc.faces[k].filter(e => !e.placeholder));
+    doc.faces[f].push(el);
+    if (ui.face !== f) setFace(f);
+    touchFace(f); FACE_ORDER.forEach(k => k !== f && paintFace(k));
+    setMode('2d'); select(el.id);
+  }
+  function removeEl(id){
+    const r = findEl(id); if (!r) return;
+    doc.faces[r.f].splice(r.i, 1);
+    if (ui.sel === id) ui.sel = null;
+    touchFace(r.f); renderProps();
+  }
+  function duplicateEl(id){
+    const r = findEl(id); if (!r) return;
+    const c = Object.assign({}, r.el, {id:newId(), x: Math.min(.95, r.el.x + .04), y: Math.min(.95, r.el.y + .04)});
+    delete c.placeholder;
+    doc.faces[r.f].splice(r.i+1, 0, c); touchFace(r.f); select(c.id);
+  }
+  function moveLayer(id, dir){
+    const r = findEl(id); if (!r) return; const arr = doc.faces[r.f], j = r.i + dir;
+    if (j < 0 || j >= arr.length) return;
+    [arr[r.i], arr[j]] = [arr[j], arr[r.i]]; touchFace(r.f); renderProps();
+  }
+  function moveToFace(id, f){
+    const r = findEl(id); if (!r || r.f === f) return;
+    doc.faces[r.f].splice(r.i, 1); doc.faces[f].push(r.el);
+    paintFace(r.f); paintFace(f); changed(); setFace(f); select(id);
+  }
+
+  // ---------- Painel de propriedades ----------
+  const ICO = {
+    dup:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>',
+    up:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>',
+    down:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>',
+    del:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>',
+    ch:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v18M7 8h10M7 16h10" stroke-dasharray="2 2"/><path d="M12 3v18"/></svg>',
+    cv:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h18"/><path d="M8 7v10M16 7v10" stroke-dasharray="2 2"/></svg>',
+    img:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>',
+    text:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg>',
+    shape:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="6" width="16" height="12" rx="1"/></svg>'
+  };
+  const TYPE_N = {image:'Imagem', text:'Texto', contact:'Contato', shape:'Forma'};
+  function layerLabel(el){
+    if (el.type === 'image') return 'Logo / imagem';
+    if (el.type === 'shape') return {rect: el.w >= .99 ? 'Faixa' : 'Retângulo', circle:'Círculo', line:'Linha'}[el.shape];
+    return (el.text || '').split('\n')[0] || TYPE_N[el.type];
+  }
+  function renderLayers(){
+    const box = $('sk-layers'); box.innerHTML = '';
+    const els = doc.faces[ui.face].slice().reverse();
+    if (!els.length){ box.innerHTML = '<div class="sk-empty">Nada nesta face ainda. Use <b>Adicionar</b>.</div>'; return; }
+    els.forEach(el => {
+      const b = document.createElement('button'); b.type = 'button'; b.className = 'sk-layer' + (el.id === ui.sel ? ' on' : '');
+      const ic = el.type === 'image' ? `<img src="${(el.proc||(processImage(el),el.proc)).toDataURL('image/png')}" alt="">` : el.type === 'contact' ? iconSvg(el.icon in ICONS && ICONS[el.icon].d.length ? el.icon : 'phone') : el.type === 'shape' ? ICO.shape : ICO.text;
+      b.innerHTML = ic + '<span>' + esc(layerLabel(el)) + '</span>';
+      b.addEventListener('click', () => { setMode('2d'); select(el.id); });
+      box.appendChild(b);
+    });
+  }
+
+  function row(parent, label, node){ const d = document.createElement('div'); d.className = 'sk-prow'; if (label){ const l = document.createElement('span'); l.className = 'sk-l'; l.textContent = label; d.appendChild(l); } d.appendChild(node); parent.appendChild(d); return d; }
+  function range(min, max, step, val, fmt, onInput){
+    const w = document.createElement('div'); w.className = 'sk-range';
+    const r = document.createElement('input'); r.type = 'range'; r.min = min; r.max = max; r.step = step; r.value = val;
+    const o = document.createElement('output'); o.textContent = fmt(+val);
+    r.addEventListener('input', () => { o.textContent = fmt(+r.value); onInput(+r.value); });
+    w.append(r, o); return w;
+  }
+  function segNode(opts, cur, onPick){
+    const s = document.createElement('div'); s.className = 'sk-seg';
+    opts.forEach(([v, label]) => { const b = document.createElement('button'); b.type = 'button'; b.dataset.v = v; b.textContent = label; if (v === cur) b.classList.add('on');
+      b.addEventListener('click', () => { s.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); onPick(v); }); s.appendChild(b); });
+    return s;
+  }
+  function swNode(colors, cur, onPick){ const d = document.createElement('div'); d.className = 'sk-sw'; swatches(d, colors, cur, onPick); return d; }
+  function ibtn(html, title, fn, extra){ const b = document.createElement('button'); b.type = 'button'; b.className = 'sk-ib' + (extra ? ' ' + extra : ''); b.innerHTML = html; b.title = title; b.setAttribute('aria-label', title); b.addEventListener('click', fn); return b; }
+
+  function textControls(box, el){
+    const ta = document.createElement(el.type === 'text' ? 'textarea' : 'input');
+    ta.className = 'sk-in'; ta.value = el.text; ta.maxLength = el.type === 'text' ? 120 : 50; if (el.type === 'text') ta.rows = 2;
+    ta.addEventListener('input', () => update(el, {text: ta.value}, {keepPanel:true}));
+    ta.addEventListener('change', renderLayers);
+    row(box, el.type === 'text' ? 'Texto (Enter quebra linha)' : 'Texto', ta);
+    const fonts = document.createElement('div'); fonts.className = 'sk-fonts';
+    Object.entries(FONTS).forEach(([k, f]) => { const b = document.createElement('button'); b.type = 'button'; b.textContent = f.n; b.style.fontFamily = f.css; if (k === el.font) b.classList.add('on');
+      b.addEventListener('click', () => { fonts.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); update(el, {font:k}, {keepPanel:true}); }); fonts.appendChild(b); });
+    row(box, 'Fonte', fonts);
+    const st = document.createElement('div'); st.className = 'sk-iconbar';
+    const tog = (label, key, style) => { const b = ibtn(label, {bold:'Negrito', italic:'Itálico', upper:'Maiúsculas'}[key], () => { b.classList.toggle('on'); update(el, {[key]: !el[key]}, {keepPanel:true}); }, el[key] ? 'on' : ''); b.style.cssText = style; st.appendChild(b); };
+    tog('B', 'bold', 'font-weight:700'); tog('I', 'italic', 'font-style:italic;font-family:Georgia,serif'); tog('AA', 'upper', 'font-size:11px;letter-spacing:.05em');
+    row(box, 'Estilo', st);
+    row(box, 'Cor', swNode(CONFIG.inks, el.color, c => update(el, {color:c}, {keepPanel:true})));
+    row(box, 'Tamanho', range(10, 400, 1, Math.round(el.s*1000), v => v, v => update(el, {s: v/1000}, {keepPanel:true})));
+    row(box, 'Espaçamento entre letras', range(0, 40, 1, Math.round((el.ls||0)*100), v => v, v => update(el, {ls: v/100}, {keepPanel:true})));
+  }
+
+  function renderProps(){
+    const box = $('sk-props'); if (!box) return;
+    box.innerHTML = '';
+    renderLayers();
+    const el = selEl();
+    if (!el){
+      box.innerHTML = `<h3 class="sk-ptitle">Editar ${esc(FACE_NAMES[ui.face])}</h3><div class="sk-empty">Clique num item na sacola (no modo <b>Editar 2D</b>, na planificação ou na lista abaixo) para mudar cor, tamanho, posição e mais.</div>`;
+      return;
+    }
+    const head = document.createElement('div'); head.className = 'sk-props-head';
+    head.innerHTML = `<h3 class="sk-ptitle">${TYPE_N[el.type]}</h3>`;
+    const bar = document.createElement('div'); bar.className = 'sk-iconbar';
+    bar.append(ibtn(ICO.dup, 'Duplicar', () => duplicateEl(el.id)), ibtn(ICO.up, 'Trazer para frente', () => moveLayer(el.id, 1)), ibtn(ICO.down, 'Enviar para trás', () => moveLayer(el.id, -1)), ibtn(ICO.del, 'Excluir', () => removeEl(el.id), 'sk-ib--danger'));
+    head.appendChild(bar); box.appendChild(head);
+
+    if (el.type === 'image'){
+      const pv = document.createElement('div'); pv.className = 'sk-imgprev';
+      pv.innerHTML = `<img src="${tintOf(el).toDataURL('image/png')}" alt="">`; box.appendChild(pv);
+      const swap = document.createElement('div'); swap.className = 'sk-iconbar';
+      const fi = document.createElement('input'); fi.type = 'file'; fi.accept = 'image/png,image/jpeg,image/svg+xml,image/webp'; fi.hidden = true;
+      fi.addEventListener('change', () => { const f = fi.files[0]; if (!f) return; loadImg(URL.createObjectURL(f), img => { update(el, {src:img, bg:guessBg(img)}, {reprocess:true}); }); });
+      swap.append(ibtn(ICO.img + ' Trocar imagem', 'Trocar imagem', () => fi.click()), fi);
+      row(box, null, swap);
+      row(box, 'Fundo da imagem', segNode([['none','Manter'],['white','Tirar branco'],['black','Tirar preto']], el.bg, v => update(el, {bg:v}, {reprocess:true})));
+      if (el.bg !== 'none'){
+        row(box, 'Intensidade da remoção', range(4, 60, 1, el.tol, v => v, v => { el.tol = v; clearTimeout(el._t); el._t = setTimeout(() => update(el, {}, {reprocess:true, keepPanel:true}), 80); }));
+        const k = document.createElement('label'); k.className = 'sk-row sk-row--sm';
+        k.innerHTML = '<input type="checkbox"> Manter essa cor dentro do desenho'; k.firstChild.checked = !el.bgAll;
+        k.firstChild.addEventListener('change', e => update(el, {bgAll: !e.target.checked}, {reprocess:true}));
+        row(box, null, k);
+      }
+      row(box, 'Cores da imagem', segNode([['orig','Originais'],['one','Uma cor só']], el.tint ? 'one' : 'orig', v => update(el, {tint: v === 'one' ? (isDark(doc.paper) ? '#ffffff' : '#1a1a1a') : null})));
+      if (el.tint) row(box, 'Cor', swNode(CONFIG.inks, el.tint, c => update(el, {tint:c}, {keepPanel:true})));
+      row(box, 'Tamanho', range(5, 120, 1, Math.round(el.s*100), v => v + '%', v => update(el, {s: v/100}, {keepPanel:true})));
+    } else if (el.type === 'text'){
+      textControls(box, el);
+    } else if (el.type === 'contact'){
+      const sel = document.createElement('select'); sel.className = 'sk-in';
+      Object.entries(ICONS).forEach(([k, v]) => { const o = document.createElement('option'); o.value = k; o.textContent = v.label; if (k === el.icon) o.selected = true; sel.appendChild(o); });
+      sel.addEventListener('change', () => {
+        if (sel.value === 'custom'){
+          const f = document.createElement('input'); f.type = 'file'; f.accept = 'image/png,image/jpeg,image/svg+xml,image/webp';
+          f.addEventListener('change', () => { const file = f.files[0]; if (!file) return; loadImg(URL.createObjectURL(file), im => update(el, {icon:'custom', iconImg: im})); });
+          f.click(); sel.value = el.icon; return;
+        }
+        update(el, {icon: sel.value, iconImg: null});
+      });
+      row(box, 'Ícone', sel);
+      textControls(box, el);
+    } else {
+      row(box, 'Cor', swNode(CONFIG.inks.concat(['#b8895a']).filter((v,i,a)=>a.indexOf(v)===i), el.fill, c => update(el, {fill:c}, {keepPanel:true})));
+      row(box, 'Largura', range(2, 100, 1, Math.round(el.w*100), v => v + '%', v => update(el, {w: v/100}, {keepPanel:true})));
+      if (el.shape !== 'line') row(box, 'Altura', range(2, 150, 1, Math.round(el.h*100), v => v + '%', v => update(el, {h: v/100}, {keepPanel:true})));
+      else row(box, 'Espessura', range(2, 40, 1, Math.round(el.h*1000), v => v, v => update(el, {h: v/1000}, {keepPanel:true})));
+      if (el.shape === 'rect') row(box, 'Cantos arredondados', range(0, 50, 1, Math.round((el.radius||0)*100), v => v, v => update(el, {radius: v/100}, {keepPanel:true})));
+    }
+
+    row(box, 'Girar', range(-180, 180, 1, Math.round(el.rot), v => v + '°', v => update(el, {rot: v}, {keepPanel:true})));
+    row(box, 'Transparência', range(10, 100, 1, Math.round(el.op*100), v => v + '%', v => update(el, {op: v/100}, {keepPanel:true})));
+    const pos = document.createElement('div'); pos.className = 'sk-iconbar';
+    pos.append(ibtn(ICO.ch + ' Centro horizontal', 'Centralizar na horizontal', () => update(el, {x:.5}, {keepPanel:true})), ibtn(ICO.cv + ' Centro vertical', 'Centralizar na vertical', () => update(el, {y:.5}, {keepPanel:true})));
+    row(box, 'Posição', pos);
+    const mv = document.createElement('select'); mv.className = 'sk-in';
+    const cur = findEl(el.id).f;
+    FACE_ORDER.forEach(f => { const o = document.createElement('option'); o.value = f; o.textContent = FACE_NAMES[f][0].toUpperCase() + FACE_NAMES[f].slice(1); if (f === cur) o.selected = true; mv.appendChild(o); });
+    mv.addEventListener('change', () => moveToFace(el.id, mv.value));
+    row(box, 'Mover para', mv);
+  }
+
+  // ---------- Editor 2D (arrastar, redimensionar, girar) ----------
+  const view = {s:1, ox:0, oy:0, dpr:1};
+  let drag = null, guides = {v:false, h:false};
+  function layout2D(){
+    const r = stage.getBoundingClientRect(), dpr = Math.min(window.devicePixelRatio || 1, 2);
+    c2d.width = Math.round(r.width*dpr); c2d.height = Math.round(r.height*dpr);
+    const F = faces[ui.face].c, mob = r.width < 600;
+    const padT = mob ? 70 : 84, padB = mob ? 120 : 84, padX = mob ? 20 : 80;
+    const s = Math.min((r.width - padX*2)/F.width, (r.height - padT - padB)/F.height);
+    view.s = s; view.dpr = dpr; view.ox = (r.width - F.width*s)/2; view.oy = padT + (r.height - padT - padB - F.height*s)/2;
+  }
+  function elCorners(el, W, H){
+    const m = measure(el, W, H), a = el.rot*Math.PI/180, c = Math.cos(a), s = Math.sin(a);
+    const cx = el.x*W, cy = el.y*H, hw = m.w/2, hh = Math.max(m.h, 6)/2;
+    const pt = (x, y) => [cx + x*c - y*s, cy + x*s + y*c];
+    return {m, cx, cy, a, corners:[pt(-hw,-hh), pt(hw,-hh), pt(hw,hh), pt(-hw,hh)], rot: pt(0, -hh - 34/view.s), topMid: pt(0,-hh)};
+  }
+  const toScr = p => [view.ox + p[0]*view.s, view.oy + p[1]*view.s];
+  function render2D(){
+    if (ui.mode !== '2d' || !faces[ui.face]) return;
+    layout2D();
+    const x = c2d.getContext('2d'), F = faces[ui.face].c, W = F.width, H = F.height;
+    x.setTransform(view.dpr,0,0,view.dpr,0,0);
+    x.clearRect(0,0,c2d.width,c2d.height);
+    x.save(); x.shadowColor = 'rgba(61,45,20,.28)'; x.shadowBlur = 30; x.shadowOffsetY = 12;
+    x.fillStyle = '#fff'; x.fillRect(view.ox, view.oy, W*view.s, H*view.s); x.restore();
+    x.drawImage(F, view.ox, view.oy, W*view.s, H*view.s);
+    // área segura
+    x.setLineDash([5,5]); x.strokeStyle = isDark(doc.paper) ? 'rgba(255,255,255,.35)' : 'rgba(61,45,20,.3)'; x.lineWidth = 1;
+    const m = .05*W*view.s; x.strokeRect(view.ox + m, view.oy + m, W*view.s - 2*m, H*view.s - 2*m); x.setLineDash([]);
+    // guias de centro
+    x.strokeStyle = '#d94e1f'; x.lineWidth = 1;
+    if (guides.v){ x.beginPath(); x.moveTo(view.ox + W*view.s/2, view.oy); x.lineTo(view.ox + W*view.s/2, view.oy + H*view.s); x.stroke(); }
+    if (guides.h){ x.beginPath(); x.moveTo(view.ox, view.oy + H*view.s/2); x.lineTo(view.ox + W*view.s, view.oy + H*view.s/2); x.stroke(); }
+    // título
+    x.font = '500 12px "Inter Tight", sans-serif'; x.fillStyle = '#6b5028'; x.textAlign = 'center';
+    x.fillText(FACE_NAMES[ui.face].toUpperCase(), view.ox + W*view.s/2, view.oy - 12);
+    // seleção
+    const el = selEl();
+    if (el && findEl(el.id).f === ui.face){
+      const g = elCorners(el, W, H), cs = g.corners.map(toScr);
+      x.strokeStyle = '#2d5020'; x.lineWidth = 1.5;
+      x.beginPath(); cs.forEach((p, i) => i ? x.lineTo(p[0], p[1]) : x.moveTo(p[0], p[1])); x.closePath(); x.stroke();
+      const rt = toScr(g.rot), tm = toScr(g.topMid);
+      x.beginPath(); x.moveTo(tm[0], tm[1]); x.lineTo(rt[0], rt[1]); x.stroke();
+      const hs = drag && drag.touch ? 9 : 6;
+      x.fillStyle = '#fff';
+      cs.forEach(p => { x.beginPath(); x.rect(p[0]-hs, p[1]-hs, hs*2, hs*2); x.fill(); x.stroke(); });
+      x.beginPath(); x.arc(rt[0], rt[1], hs+1, 0, Math.PI*2); x.fillStyle = '#2d5020'; x.fill();
+      x.strokeStyle = '#fff'; x.lineWidth = 1.5; x.beginPath(); x.arc(rt[0], rt[1], hs-2.5, -2.2, 1.6); x.stroke();
+    }
+  }
+  function ptr(e){ const r = c2d.getBoundingClientRect(); const sx = e.clientX - r.left, sy = e.clientY - r.top; return {sx, sy, fx:(sx - view.ox)/view.s, fy:(sy - view.oy)/view.s}; }
+  c2d.addEventListener('pointerdown', e => {
+    const p = ptr(e), F = faces[ui.face].c, W = F.width, H = F.height, touch = e.pointerType === 'touch', tol = touch ? 18 : 10;
+    const el = selEl();
+    if (el && findEl(el.id).f === ui.face){
+      const g = elCorners(el, W, H), rt = toScr(g.rot);
+      if (Math.hypot(p.sx - rt[0], p.sy - rt[1]) < tol + 2){ drag = {mode:'rot', el, cx:g.cx, cy:g.cy, touch}; c2d.setPointerCapture(e.pointerId); return; }
+      for (const c of g.corners){ const s = toScr(c); if (Math.hypot(p.sx - s[0], p.sy - s[1]) < tol){
+        drag = {mode:'scale', el, cx:g.cx, cy:g.cy, d0: Math.hypot(p.fx - g.cx, p.fy - g.cy), s0: el.s, w0: el.w, h0: el.h, touch}; c2d.setPointerCapture(e.pointerId); return; } }
+    }
+    const hit = hitTest(ui.face, p.fx, p.fy, touch ? 14/view.s : 6/view.s);
+    if (hit){
+      if (ui.sel !== hit.id) select(hit.id);
+      drag = {mode:'move', el:hit, dx: p.fx - hit.x*W, dy: p.fy - hit.y*H, touch};
+      c2d.setPointerCapture(e.pointerId);
+    } else { select(null, false); }
+  });
+  c2d.addEventListener('pointermove', e => {
+    const p = ptr(e), F = faces[ui.face].c, W = F.width, H = F.height;
+    if (!drag){
+      const el = selEl(); let cur = 'default';
+      if (hitTest(ui.face, p.fx, p.fy)) cur = 'move';
+      if (el && findEl(el.id).f === ui.face){
+        const g = elCorners(el, W, H), rt = toScr(g.rot);
+        if (Math.hypot(p.sx - rt[0], p.sy - rt[1]) < 12) cur = 'grab';
+        else if (g.corners.some(c => { const s = toScr(c); return Math.hypot(p.sx - s[0], p.sy - s[1]) < 10; })) cur = 'nwse-resize';
+      }
+      c2d.style.cursor = cur; return;
+    }
+    const el = drag.el;
+    if (drag.mode === 'move'){
+      let nx = (p.fx - drag.dx)/W, ny = (p.fy - drag.dy)/H;
+      const snap = 8/view.s;
+      guides.v = Math.abs(nx*W - W/2) < snap; guides.h = Math.abs(ny*H - H/2) < snap;
+      if (guides.v) nx = .5; if (guides.h) ny = .5;
+      el.x = Math.max(0, Math.min(1, nx)); el.y = Math.max(0, Math.min(1, ny));
+    } else if (drag.mode === 'scale'){
+      const k = Math.max(.05, Math.hypot(p.fx - drag.cx, p.fy - drag.cy) / Math.max(1, drag.d0));
+      if (el.type === 'shape'){ el.w = Math.max(.02, drag.w0*k); if (el.shape !== 'line') el.h = Math.max(.02, drag.h0*k); }
+      else el.s = Math.max(.01, drag.s0*k);
+    } else {
+      let a = Math.atan2(p.fy - drag.cy, p.fx - drag.cx)*180/Math.PI + 90;
+      a = ((a + 540) % 360) - 180;
+      const near = Math.round(a/45)*45; if (Math.abs(a - near) < 4) a = near;
+      el.rot = Math.round(a);
+    }
+    delete el.placeholder;
+    paintFace(ui.face); render2D();
+  });
+  const endDrag = () => { if (!drag) return; drag = null; guides = {v:false, h:false}; changed(); renderProps(); render2D(); };
+  c2d.addEventListener('pointerup', endDrag); c2d.addEventListener('pointercancel', endDrag);
+  document.addEventListener('keydown', e => {
+    if (/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)) return;
+    const el = selEl(); if (!el || ui.mode !== '2d') return;
+    const step = e.shiftKey ? .02 : .004;
+    if (e.key === 'Delete' || e.key === 'Backspace'){ e.preventDefault(); removeEl(el.id); }
+    else if (e.key.startsWith('Arrow')){
+      e.preventDefault();
+      const p = {ArrowLeft:[-step,0], ArrowRight:[step,0], ArrowUp:[0,-step], ArrowDown:[0,step]}[e.key];
+      update(el, {x: Math.max(0,Math.min(1, el.x + p[0])), y: Math.max(0,Math.min(1, el.y + p[1]))}, {keepPanel:true});
+    }
+  });
+
+  // clique na sacola 3D abre a face no editor
+  const ray = new THREE.Raycaster(), mouse = new THREE.Vector2();
+  let downAt = null;
+  canvas.addEventListener('pointerdown', e => downAt = [e.clientX, e.clientY]);
+  canvas.addEventListener('pointerup', e => {
+    if (!downAt || Math.hypot(e.clientX - downAt[0], e.clientY - downAt[1]) > 5) return;
+    const r = canvas.getBoundingClientRect();
+    mouse.set((e.clientX - r.left)/r.width*2 - 1, -(e.clientY - r.top)/r.height*2 + 1);
+    ray.setFromCamera(mouse, camera);
+    const hit = ray.intersectObjects(outerMeshes, false)[0];
+    if (!hit || !hit.uv) return;
+    const f = hit.object.userData.face, F = faces[f].c;
+    setFace(f); setMode('2d');
+    const el = hitTest(f, hit.uv.x*F.width, (1-hit.uv.y)*F.height);
+    select(el ? el.id : null, !!el);
+  });
+
+  // ---------- Adicionar ----------
+  function loadImg(url, cb){ const im = new Image(); im.onload = () => cb(im); im.src = url; }
+  function addImageFile(file, i){
+    if (!file || !file.type.startsWith('image/')) return;
+    loadImg(URL.createObjectURL(file), img => {
+      const side = ui.face === 'left' || ui.face === 'right';
+      const el = mkImage(img, {bg: guessBg(img), s: side ? .7 : .5, x: .5, y: Math.min(.8, .4 + (i||0)*.12)});
+      processImage(el); addEl(el);
+    });
+  }
+  const fileIn = $('sk-file'), drop = $('sk-drop');
+  fileIn.addEventListener('change', e => { [...e.target.files].forEach(addImageFile); fileIn.value = ''; });
+  const addPane = document.querySelector('.sk-pane[data-pane="add"]');
+  ['dragenter','dragover'].forEach(ev => [drop, addPane, stage].forEach(t => t.addEventListener(ev, e => { e.preventDefault(); drop.classList.add('over'); })));
+  ['dragleave','drop'].forEach(ev => [drop, addPane, stage].forEach(t => t.addEventListener(ev, e => { e.preventDefault(); drop.classList.remove('over'); })));
+  [drop, addPane, stage].forEach(t => t.addEventListener('drop', e => { e.stopPropagation(); [...(e.dataTransfer.files||[])].forEach(addImageFile); }));
+
+  const inkFor = () => isDark(doc.paper) ? '#ffffff' : '#1a1a1a';
+  document.querySelectorAll('.sk-addbtn[data-add]').forEach(b => b.addEventListener('click', () => {
+    const t = b.dataset.add, side = ui.face === 'left' || ui.face === 'right', ink = inkFor();
+    if (t === 'title') addEl(mkText({text:'Nome da marca', s: side ? .14 : .1, font:'serif', color:ink, y:.3}));
+    else if (t === 'text') addEl(mkText({text:'Obrigado pela preferência!', s: side ? .08 : .05, bold:false, color:ink, y:.62}));
+    else if (t === 'contact') addEl(mkContact({s: side ? .075 : .042, color:ink}));
+    else addEl(mkShape(t, {fill: isDark(doc.paper) ? '#b8895a' : '#2d5020'}));
+  }));
+
+  // modelos rápidos
+  document.querySelectorAll('.sk-tpl').forEach(b => b.addEventListener('click', () => {
+    const ink = inkFor(), t = b.dataset.tpl;
+    const ph = doc.faces.front.filter(e => e.placeholder); doc.faces.front = doc.faces.front.filter(e => !e.placeholder);
+    if (t === 'classic'){
+      if (!doc.faces.front.some(e => e.type === 'image')) doc.faces.front.push(mkText({text:'SUA MARCA', font:'serif', s:.13, y:.38, color:ink}));
+      doc.faces.front.push(mkText({text:'Obrigado pela preferência!', s:.05, bold:false, y:.55, color:ink}));
+      doc.faces.front.push(mkContact({icon:'phone', text:'(11) 99999-9999', s:.04, y:.8, color:ink}));
+      doc.faces.front.push(mkContact({icon:'at', text:'@suamarca', s:.04, y:.86, color:ink}));
+    } else if (t === 'band'){
+      const accent = isDark(doc.paper) ? '#b8895a' : '#2d5020';
+      doc.faces.front.push(mkShape('band', {fill:accent, y:.92, h:.16}));
+      doc.faces.front.push(mkContact({icon:'at', text:'@suamarca', s:.045, y:.92, color: isDark(accent) ? '#ffffff' : '#1a1a1a'}));
+      if (!doc.faces.front.some(e => e.type === 'image')) doc.faces.front.push(mkText({text:'SUA MARCA', font:'display', bold:false, s:.16, y:.42, ls:.08, color:ink}));
+    } else {
+      doc.faces.left.push(mkContact({icon:'at', text:'@suamarca', s:.08, y:.45, rot:-90, color:ink}));
+      doc.faces.right.push(mkContact({icon:'phone', text:'(11) 99999-9999', s:.08, y:.45, rot:90, color:ink}));
+    }
+    paintAll(); setMode(t === 'sides' ? '2d' : '3d'); setFace(t === 'sides' ? 'left' : 'front'); renderProps();
+  }));
+  $('sk-copyback').addEventListener('click', () => {
+    doc.faces.back = doc.faces.front.filter(e => !e.placeholder).map(e => Object.assign({}, e, {id:newId()}));
+    paintFace('back'); changed(); setFace('back'); setMode('2d');
+  });
+
+  // ---------- Sacola: tamanho, papel, alça, acabamento ----------
+  segBind('sk-size', v => { doc.size = v; buildBag(); });
+  segBind('sk-htype', v => { doc.handle.type = v; buildHandles(); changed(); });
+  segBind('sk-finish', v => { doc.finish = v; applyFinish(); changed(); });
+  function renderBagUI(){
+    segSet('sk-size', doc.size); segSet('sk-htype', doc.handle.type); segSet('sk-finish', doc.finish);
+    swatches($('sk-paper'), CONFIG.papers, doc.paper, c => setPaper(c));
+    let ht; swatches($('sk-hcolor'), CONFIG.handles, doc.handle.color, (c, live) => { doc.handle.color = c; clearTimeout(ht); ht = setTimeout(() => { buildHandles(); changed(); }, live ? 120 : 0); });
   }
 
   // ---------- Desfazer / refazer ----------
   const hist = [], redoStack = [];
   let applying = false, histTimer = null;
-  const undoBtn = document.getElementById('sk-undo'), redoBtn = document.getElementById('sk-redo');
-  function snap(){
-    const st = JSON.parse(JSON.stringify(Object.assign({}, state, {lines: []})));
-    st.lines = state.lines.map(l => ({icon:l.icon, text:l.text, img:l.img}));
-    return {st, srcImg, srcUrl};
+  const undoBtn = $('sk-undo'), redoBtn = $('sk-redo');
+  const OBJ_KEYS = ['src','proc','iconImg','_mask','_tint','_t'];
+  function cloneDoc(d){
+    const c = {size:d.size, paper:d.paper, finish:d.finish, handle:Object.assign({}, d.handle), faces:{}};
+    FACE_ORDER.forEach(f => c.faces[f] = d.faces[f].map(e => Object.assign({}, e)));
+    return c;
   }
-  function snapKey(sn){
-    return JSON.stringify(Object.assign({}, sn.st, {lines: sn.st.lines.map(l => [l.icon, l.text, l.img ? l.img.src.length + l.img.src.slice(-32) : 0])})) + '|' + (sn.srcUrl ? sn.srcUrl.length + sn.srcUrl.slice(-32) : '');
+  let imgSeq = 1;
+  const imgKey = im => im ? (im._k || (im._k = 'i' + (imgSeq++))) : '';
+  function docKey(d){
+    return JSON.stringify(d, (k, v) => k === 'src' || k === 'iconImg' ? imgKey(v) : k === 'proc' ? (v ? v.width + 'x' + v.height : '') : OBJ_KEYS.includes(k) ? undefined : v);
   }
   function syncHistBtns(){ undoBtn.disabled = hist.length < 2; redoBtn.disabled = !redoStack.length; }
   function pushHist(){
     if (applying) return;
-    const sn = snap(), k = snapKey(sn);
+    const k = docKey(doc);
     if (hist.length && hist[hist.length-1].k === k) return;
-    hist.push({sn, k}); if (hist.length > 60) hist.shift();
+    hist.push({d: cloneDoc(doc), k}); if (hist.length > 80) hist.shift();
     redoStack.length = 0; syncHistBtns();
   }
-  function applySnap(sn){
+  function applyDoc(d){
     applying = true;
-    const sizeChanged = sn.st.size !== state.size;
-    Object.assign(state, sn.st, {lines: sn.st.lines.map(l => Object.assign({}, l))});
-    srcImg = sn.srcImg; srcUrl = sn.srcUrl;
-    if (srcImg){ processLogo(srcImg); document.getElementById('sk-bgbox').hidden = false; }
-    else {
-      logo = null; document.getElementById('sk-thumb').hidden = true; document.getElementById('sk-bgbox').hidden = true;
-      document.getElementById('sk-droptxt').innerHTML = 'Clique ou arraste o arquivo aqui<br><small>PNG, JPG ou SVG — se tiver fundo branco ou preto, dá para remover</small>';
-    }
-    if (sizeChanged) buildBag();
-    syncUI(); repaint();
+    const old = doc; doc = cloneDoc(d);
+    if (!selEl()) ui.sel = null;
+    paintPaper(); paperTex.needsUpdate = true;
+    if (old.size !== doc.size) buildBag(); else { FACE_ORDER.forEach(paintFace); buildHandles(); applyFinish(); }
+    setPaper(doc.paper);
+    renderBagUI(); renderProps(); drawFlat(); if (ui.mode === '2d') render2D();
     applying = false; syncHistBtns();
   }
-  undoBtn.addEventListener('click', () => { if (hist.length < 2) return; redoStack.push(hist.pop()); applySnap(hist[hist.length-1].sn); });
-  redoBtn.addEventListener('click', () => { const it = redoStack.pop(); if (!it) return; hist.push(it); applySnap(it.sn); });
+  undoBtn.addEventListener('click', () => { if (hist.length < 2) return; redoStack.push(hist.pop()); applyDoc(hist[hist.length-1].d); });
+  redoBtn.addEventListener('click', () => { const it = redoStack.pop(); if (!it) return; hist.push(it); applyDoc(it.d); });
   document.addEventListener('keydown', e => {
     if (!(e.ctrlKey || e.metaKey) || /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)) return;
     const k = e.key.toLowerCase();
@@ -1511,16 +1848,15 @@
     else if (k === 'y' || (k === 'z' && e.shiftKey)){ e.preventDefault(); redoBtn.click(); }
   });
 
-  editorReady = true;
-  function afterPaintImpl(){
+  function changed(){
+    if (!ready) return;
     drawFlat();
+    if (ui.mode === '2d' && !drag) render2D();
     if (!applying){ clearTimeout(histTimer); histTimer = setTimeout(pushHist, 350); }
   }
-  afterPaintHook = afterPaintImpl;
-  afterPaintImpl();
 
-  // ---------- Câmera: vistas, zoom, girar, tela cheia ----------
-  const spinBtn = document.getElementById('sk-spin');
+  // ---------- Câmera ----------
+  const spinBtn = $('sk-spin');
   let camAnim = null;
   function camTo(az, el, r){
     const t = controls.target, cur = camera.position.clone().sub(t);
@@ -1544,21 +1880,161 @@
     document.querySelectorAll('.sk-vb[data-view]').forEach(x => x.classList.toggle('on', x === b));
     const [az, el] = VIEWS[b.dataset.view]; camTo(az, el, null);
   }));
-  document.getElementById('sk-zin').addEventListener('click', () => camTo(null, null, camera.position.distanceTo(controls.target)*.82));
-  document.getElementById('sk-zout').addEventListener('click', () => camTo(null, null, camera.position.distanceTo(controls.target)*1.22));
-  document.getElementById('sk-reset').addEventListener('click', () => {
-    document.querySelectorAll('.sk-vb[data-view]').forEach(x => x.classList.remove('on'));
-    camTo(Math.atan2(.62, 1.05), .32, 1.29);
-  });
-  spinBtn.addEventListener('click', () => {
-    controls.autoRotate = !controls.autoRotate; spinBtn.classList.toggle('on', controls.autoRotate);
-    document.querySelectorAll('.sk-vb[data-view]').forEach(x => x.classList.remove('on'));
-  });
-  const editorEl = document.getElementById('sk-editor'), fullBtn = document.getElementById('sk-full');
+  $('sk-zin').addEventListener('click', () => camTo(null, null, camera.position.distanceTo(controls.target)*.82));
+  $('sk-zout').addEventListener('click', () => camTo(null, null, camera.position.distanceTo(controls.target)*1.22));
+  $('sk-reset').addEventListener('click', () => { document.querySelectorAll('.sk-vb[data-view]').forEach(x => x.classList.remove('on')); camTo(Math.atan2(.62, 1.05), .32, 1.29); });
+  spinBtn.addEventListener('click', () => { controls.autoRotate = !controls.autoRotate; spinBtn.classList.toggle('on', controls.autoRotate); });
+  const fullBtn = $('sk-full');
   if (!editorEl.requestFullscreen) fullBtn.hidden = true;
-  fullBtn.addEventListener('click', () => {
-    if (document.fullscreenElement) document.exitFullscreen(); else editorEl.requestFullscreen().catch(()=>{});
+  fullBtn.addEventListener('click', () => { if (document.fullscreenElement) document.exitFullscreen(); else editorEl.requestFullscreen().catch(()=>{}); });
+
+  // ---------- Baixar / orçamento ----------
+  $('sk-shot').addEventListener('click', () => {
+    const was = ui.mode; if (was !== '3d') setMode('3d');
+    renderer.render(scene,camera);
+    const a = document.createElement('a');
+    a.download = 'minha-sacola-kraft.png'; a.href = renderer.domElement.toDataURL('image/png'); a.click();
+    if (was !== '3d') setMode(was);
   });
+  function colorName(list, c){ const p = list.find(p => p.c.toLowerCase() === c.toLowerCase()); return p ? p.n.toLowerCase() : c.toUpperCase(); }
+  function summary(){
+    const H = {twist:'torcida', cord:'cordão', flat:'fita', none:'sem alça'};
+    const lines = [`• Sacola nº ${doc.size} (${CONFIG.sizes[doc.size].label})`, `• Papel ${colorName(CONFIG.papers, doc.paper)}, acabamento ${doc.finish === 'gloss' ? 'brilho' : 'fosco'}`,
+      `• Alça ${H[doc.handle.type]}${doc.handle.type !== 'none' ? ' ' + colorName(CONFIG.handles, doc.handle.color) : ''}`];
+    FACE_ORDER.forEach(f => {
+      const els = doc.faces[f].filter(e => !e.placeholder); if (!els.length) return;
+      const parts = els.map(e => e.type === 'image' ? 'logo' : e.type === 'shape' ? layerLabel(e).toLowerCase() : `"${e.text.replace(/\n/g,' ')}"`);
+      lines.push(`• ${FACE_NAMES[f][0].toUpperCase() + FACE_NAMES[f].slice(1)}: ${parts.join(', ')}`);
+    });
+    return lines.join('\n');
+  }
+  $('sk-quote').addEventListener('click', () => {
+    const msg = `Olá! Vim pelo simulador do site e quero um orçamento de sacola personalizada:\n${summary()}\nVou enviar meu logo e a imagem da prévia aqui.`;
+    try{gtag('event','conversion',{'send_to':'AW-17972588049/3G85CLHE8oYcEJHc__lC'});}catch(e){}
+    window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank');
+  });
+
+  // ---------- Link para compartilhar ----------
+  // A sacola inteira vai compactada no próprio link, depois do #. Nada é enviado para servidor.
+  const b64u = {
+    enc: buf => { let s=''; const b=new Uint8Array(buf); for (let i=0;i<b.length;i+=0x8000) s+=String.fromCharCode.apply(null,b.subarray(i,i+0x8000)); return btoa(s).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,''); },
+    dec: str => { str=str.replace(/-/g,'+').replace(/_/g,'/'); const s=atob(str); const b=new Uint8Array(s.length); for (let i=0;i<s.length;i++) b[i]=s.charCodeAt(i); return b; }
+  };
+  async function deflate(text){
+    if (!window.CompressionStream) return 'r' + b64u.enc(new TextEncoder().encode(text));
+    const buf = await new Response(new Blob([text]).stream().pipeThrough(new CompressionStream('deflate-raw'))).arrayBuffer();
+    return 'z' + b64u.enc(buf);
+  }
+  async function inflate(str){
+    const bytes = b64u.dec(str.slice(1));
+    if (str[0] === 'r') return new TextDecoder().decode(bytes);
+    return await new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream('deflate-raw'))).text();
+  }
+  function shrink(src, max, q){
+    const s = Math.min(1, max/Math.max(src.width, src.height));
+    const c = document.createElement('canvas'); c.width = Math.max(1,Math.round(src.width*s)); c.height = Math.max(1,Math.round(src.height*s));
+    c.getContext('2d').drawImage(src, 0, 0, c.width, c.height);
+    const webp = c.toDataURL('image/webp', q);
+    return webp.startsWith('data:image/webp') ? webp : c.toDataURL('image/png');
+  }
+  function imgData(c, budget){
+    for (const [max, q] of [[640,.9],[512,.85],[400,.8],[300,.75],[220,.7]]){ const d = shrink(c, max, q); if (d.length < budget) return d; }
+    return shrink(c, 160, .6);
+  }
+  const NUMK = ['x','y','s','rot','op','w','h','radius','ls','tol'];
+  async function buildShareLink(){
+    const nImg = FACE_ORDER.reduce((n, f) => n + doc.faces[f].filter(e => e.type === 'image').length, 0);
+    const budget = Math.max(12000, 45000 / Math.max(1, nImg));
+    const out = {v:2, size:doc.size, paper:doc.paper, handle:doc.handle, finish:doc.finish, faces:{}};
+    FACE_ORDER.forEach(f => out.faces[f] = doc.faces[f].filter(e => !e.placeholder).map(e => {
+      const o = {};
+      for (const k in e){ if (OBJ_KEYS.includes(k) || k === 'id' || k === 'placeholder') continue; o[k] = NUMK.includes(k) ? Math.round(e[k]*1000)/1000 : e[k]; }
+      if (e.type === 'image'){ o.data = imgData(e.proc || (processImage(e), e.proc), budget); o.bg = 'none'; }
+      if (e.type === 'contact' && e.icon === 'custom' && e.iconImg) o.iconData = shrink(e.iconImg, 96, .85);
+      return o;
+    }));
+    return location.origin + location.pathname + '#s=' + await deflate(JSON.stringify(out));
+  }
+
+  const isImgData = d => typeof d === 'string' && /^data:image\/(webp|png);base64,/.test(d);
+  const num = (v, d, a, b) => (typeof v === 'number' && isFinite(v)) ? Math.max(a, Math.min(b, v)) : d;
+  const str = (v, d, max) => typeof v === 'string' ? v.slice(0, max) : d;
+  const hex = (v, d) => typeof v === 'string' && /^#[0-9a-fA-F]{6}$/.test(v) ? v : d;
+  function cleanEl(o, pending){
+    if (!o || typeof o !== 'object') return null;
+    const base = {x: num(o.x,.5,0,1), y: num(o.y,.5,0,1), rot: num(o.rot,0,-180,180), op: num(o.op,1,.05,1)};
+    const txtProps = () => ({text: str(o.text,'',120), font: FONTS[o.font] ? o.font : 'sans', bold: !!o.bold, italic: !!o.italic, upper: !!o.upper, ls: num(o.ls,0,0,.5), color: hex(o.color,'#1a1a1a'), s: num(o.s,.05,.005,.5)});
+    if (o.type === 'text') return mkText(Object.assign(base, txtProps()));
+    if (o.type === 'contact'){
+      const el = mkContact(Object.assign(base, txtProps(), {icon: ICONS[o.icon] ? o.icon : 'none'}));
+      if (el.icon === 'custom'){ if (isImgData(o.iconData)) pending.push(new Promise(r => loadImg(o.iconData, im => { el.iconImg = im; r(); }))); else el.icon = 'none'; }
+      return el;
+    }
+    if (o.type === 'shape') return mkShape(['rect','circle','line'].includes(o.shape) ? o.shape : 'rect', Object.assign(base, {fill: hex(o.fill,'#2d5020'), w: num(o.w,.4,.01,1.5), h: num(o.h,.2,.001,1.5), radius: num(o.radius,0,0,.5)}));
+    if (o.type === 'image' && isImgData(o.data)){
+      const el = mkImage(null, Object.assign(base, {s: num(o.s,.5,.02,1.5), tint: o.tint ? hex(o.tint, null) : null}));
+      pending.push(new Promise(r => loadImg(o.data, im => { el.src = im; processImage(el); r(); })));
+      return el;
+    }
+    return null;
+  }
+  function migrateV1(s){ // links gerados pela versão anterior do simulador
+    const out = {v:2, size: s.size, paper:'#b8895a', handle:{type:'twist', color:'#a77849'}, finish:'matte', faces:{left:[], front:[], right:[], back:[]}};
+    const ink = s.mode === 'black' ? '#1a130d' : s.mode === 'white' ? '#faf6ee' : (s.tcolor || '#1a1a1a');
+    const font = s.font === 'serif' ? 'serif' : s.font === 'script' ? 'script' : 'sans';
+    const posY = typeof s.posY === 'number' ? s.posY : .45, ts = typeof s.tsize === 'number' ? s.tsize : 1;
+    if (s.logo) out.faces.front.push({type:'image', data:s.logo, x:.5, y:posY, s: s.scale || .55, tint: s.mode === 'color' ? null : ink});
+    if (s.main) out.faces.front.push({type:'text', text:s.main, font, bold:true, color:ink, s:.075*ts, x:.5, y: s.logo ? (s.mainPos === 'above' ? posY - .16 : posY + .16) : posY});
+    const lines = (s.lines || []).filter(l => l && l.text);
+    const ratio = CONFIG.sizes[s.size] ? CONFIG.sizes[s.size].w / CONFIG.sizes[s.size].h : .6;
+    lines.forEach((l, i) => out.faces.front.push({type:'contact', icon:l.icon, iconData:l.img, text:l.text, font: font === 'script' ? 'sans' : font, color:ink, s:.042*ts,
+      x: Math.max(.2, Math.min(.8, typeof s.tposx === 'number' ? s.tposx : .5)), y: (s.tpos || .84) + (i - (lines.length-1)/2) * .042*ts*1.65*ratio}));
+    if (s.both) out.faces.back = out.faces.front.map(e => Object.assign({}, e));
+    return out;
+  }
+  async function loadShared(){
+    const m = location.hash.match(/^#s=([A-Za-z0-9_-]+)/);
+    if (!m) return false;
+    let s;
+    try { s = JSON.parse(await inflate(m[1])); } catch(e){ console.warn('Link de sacola inválido', e); return false; }
+    if (!s || !CONFIG.sizes[s.size]) return false;
+    if (s.v !== 2) s = migrateV1(s);
+    const pending = [], d = {size:s.size, paper: hex(s.paper,'#b8895a'), finish: s.finish === 'gloss' ? 'gloss' : 'matte',
+      handle:{type: ['twist','cord','flat','none'].includes(s.handle && s.handle.type) ? s.handle.type : 'twist', color: hex(s.handle && s.handle.color, '#a77849')}, faces:{}};
+    FACE_ORDER.forEach(f => d.faces[f] = (Array.isArray(s.faces && s.faces[f]) ? s.faces[f] : []).slice(0, 30).map(o => cleanEl(o, pending)).filter(Boolean));
+    await Promise.all(pending);
+    applying = true; doc = d; ui.sel = null;
+    setPaper(doc.paper); buildBag(); renderBagUI(); renderProps();
+    applying = false; hist.length = 0; redoStack.length = 0; pushHist();
+    $('sk-shared').hidden = false;
+    setTimeout(() => document.getElementById('simulador').scrollIntoView({behavior:'smooth'}), 300);
+    return true;
+  }
+
+  const shareBox = $('sk-sharebox'), shareInp = $('sk-sharelink'), shareMsg = $('sk-sharemsg');
+  async function copyLink(){
+    try { await navigator.clipboard.writeText(shareInp.value); shareMsg.textContent = 'Link copiado! É só colar e enviar.'; }
+    catch(e){ shareInp.select(); try { document.execCommand('copy'); } catch(_){} shareMsg.textContent = 'Link selecionado — use Ctrl+C para copiar.'; }
+  }
+  $('sk-share').addEventListener('click', async () => {
+    shareMsg.textContent = 'Gerando link…'; shareBox.hidden = false;
+    const link = await buildShareLink();
+    shareInp.value = link;
+    $('sk-sharewa').href = 'https://wa.me/?text=' + encodeURIComponent('Olha como ficou a minha sacola personalizada: ' + link);
+    try{gtag('event','share',{method:'link',content_type:'sacola_kraft'});}catch(e){}
+    await copyLink();
+  });
+  $('sk-copy').addEventListener('click', copyLink);
+  shareInp.addEventListener('focus', () => shareInp.select());
+
+  // ---------- Início ----------
+  buildBag(); resize(); renderBagUI();
+  ready = true; changed(); renderProps(); pushHist();
+  if (document.fonts){
+    Promise.all(['700 40px "Inter Tight"','400 40px "Inter Tight"','600 40px Fraunces','400 40px Fraunces','40px Pacifico','40px "Bebas Neue"','40px Caveat','700 40px Caveat','400 40px "JetBrains Mono"']
+      .map(f => document.fonts.load(f).catch(()=>{}))).then(() => { applying = true; FACE_ORDER.forEach(paintFace); applying = false; drawFlat(); if (ui.mode === '2d') render2D(); });
+  }
+  loadShared();
   window.addEventListener('hashchange', () => { if (/^#s=/.test(location.hash)) loadShared(); });
 })();
 </script>
