@@ -1028,15 +1028,19 @@
   const isDark = hex => { const n=parseInt(hex.slice(1),16); return (.299*(n>>16)+.587*(n>>8&255)+.114*(n&255)) < 110; };
 
   function makeRopeTex(color){
-    const c = document.createElement('canvas'); c.width=64; c.height=64;
+    const c = document.createElement('canvas'); c.width = 128; c.height = 64;
     const x = c.getContext('2d');
-    x.fillStyle=color; x.fillRect(0,0,64,64);
-    x.lineWidth=7; x.strokeStyle=shade(color,.6)+'99';
-    for(let i=-64;i<128;i+=16){ x.beginPath(); x.moveTo(i,0); x.lineTo(i+64,64); x.stroke(); }
-    x.lineWidth=3; x.strokeStyle=shade(color,1.45)+'66';
-    for(let i=-58;i<128;i+=16){ x.beginPath(); x.moveTo(i,0); x.lineTo(i+64,64); x.stroke(); }
+    x.fillStyle = color; x.fillRect(0,0,128,64);
+    for (let k=0;k<3;k++) for (let i=-128;i<256;i+=32){
+      const off = i + k*10.7, g = x.createLinearGradient(off, 0, off+20, 0);
+      g.addColorStop(0, shade(color,.55)); g.addColorStop(.45, shade(color,1.25)); g.addColorStop(1, shade(color,.55));
+      x.strokeStyle = g; x.lineWidth = 9; x.beginPath(); x.moveTo(off,0); x.lineTo(off+64,64); x.stroke();
+    }
+    const n = x.getImageData(0,0,128,64), d = n.data;
+    for (let i=0;i<d.length;i+=4){ const r=(Math.random()-.5)*18; d[i]+=r; d[i+1]+=r; d[i+2]+=r; }
+    x.putImageData(n,0,0);
     const t = new THREE.CanvasTexture(c);
-    t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(60,1); t.encoding = THREE.sRGBEncoding;
+    t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(70,1); t.encoding = THREE.sRGBEncoding;
     return t;
   }
 
@@ -1257,12 +1261,18 @@
   const bottomMat= new THREE.MeshStandardMaterial({map:paperTex, color:0xd6d0c6, roughness:.95, envMapIntensity:.3});
   const outMats = {};
 
-  function panelGeo(gw, gh, bulge, type){
-    const g = new THREE.PlaneGeometry(gw, gh, 32, 4);
-    const p = g.attributes.position;
+  // paredes: frente/verso levemente estufados; laterais com o vinco do fole entrando mais perto da boca
+  const sideDepth = (gw, v) => gw*(.05 + .24*Math.pow(v, 2.2));
+  function panelGeo(gw, gh, bulge, type, rimOf){
+    const g = new THREE.PlaneGeometry(gw, gh, 48, rimOf ? 2 : 32);
+    const p = g.attributes.position, v0 = rimOf ? 0 : (gw/2)/gh;
     for (let i=0;i<p.count;i++){
-      const u = (p.getX(i)+gw/2)/gw;
-      p.setZ(i, type==='face' ? bulge*Math.sin(Math.PI*u) : -bulge*(1-Math.abs(2*u-1)));
+      const u = Math.min(1, Math.max(0, (p.getX(i)+gw/2)/gw)), v = rimOf ? 1 : Math.min(1, Math.max(0, (p.getY(i)+gh/2)/gh));
+      if (type === 'face') p.setZ(i, bulge*Math.sin(Math.PI*u)*(.5+.5*v));
+      else {
+        const tri = 1 - Math.abs(2*u-1), f = rimOf ? 1 : Math.max(0, Math.min(1, (v - v0)/.18));
+        p.setZ(i, -sideDepth(rimOf || gw, v)*tri*f*f*(3-2*f));
+      }
     }
     g.computeVertexNormals(); return g;
   }
@@ -1277,22 +1287,23 @@
     const fold = Math.min(.04, h*.1);
     handles = new THREE.Group();
     const t = doc.handle.type, color = doc.handle.color;
-    const mat = t === 'twist' ? new THREE.MeshStandardMaterial({map: makeRopeTex(color), roughness:.85})
-                              : new THREE.MeshStandardMaterial({color: new THREE.Color(color).convertSRGBToLinear(), roughness: t === 'cord' ? .6 : .8});
-    const a = w*(t === 'flat' ? .2 : .18), top = h + Math.min(t === 'flat' ? .09 : .12, h*.3);
+    let mat;
+    if (t === 'twist'){ const tx = makeRopeTex(color); mat = new THREE.MeshStandardMaterial({map:tx, bumpMap:tx, bumpScale:.0025, roughness:.9, envMapIntensity:.3}); }
+    else mat = new THREE.MeshStandardMaterial({color: new THREE.Color(color).convertSRGBToLinear(), roughness: t === 'cord' ? .6 : .8, envMapIntensity:.3});
+    const a = w*.2, top = h + Math.min(t === 'flat' ? .09 : .12, h*.3);
     [1,-1].forEach(s => {
-      const z = s*(d/2 - (t === 'flat' ? .004 : .008)), V = THREE.Vector3;
+      const z = s*(d/2 - (t === 'flat' ? .004 : .006)), V = THREE.Vector3;
       const curve = new THREE.CatmullRomCurve3([
-        new V(-a, h-fold*.8, z), new V(-a*1.06, h+.02, z), new V(-a*.75, top-.022, z),
-        new V(0, top, z), new V(a*.75, top-.022, z), new V(a*1.06, h+.02, z), new V(a, h-fold*.8, z)
+        new V(-a, h-fold*2.2, z), new V(-a*1.02, h-fold*.4, z), new V(-a*1.04, h+.025, z), new V(-a*.72, top-.02, z),
+        new V(0, top, z), new V(a*.72, top-.02, z), new V(a*1.04, h+.025, z), new V(a*1.02, h-fold*.4, z), new V(a, h-fold*2.2, z)
       ]);
       let geo;
       if (t === 'flat'){
         const sh = new THREE.Shape(); const hw = .0012, hh = .0075;
         sh.moveTo(-hw,-hh); sh.lineTo(hw,-hh); sh.lineTo(hw,hh); sh.lineTo(-hw,hh); sh.lineTo(-hw,-hh);
-        geo = new THREE.ExtrudeGeometry(sh, {steps:90, bevelEnabled:false, extrudePath:curve});
+        geo = new THREE.ExtrudeGeometry(sh, {steps:120, bevelEnabled:false, extrudePath:curve});
       } else {
-        geo = new THREE.TubeGeometry(curve, 96, t === 'cord' ? .0045 : .0036, 12, false);
+        geo = new THREE.TubeGeometry(curve, 160, t === 'cord' ? .0052 : .0048, 14, false);
       }
       const m = new THREE.Mesh(geo, mat); m.castShadow = true; handles.add(m);
     });
@@ -1302,7 +1313,7 @@
     if (bag){ scene.remove(bag); bag.traverse(o => o.geometry && o.geometry.dispose()); }
     outerMeshes.length = 0;
     const {w,h,d} = CONFIG.sizes[doc.size];
-    const fold = Math.min(.04, h*.1), fBulge = .005, sBulge = d*.1;
+    const fold = Math.min(.04, h*.1), fBulge = .0035, sBulge = 0;
     bag = new THREE.Group(); handles = null;
 
     FACE_ORDER.forEach(k => faces[k] && faces[k].tex.dispose());
@@ -1321,7 +1332,7 @@
       const o = new THREE.Mesh(geo, outMats[face]); o.castShadow = o.receiveShadow = true; o.userData.face = face;
       outerMeshes.push(o);
       const i = new THREE.Mesh(geo, innerMat); i.receiveShadow = true;
-      const rim = new THREE.Mesh(panelGeo(gw-.003, fold, bulge, type), rimMat);
+      const rim = new THREE.Mesh(panelGeo(gw-.003, fold, bulge, type, type === 'side' ? gw : 0), rimMat);
       rim.position.set(0, h/2-fold/2, -.0025);
       const grp = new THREE.Group(); grp.add(o,i,rim);
       grp.position.copy(pos); grp.rotation.y = rotY; bag.add(grp);
