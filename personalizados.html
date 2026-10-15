@@ -939,7 +939,7 @@
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.outputEncoding = THREE.sRGBEncoding;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.1;
+  renderer.toneMappingExposure = .9;
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   const aniso = renderer.capabilities.getMaxAnisotropy();
@@ -959,7 +959,7 @@
   if (THREE.RoomEnvironment && THREE.PMREMGenerator){
     try { const pm = new THREE.PMREMGenerator(renderer); scene.environment = pm.fromScene(new THREE.RoomEnvironment(), .04).texture; } catch(e){}
   }
-  scene.add(new THREE.HemisphereLight(0xfff6ea, 0xb39a80, scene.environment ? .55 : .8));
+  const hemi = new THREE.HemisphereLight(0xfff6ea, 0xb39a80, scene.environment ? .3 : .8); scene.add(hemi);
   const key = new THREE.DirectionalLight(0xffffff, 1.15);
   key.position.set(.8, 1.5, 1.1);
   key.castShadow = true;
@@ -969,6 +969,7 @@
   scene.add(key);
   const fill = new THREE.DirectionalLight(0xffe6cc, .4);
   fill.position.set(-1, .6, -.6); scene.add(fill);
+  if (/[?&]skdebug/.test(location.search)) window.__sk = {THREE, renderer, scene, camera, controls, hemi, key, fill, get mats(){ return outMats; }};
 
   const ground = new THREE.Mesh(new THREE.PlaneGeometry(6,6), new THREE.ShadowMaterial({opacity:.2}));
   ground.rotation.x = -Math.PI/2; ground.receiveShadow = true; scene.add(ground);
@@ -1251,9 +1252,9 @@
   // ---------- Geometria da sacola ----------
   let bag = null, handles = null;
   const outerMeshes = [];
-  const innerMat = new THREE.MeshStandardMaterial({map:paperTex, color:0xd6d0c6, roughness:.95, side:THREE.BackSide});
-  const rimMat   = new THREE.MeshStandardMaterial({map:paperTex, color:0xeeeeee, roughness:.95, side:THREE.DoubleSide});
-  const bottomMat= new THREE.MeshStandardMaterial({map:paperTex, color:0xd6d0c6, roughness:.95});
+  const innerMat = new THREE.MeshStandardMaterial({map:paperTex, color:0xd6d0c6, roughness:.95, side:THREE.BackSide, envMapIntensity:.3});
+  const rimMat   = new THREE.MeshStandardMaterial({map:paperTex, color:0xeeeeee, roughness:.95, side:THREE.DoubleSide, envMapIntensity:.3});
+  const bottomMat= new THREE.MeshStandardMaterial({map:paperTex, color:0xd6d0c6, roughness:.95, envMapIntensity:.3});
   const outMats = {};
 
   function panelGeo(gw, gh, bulge, type){
@@ -1312,7 +1313,7 @@
     faces.right = mkFace(Rs, Math.round(Rs*h/d));
     FACE_ORDER.forEach(paintFace);
 
-    FACE_ORDER.forEach(k => { if (outMats[k]) outMats[k].dispose(); outMats[k] = new THREE.MeshStandardMaterial({map:faces[k].tex, roughness:.92, bumpMap:creaseTex, bumpScale:.0016, envMapIntensity:.45}); });
+    FACE_ORDER.forEach(k => { if (outMats[k]) outMats[k].dispose(); outMats[k] = new THREE.MeshStandardMaterial({map:faces[k].tex, roughness:.92, bumpMap:creaseTex, bumpScale:.0016, envMapIntensity:.25}); });
     applyFinish();
 
     function wall(face, gw, type, bulge, pos, rotY){
