@@ -2093,12 +2093,12 @@
     Object.assign(key.shadow.camera, {left:-1, right:1, top:1, bottom:-1}); key.shadow.camera.updateProjectionMatrix();
     controls.maxDistance = 3.6;
     // na página da sacola, desloca a cena para a direita para não ficar atrás do cartão
-    controls.target.set(VIEWING && window.innerWidth > 900 ? -total*.2 : 0, (maxH + .1)*.5, 0);
+    controls.target.set(VIEWING && window.innerWidth > 900 ? -total*.1 : 0, (maxH + .1)*.5, 0);
     compare = {groups, orig};
     applying = false;
     document.querySelectorAll('.sk-cmpbtn').forEach(b => b.classList.add('on'));
     $('sk-cmpclose').hidden = false;
-    try { camTo(.32, .2, Math.min(3.4, total*1.35 + .35)); } catch(e){}
+    try { camTo(.16, .2, Math.min(3.4, total*(VIEWING ? 1.75 : 1.45) + .4)); } catch(e){}
     controls.autoRotate = false; spinBtn.classList.remove('on');
   }
   function exitCompare(keepCam){
