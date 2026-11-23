@@ -497,6 +497,32 @@
     html.sk-viewmode .sk-tools { bottom: 116px; }
   }
 
+  /* ——— comparar tamanhos ——— */
+  .sk-cmpbtn.on { border-style: solid; border-color: var(--leaf-600); background: var(--leaf-50); }
+  .sk-cmpclose {
+    position: absolute; z-index: 5; top: 18px; left: 50%; transform: translateX(-50%);
+    padding: 10px 16px; border-radius: 999px; border: 0; cursor: pointer;
+    background: var(--leaf-800); color: var(--paper); font-family: var(--font-body); font-size: 13px;
+    box-shadow: 0 12px 28px -14px rgba(18,35,13,.7);
+  }
+  html.sk-viewmode .sk-cmpclose { top: auto; bottom: 132px; }
+  .sk-vsizes { margin-top: 14px; }
+  .sk-vsizes__l { display: block; font-family: var(--font-mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--kraft-500); margin-bottom: 7px; }
+  .sk-vsizebtns { display: flex; flex-wrap: wrap; gap: 5px; }
+  .sk-vsz {
+    display: inline-flex; align-items: baseline; gap: 5px; padding: 7px 11px; border-radius: 8px; cursor: pointer;
+    border: 1px solid var(--kraft-200); background: var(--paper); color: var(--leaf-800); font-family: var(--font-body); font-size: 13px;
+  }
+  .sk-vsz small { font-size: 10px; color: var(--kraft-500); }
+  .sk-vsz.on { background: var(--leaf-600); border-color: var(--leaf-600); color: var(--paper); }
+  .sk-vsz.on small { color: var(--kraft-200); }
+  .sk-vsz--all { border-style: dashed; }
+  @media (max-width: 900px) {
+    html.sk-viewmode .sk-vsizes { margin-top: 10px; }
+    html.sk-viewmode .sk-vsizes__l { display: none; }
+    html.sk-viewmode .sk-vsz { padding: 6px 9px; font-size: 12px; }
+  }
+
   /* ——— editor de camadas ——— */
   .sk-copyto { display: flex; gap: 4px; flex-wrap: wrap; }
   .sk-copyto .sk-ib { flex: 1 0 auto; }
@@ -790,6 +816,7 @@
             <button type="button" data-v="18">nº 18</button><button type="button" data-v="20" class="on">nº 20</button><button type="button" data-v="25">nº 25</button><button type="button" data-v="30">nº 30</button>
           </div>
           <div class="sk-sub" id="sk-dims"></div>
+          <button type="button" class="sk-add sk-cmpbtn">Comparar os 4 tamanhos lado a lado</button>
 
           <span class="sk-l sk-l--mt">Cor do papel</span>
           <div class="sk-sw" id="sk-paper"></div>
@@ -838,10 +865,15 @@
       <div class="sk-stage" id="sk-stage">
         <div class="sk-shared" id="sk-shared" hidden>Você está vendo uma sacola compartilhada · edite à vontade e monte a sua</div>
         <div class="sk-vstate" id="sk-vstate" hidden></div>
+        <button type="button" class="sk-cmpclose" id="sk-cmpclose" hidden>✕ Sair da comparação</button>
         <div class="sk-vinfo" id="sk-vinfo" hidden>
           <a href="index.html" class="sk-vbrand">CJS <span>Embalagens</span></a>
           <h1 class="sk-vtitle">Sacola personalizada</h1>
           <p class="sk-vspec" id="sk-vspec"></p>
+          <div class="sk-vsizes">
+            <span class="sk-vsizes__l">Ver este design em outro tamanho</span>
+            <div class="sk-vsizebtns" id="sk-vsizes"></div>
+          </div>
           <div class="sk-vactions">
             <button type="button" class="sk-vbtn" id="sk-vshare">Copiar link</button>
             <a class="sk-vbtn" id="sk-vwa" target="_blank" rel="noopener">Enviar no WhatsApp</a>
@@ -1481,6 +1513,7 @@
 
   const c2d = $('sk-2d');
   function setMode(m){
+    if (m === '2d' && compare) exitCompare(true);
     ui.mode = m;
     document.querySelectorAll('.sk-modebtn').forEach(b => b.classList.toggle('on', b.dataset.mode === m));
     c2d.hidden = m !== '2d'; $('sk-hint2d').hidden = m !== '2d';
@@ -1842,7 +1875,7 @@
   let downAt = null;
   canvas.addEventListener('pointerdown', e => downAt = [e.clientX, e.clientY]);
   canvas.addEventListener('pointerup', e => {
-    if (VIEWING) return;
+    if (VIEWING || compare) return;
     if (!downAt || Math.hypot(e.clientX - downAt[0], e.clientY - downAt[1]) > 5) return;
     const r = canvas.getBoundingClientRect();
     mouse.set((e.clientX - r.left)/r.width*2 - 1, -(e.clientY - r.top)/r.height*2 + 1);
@@ -1927,7 +1960,7 @@
   }
 
   // ---------- Sacola: tamanho, papel, alça, acabamento ----------
-  segBind('sk-size', v => { doc.size = v; buildBag(); });
+  segBind('sk-size', v => { if (compare) exitCompare(true); doc.size = v; buildBag(); });
   segBind('sk-htype', v => { doc.handle.type = v; buildHandles(); changed(); });
   segBind('sk-finish', v => { doc.finish = v; applyFinish(); changed(); });
   function renderBagUI(){
@@ -1980,6 +2013,7 @@
 
   function changed(){
     if (!ready) return;
+    if (compare && !applying){ exitCompare(true); return; }
     drawFlat();
     if (ui.mode === '2d' && !drag) render2D();
     if (!applying){ clearTimeout(histTimer); histTimer = setTimeout(pushHist, 350); }
@@ -2014,6 +2048,74 @@
   $('sk-zout').addEventListener('click', () => camTo(null, null, camera.position.distanceTo(controls.target)*1.22));
   $('sk-reset').addEventListener('click', () => { document.querySelectorAll('.sk-vb[data-view]').forEach(x => x.classList.remove('on')); camTo(Math.atan2(.62, 1.05), .32, 1.29); });
   spinBtn.addEventListener('click', () => { controls.autoRotate = !controls.autoRotate; spinBtn.classList.toggle('on', controls.autoRotate); });
+  // ---------- Comparar os 4 tamanhos lado a lado ----------
+  var compare = null;
+  const SHARED_MATS = () => [innerMat, rimMat, bottomMat];
+  function disposeGroup(g){
+    g.traverse(o => {
+      if (o.geometry) o.geometry.dispose();
+      if (o.material && !SHARED_MATS().includes(o.material)){ if (o.material.map) o.material.map.dispose(); o.material.dispose(); }
+    });
+  }
+  function sizeLabel(s, isOrig){
+    const c = document.createElement('canvas'); c.width = 512; c.height = 176;
+    const x = c.getContext('2d');
+    x.fillStyle = isOrig ? '#2d5020' : 'rgba(250,246,239,.96)';
+    x.beginPath(); x.roundRect ? x.roundRect(8, 8, 496, 160, 30) : x.rect(8, 8, 496, 160); x.fill();
+    x.fillStyle = isOrig ? '#faf6ef' : '#12230d'; x.textAlign = 'center';
+    x.font = '600 64px "Inter Tight", sans-serif'; x.fillText('nº ' + s, 256, 82);
+    x.font = '400 34px "Inter Tight", sans-serif'; x.fillText(CONFIG.sizes[s].label, 256, 136);
+    const t = new THREE.CanvasTexture(c); t.encoding = THREE.sRGBEncoding; t.anisotropy = aniso;
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(.12, .041), new THREE.MeshBasicMaterial({map:t, transparent:true}));
+    m.rotation.x = -Math.PI/2 + .35; return m;
+  }
+  function enterCompare(){
+    if (compare) return;
+    if (ui.mode === '2d') setMode('3d');
+    applying = true;
+    const orig = doc.size, sizes = Object.keys(CONFIG.sizes), gap = .07;
+    if (bag){ scene.remove(bag); disposeGroup(bag); }
+    const groups = [];
+    sizes.forEach(s => {
+      bag = null; FACE_ORDER.forEach(k => { delete faces[k]; delete outMats[k]; });
+      doc.size = s; buildBag(); groups.push({s, g: bag});
+    });
+    doc.size = orig;
+    const total = sizes.reduce((a, s) => a + CONFIG.sizes[s].w, 0) + gap*(sizes.length-1);
+    let x = -total/2, maxH = 0;
+    groups.forEach(({s, g}) => {
+      const {w, h, d} = CONFIG.sizes[s];
+      g.position.x = x + w/2; maxH = Math.max(maxH, h);
+      const lab = sizeLabel(s, s === orig); lab.position.set(0, .006, d/2 + .045); g.add(lab);
+      x += w + gap;
+    });
+    Object.assign(key.shadow.camera, {left:-1, right:1, top:1, bottom:-1}); key.shadow.camera.updateProjectionMatrix();
+    controls.maxDistance = 3.6;
+    controls.target.set(0, (maxH + .1)*.5, 0);
+    compare = {groups, orig};
+    applying = false;
+    document.querySelectorAll('.sk-cmpbtn').forEach(b => b.classList.add('on'));
+    $('sk-cmpclose').hidden = false;
+    try { camTo(.32, .2, Math.min(3.4, total*1.35 + .35)); } catch(e){}
+    controls.autoRotate = false; spinBtn.classList.remove('on');
+  }
+  function exitCompare(keepCam){
+    if (!compare) return;
+    applying = true;
+    compare.groups.forEach(({g}) => { scene.remove(g); disposeGroup(g); });
+    bag = null; FACE_ORDER.forEach(k => { delete faces[k]; delete outMats[k]; });
+    compare = null;
+    Object.assign(key.shadow.camera, {left:-.7, right:.7, top:.7, bottom:-.7}); key.shadow.camera.updateProjectionMatrix();
+    controls.maxDistance = 2.4;
+    buildBag();
+    applying = false;
+    document.querySelectorAll('.sk-cmpbtn').forEach(b => b.classList.remove('on'));
+    $('sk-cmpclose').hidden = true;
+    if (!keepCam){ try { camTo(Math.atan2(.62, 1.05), .3, 1.25); } catch(e){} }
+  }
+  document.querySelectorAll('.sk-cmpbtn').forEach(b => b.addEventListener('click', () => compare ? exitCompare() : enterCompare()));
+  $('sk-cmpclose').addEventListener('click', () => exitCompare());
+
   const fullBtn = $('sk-full');
   if (!editorEl.requestFullscreen) fullBtn.hidden = true;
   fullBtn.addEventListener('click', () => { if (document.fullscreenElement) document.exitFullscreen(); else editorEl.requestFullscreen().catch(()=>{}); });
@@ -2262,7 +2364,23 @@
     }
     st.hidden = true; ov.hidden = false;
     const H = {twist:'alça torcida', cord:'alça cordão', flat:'alça fita', none:'sem alça'};
-    $('sk-vspec').textContent = `Sacola nº ${doc.size} · ${CONFIG.sizes[doc.size].label} · papel ${colorName(CONFIG.papers, doc.paper)} · ${H[doc.handle.type]}`;
+    const ORIG = doc.size;
+    const spec = () => { $('sk-vspec').textContent = `Sacola nº ${doc.size} · ${CONFIG.sizes[doc.size].label} · papel ${colorName(CONFIG.papers, doc.paper)} · ${H[doc.handle.type]}` + (doc.size !== ORIG ? ` (montada no nº ${ORIG})` : ''); };
+    spec();
+    const sb = $('sk-vsizes');
+    Object.keys(CONFIG.sizes).forEach(s => {
+      const b = document.createElement('button'); b.type = 'button'; b.className = 'sk-vsz' + (s === ORIG ? ' on' : '');
+      b.innerHTML = 'nº ' + s + (s === ORIG ? '<small>original</small>' : '');
+      b.addEventListener('click', () => {
+        if (compare) exitCompare(true);
+        sb.querySelectorAll('.sk-vsz').forEach(x => x.classList.toggle('on', x === b));
+        doc.size = s; buildBag(); spec();
+      });
+      sb.appendChild(b);
+    });
+    const all = document.createElement('button'); all.type = 'button'; all.className = 'sk-vsz sk-vsz--all sk-cmpbtn'; all.textContent = 'Comparar os 4';
+    all.addEventListener('click', () => compare ? exitCompare() : enterCompare());
+    sb.appendChild(all);
     document.title = `Sacola personalizada nº ${doc.size} | CJS Embalagens`;
     try { camTo(Math.atan2(.62, 1.05), .28, 1.2); } catch(e){}
     controls.autoRotate = true; $('sk-spin').classList.add('on');
@@ -2277,7 +2395,7 @@
     const q = $('sk-quote'); const fresh = q.cloneNode(true); q.replaceWith(fresh);
     fresh.firstChild.textContent = 'Quero esta sacola ';
     fresh.addEventListener('click', () => {
-      const msg = `Olá! Quero um orçamento desta sacola personalizada:\n${shortLink}\n${summary()}`;
+      const msg = `Olá! Quero um orçamento desta sacola personalizada:\n${shortLink}\n${summary()}` + (doc.size !== ORIG ? `\n(o design foi montado no nº ${ORIG}, mas quero no nº ${doc.size})` : '');
       try{gtag('event','conversion',{'send_to':'AW-17972588049/3G85CLHE8oYcEJHc__lC'});}catch(e){}
       window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank');
     });
