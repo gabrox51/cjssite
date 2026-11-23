@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sacola personalizada | CJS Embalagens</title>
+<meta name="robots" content="noindex" />
+<meta name="description" content="Veja em 3D a sacola personalizada que montaram para você no simulador da CJS Embalagens." />
+<meta property="og:title" content="Sacola personalizada em 3D | CJS Embalagens" />
+<meta property="og:description" content="Toque para ver a sacola em 3D, girar e pedir um orçamento." />
+<meta property="og:image" content="https://cjsembalagens.com.br/images/sacolas-kraft.jpg" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="pt_BR" />
+<script>
+  // link curto: cjsembalagens.com.br/s?id=XXXX → página só da sacola
+  (function(){
+    var id = new URLSearchParams(location.search).get('id') || '';
+    location.replace(/^[A-Za-z0-9]{6,12}$/.test(id) ? '/personalizados.html?ver=' + id : '/personalizados.html#simulador');
+  })();
+</script>
+</head>
+<body style="font-family:system-ui,sans-serif;background:#f2ebdc;color:#12230d;display:grid;place-items:center;min-height:100vh;margin:0">
+  <p>Abrindo a sacola… <a href="/personalizados.html#simulador">Abrir o simulador</a></p>
+</body>
+</html>

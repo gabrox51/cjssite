@@ -26,6 +26,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="pt_BR" />
 
+<script>if (/[?&]ver=[A-Za-z0-9]{6,12}/.test(location.search)) document.documentElement.classList.add('sk-viewmode');</script>
 <!-- Tema dinâmico por dia da semana -->
 <script>
   (function(){
@@ -450,6 +451,52 @@
     .sk-shared { right: 16px; top: 64px; }
   }
 
+  /* ——— página só da sacola (?ver=ID) ——— */
+  .sk-vstate, .sk-vinfo { display: none; }
+  html.sk-viewmode body > :not(#simulador):not(script) { display: none !important; }
+  html.sk-viewmode body { background: var(--kraft-100); }
+  html.sk-viewmode .sim { padding: 0; }
+  html.sk-viewmode .sim__inner { max-width: none; }
+  html.sk-viewmode .sim__head, html.sk-viewmode .sk-rail, html.sk-viewmode .sk-panel,
+  html.sk-viewmode .sk-mode, html.sk-viewmode .sk-mode + .sk-viewbar__sep,
+  html.sk-viewmode #sk-undo, html.sk-viewmode #sk-redo, html.sk-viewmode .sk-tools__sep,
+  html.sk-viewmode .sk-shared, html.sk-viewmode #sk-2d, html.sk-viewmode .sk-hint2d { display: none !important; }
+  html.sk-viewmode .sk-editor { display: block; height: 100vh; height: 100dvh; border: 0; border-radius: 0; box-shadow: none; }
+  html.sk-viewmode .sk-stage { height: 100% !important; max-height: none !important; min-height: 0 !important; }
+  html.sk-viewmode .sk-vstate:not([hidden]) {
+    display: grid; place-items: center; position: absolute; inset: 0; z-index: 4; text-align: center;
+    font-family: var(--font-display); font-size: 22px; color: var(--leaf-800); line-height: 1.5;
+  }
+  .sk-vstate a { font-family: var(--font-body); font-size: 15px; color: var(--leaf-600); text-decoration: underline; }
+  html.sk-viewmode .sk-vinfo:not([hidden]) {
+    display: block; position: absolute; z-index: 4; top: 18px; left: 18px; max-width: 380px; padding: 20px 22px;
+    background: rgba(250,246,239,.94); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--kraft-200); border-radius: 14px; box-shadow: 0 20px 44px -28px rgba(61,45,20,.6);
+  }
+  .sk-vbrand { font-family: var(--font-display); font-size: 18px; color: var(--leaf-800); display: inline-flex; gap: 6px; align-items: baseline; }
+  .sk-vbrand span { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: .15em; text-transform: uppercase; opacity: .6; }
+  .sk-vtitle { font-family: var(--font-display); font-weight: 400; font-size: 30px; line-height: 1.05; letter-spacing: -.02em; color: var(--leaf-800); margin: 12px 0 6px; }
+  .sk-vspec { font-size: 13.5px; color: var(--ink-soft); line-height: 1.5; }
+  .sk-vactions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+  .sk-vbtn {
+    padding: 9px 13px; border-radius: 999px; border: 1px solid var(--kraft-300); background: var(--paper); cursor: pointer;
+    font-family: var(--font-body); font-size: 13px; color: var(--leaf-800); transition: all .25s var(--ease-out-quart);
+  }
+  .sk-vbtn:hover { border-color: var(--leaf-600); }
+  .sk-vbtn--accent { background: var(--leaf-600); border-color: var(--leaf-600); color: var(--paper); }
+  .sk-vhint { margin-top: 14px; font-family: var(--font-mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--kraft-500); }
+  @media (max-width: 900px) {
+    html.sk-viewmode .sk-vinfo:not([hidden]) { top: 10px; left: 10px; right: 10px; max-width: none; padding: 14px 16px; }
+    html.sk-viewmode .sk-vtitle { font-size: 22px; margin: 6px 0 4px; }
+    html.sk-viewmode .sk-vhint, html.sk-viewmode .sk-vbrand { display: none; }
+    html.sk-viewmode .sk-vtitle { margin-top: 0; }
+    html.sk-viewmode .sk-vactions { margin-top: 10px; gap: 5px; }
+    html.sk-viewmode .sk-vbtn { padding: 7px 11px; font-size: 12px; }
+    html.sk-viewmode .sk-cta { left: 10px; right: 10px; top: auto; bottom: 10px; justify-content: center; padding: 14px; font-size: 15px; }
+    html.sk-viewmode .sk-viewbar { bottom: 66px; left: 50%; right: auto; transform: translateX(-50%); }
+    html.sk-viewmode .sk-tools { bottom: 116px; }
+  }
+
   /* ——— editor de camadas ——— */
   .sk-copyto { display: flex; gap: 4px; flex-wrap: wrap; }
   .sk-copyto .sk-ib { flex: 1 0 auto; }
@@ -790,6 +837,19 @@
       <!-- palco -->
       <div class="sk-stage" id="sk-stage">
         <div class="sk-shared" id="sk-shared" hidden>Você está vendo uma sacola compartilhada · edite à vontade e monte a sua</div>
+        <div class="sk-vstate" id="sk-vstate" hidden></div>
+        <div class="sk-vinfo" id="sk-vinfo" hidden>
+          <a href="index.html" class="sk-vbrand">CJS <span>Embalagens</span></a>
+          <h1 class="sk-vtitle">Sacola personalizada</h1>
+          <p class="sk-vspec" id="sk-vspec"></p>
+          <div class="sk-vactions">
+            <button type="button" class="sk-vbtn" id="sk-vshare">Copiar link</button>
+            <a class="sk-vbtn" id="sk-vwa" target="_blank" rel="noopener">Enviar no WhatsApp</a>
+            <a class="sk-vbtn" id="sk-vcopy" href="personalizados.html#simulador">Editar uma cópia</a>
+            <a class="sk-vbtn sk-vbtn--accent" id="sk-vmine" href="personalizados.html#simulador">Criar a minha</a>
+          </div>
+          <p class="sk-vhint">Arraste para girar · pinça ou scroll para aproximar</p>
+        </div>
         <canvas id="sk-canvas" aria-label="Prévia 3D da sacola kraft"></canvas>
         <canvas id="sk-2d" hidden aria-label="Editor 2D da face da sacola"></canvas>
         <div class="sk-hint2d" id="sk-hint2d" hidden>Arraste para mover · cantos: tamanho · bolinha: girar · Delete apaga</div>
@@ -882,6 +942,9 @@
   /* ===== CONFIGURE AQUI ===== */
   const CONFIG = {
     whatsapp: '5511995535533',
+    // Firebase (Firestore) para os links curtos. Enquanto estiver vazio, o simulador usa o link longo.
+    firebase: { apiKey: '', projectId: '' },
+    shortBase: 'https://cjsembalagens.com.br/s?id=',
     sizes: {                      // medidas em metros: w = largura, h = altura, d = fole/fundo
       '18':{w:.18,h:.26,d:.10,label:'18 × 10 × 26 cm'},
       '20':{w:.20,h:.34,d:.11,label:'20 × 11 × 34 cm'},
@@ -928,6 +991,7 @@
 
   let doc = freshDoc();
   const ui = {face:'front', sel:null, mode:'3d'};
+  var VIEWING = false;
 
   const stage = document.getElementById('sk-stage');
   const canvas = document.getElementById('sk-canvas');
@@ -1778,6 +1842,7 @@
   let downAt = null;
   canvas.addEventListener('pointerdown', e => downAt = [e.clientX, e.clientY]);
   canvas.addEventListener('pointerup', e => {
+    if (VIEWING) return;
     if (!downAt || Math.hypot(e.clientX - downAt[0], e.clientY - downAt[1]) > 5) return;
     const r = canvas.getBoundingClientRect();
     mouse.set((e.clientX - r.left)/r.width*2 - 1, -(e.clientY - r.top)/r.height*2 + 1);
@@ -2024,22 +2089,56 @@
     return webp.startsWith('data:image/webp') ? webp : c.toDataURL('image/png');
   }
   function imgData(c, budget){
-    for (const [max, q] of [[640,.9],[512,.85],[400,.8],[300,.75],[220,.7]]){ const d = shrink(c, max, q); if (d.length < budget) return d; }
+    for (const [max, q] of [[1024,.9],[800,.88],[640,.86],[512,.84],[400,.8],[300,.75],[220,.7]]){ const d = shrink(c, max, q); if (d.length < budget) return d; }
     return shrink(c, 160, .6);
   }
   const NUMK = ['x','y','s','rot','op','w','h','radius','ls','tol'];
-  async function buildShareLink(){
+  // compacta a sacola inteira num texto (JSON comprimido); budget = bytes por imagem
+  async function packDesign(totalBudget){
     const nImg = FACE_ORDER.reduce((n, f) => n + doc.faces[f].filter(e => e.type === 'image').length, 0);
-    const budget = Math.max(12000, 45000 / Math.max(1, nImg));
+    const budget = Math.max(12000, Math.min(220000, totalBudget / Math.max(1, nImg)));
     const out = {v:2, size:doc.size, paper:doc.paper, handle:doc.handle, finish:doc.finish, faces:{}};
     FACE_ORDER.forEach(f => out.faces[f] = doc.faces[f].filter(e => !e.placeholder).map(e => {
       const o = {};
       for (const k in e){ if (OBJ_KEYS.includes(k) || k === 'id' || k === 'placeholder') continue; o[k] = NUMK.includes(k) ? Math.round(e[k]*1000)/1000 : e[k]; }
       if (e.type === 'image'){ o.data = imgData(e.proc || (processImage(e), e.proc), budget); o.bg = 'none'; }
-      if (e.type === 'contact' && e.icon === 'custom' && e.iconImg) o.iconData = shrink(e.iconImg, 96, .85);
+      if (e.type === 'contact' && e.icon === 'custom' && e.iconImg) o.iconData = shrink(e.iconImg, 128, .88);
       return o;
     }));
-    return location.origin + location.pathname + '#s=' + await deflate(JSON.stringify(out));
+    return await deflate(JSON.stringify(out));
+  }
+  const FB = CONFIG.firebase, fbReady = !!(FB.apiKey && FB.projectId);
+  const fbBase = () => `https://firestore.googleapis.com/v1/projects/${FB.projectId}/databases/(default)/documents/sacolas`;
+  function newShortId(){
+    const A = '23456789abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ', r = new Uint8Array(8);
+    crypto.getRandomValues(r); return Array.from(r, v => A[v % A.length]).join('');
+  }
+  async function saveDesign(packed){
+    for (let tries = 0; tries < 3; tries++){
+      const id = newShortId();
+      const res = await fetch(`${fbBase()}?documentId=${id}&key=${FB.apiKey}`, {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({fields:{v:{integerValue:'2'}, doc:{stringValue:packed}}})
+      });
+      if (res.ok) return id;
+      if (res.status !== 409) throw new Error('Firestore ' + res.status);
+    }
+    throw new Error('Não foi possível gerar um código livre');
+  }
+  async function fetchDesign(id){
+    if (!fbReady) throw new Error('sem-firebase');
+    const res = await fetch(`${fbBase()}/${encodeURIComponent(id)}?key=${FB.apiKey}`);
+    if (res.status === 404) throw new Error('nao-encontrada');
+    if (!res.ok) throw new Error('Firestore ' + res.status);
+    const j = await res.json();
+    return j.fields && j.fields.doc && j.fields.doc.stringValue;
+  }
+  async function buildShareLink(){
+    if (fbReady){
+      try { return {link: CONFIG.shortBase + await saveDesign(await packDesign(700000)), short:true}; }
+      catch(e){ console.warn('Link curto indisponível, usando link longo', e); }
+    }
+    return {link: location.origin + location.pathname + '#s=' + await packDesign(45000), short:false};
   }
 
   const isImgData = d => typeof d === 'string' && /^data:image\/(webp|png);base64,/.test(d);
@@ -2078,11 +2177,9 @@
     if (s.both) out.faces.back = out.faces.front.map(e => Object.assign({}, e));
     return out;
   }
-  async function loadShared(){
-    const m = location.hash.match(/^#s=([A-Za-z0-9_-]+)/);
-    if (!m) return false;
+  async function applyPacked(packed){
     let s;
-    try { s = JSON.parse(await inflate(m[1])); } catch(e){ console.warn('Link de sacola inválido', e); return false; }
+    try { s = JSON.parse(await inflate(packed)); } catch(e){ console.warn('Sacola inválida', e); return false; }
     if (!s || !CONFIG.sizes[s.size]) return false;
     if (s.v !== 2) s = migrateV1(s);
     const pending = [], d = {size:s.size, paper: hex(s.paper,'#b8895a'), finish: s.finish === 'gloss' ? 'gloss' : 'matte',
@@ -2092,9 +2189,24 @@
     applying = true; doc = d; ui.sel = null;
     setPaper(doc.paper); buildBag(); renderBagUI(); renderProps();
     applying = false; hist.length = 0; redoStack.length = 0; pushHist();
+    return true;
+  }
+  async function loadShared(){
+    const m = location.hash.match(/^#s=([A-Za-z0-9_-]+)/);
+    if (!m || !(await applyPacked(m[1]))) return false;
     $('sk-shared').hidden = false;
     setTimeout(() => document.getElementById('simulador').scrollIntoView({behavior:'smooth'}), 300);
     return true;
+  }
+  // ?id=XXXX abre uma cópia editável de uma sacola salva
+  async function loadCopy(id){
+    const banner = $('sk-shared');
+    try {
+      if (!(await applyPacked(await fetchDesign(id)))) throw new Error('invalida');
+      banner.textContent = 'Você está editando uma cópia da sacola compartilhada · a original não muda';
+    } catch(e){ banner.textContent = 'Não encontramos essa sacola. Monte a sua do zero.'; }
+    banner.hidden = false;
+    setTimeout(() => document.getElementById('simulador').scrollIntoView({behavior:'smooth'}), 300);
   }
 
   const shareBox = $('sk-sharebox'), shareInp = $('sk-sharelink'), shareMsg = $('sk-sharemsg');
@@ -2103,12 +2215,17 @@
     catch(e){ shareInp.select(); try { document.execCommand('copy'); } catch(_){} shareMsg.textContent = 'Link selecionado — use Ctrl+C para copiar.'; }
   }
   $('sk-share').addEventListener('click', async () => {
-    shareMsg.textContent = 'Gerando link…'; shareBox.hidden = false;
-    const link = await buildShareLink();
-    shareInp.value = link;
-    $('sk-sharewa').href = 'https://wa.me/?text=' + encodeURIComponent('Olha como ficou a minha sacola personalizada: ' + link);
-    try{gtag('event','share',{method:'link',content_type:'sacola_kraft'});}catch(e){}
-    await copyLink();
+    const btn = $('sk-share'); btn.disabled = true;
+    shareMsg.textContent = 'Salvando a sua sacola…'; shareBox.hidden = false; shareInp.value = '';
+    try {
+      const r = await buildShareLink();
+      shareInp.value = r.link;
+      $('sk-sharewa').href = 'https://wa.me/?text=' + encodeURIComponent('Olha como ficou a minha sacola personalizada: ' + r.link);
+      try{gtag('event','share',{method: r.short ? 'link_curto' : 'link', content_type:'sacola_kraft'});}catch(e){}
+      await copyLink();
+      if (r.short) shareMsg.textContent += ' Quem abrir vê a sacola em 3D, no celular ou no computador.';
+    } catch(e){ shareMsg.textContent = 'Não consegui gerar o link agora. Tente de novo em instantes.'; }
+    btn.disabled = false;
   });
   $('sk-copy').addEventListener('click', copyLink);
   shareInp.addEventListener('focus', () => shareInp.select());
@@ -2120,8 +2237,51 @@
     Promise.all(['700 40px "Inter Tight"','400 40px "Inter Tight"','600 40px Fraunces','400 40px Fraunces','40px Pacifico','40px "Bebas Neue"','40px Caveat','700 40px Caveat','400 40px "JetBrains Mono"']
       .map(f => document.fonts.load(f).catch(()=>{}))).then(() => { applying = true; FACE_ORDER.forEach(paintFace); applying = false; drawFlat(); if (ui.mode === '2d') render2D(); });
   }
-  loadShared();
+  const QS = new URLSearchParams(location.search), VIEW_ID = QS.get('ver'), COPY_ID = QS.get('id');
+  const validId = v => !!v && /^[A-Za-z0-9]{6,12}$/.test(v);
+  if (validId(VIEW_ID)) startViewer(VIEW_ID);
+  else if (validId(COPY_ID)) loadCopy(COPY_ID);
+  else loadShared();
   window.addEventListener('hashchange', () => { if (/^#s=/.test(location.hash)) loadShared(); });
+
+  // Página só da sacola: tela cheia, 3D, sem editor
+  async function startViewer(id){
+    VIEWING = true;
+    document.documentElement.classList.add('sk-viewmode');
+    setMode('3d'); controls.autoRotate = true; $('sk-spin').classList.add('on');
+    const shortLink = CONFIG.shortBase + id;
+    const ov = $('sk-vinfo'), st = $('sk-vstate');
+    st.hidden = false; st.textContent = 'Carregando a sacola…';
+    $('sk-vmine').href = 'personalizados.html#simulador';
+    $('sk-vcopy').href = 'personalizados.html?id=' + id + '#simulador';
+    try {
+      if (!(await applyPacked(await fetchDesign(id)))) throw new Error('invalida');
+    } catch(e){
+      st.innerHTML = 'Não encontramos esta sacola.<br><a href="personalizados.html#simulador">Monte a sua sacola personalizada</a>';
+      return;
+    }
+    st.hidden = true; ov.hidden = false;
+    const H = {twist:'alça torcida', cord:'alça cordão', flat:'alça fita', none:'sem alça'};
+    $('sk-vspec').textContent = `Sacola nº ${doc.size} · ${CONFIG.sizes[doc.size].label} · papel ${colorName(CONFIG.papers, doc.paper)} · ${H[doc.handle.type]}`;
+    document.title = `Sacola personalizada nº ${doc.size} | CJS Embalagens`;
+    try { camTo(Math.atan2(.62, 1.05), .28, 1.2); } catch(e){}
+    controls.autoRotate = true; $('sk-spin').classList.add('on');
+    $('sk-vshare').addEventListener('click', async () => {
+      const b = $('sk-vshare');
+      try { await navigator.clipboard.writeText(shortLink); b.textContent = 'Link copiado!'; }
+      catch(e){ b.textContent = shortLink; }
+      setTimeout(() => b.textContent = 'Copiar link', 2500);
+    });
+    $('sk-vwa').href = 'https://wa.me/?text=' + encodeURIComponent('Olha esta sacola personalizada: ' + shortLink);
+    // pedido pelo WhatsApp já com o link da sacola
+    const q = $('sk-quote'); const fresh = q.cloneNode(true); q.replaceWith(fresh);
+    fresh.firstChild.textContent = 'Quero esta sacola ';
+    fresh.addEventListener('click', () => {
+      const msg = `Olá! Quero um orçamento desta sacola personalizada:\n${shortLink}\n${summary()}`;
+      try{gtag('event','conversion',{'send_to':'AW-17972588049/3G85CLHE8oYcEJHc__lC'});}catch(e){}
+      window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank');
+    });
+  }
 })();
 </script>
 
