@@ -485,6 +485,7 @@
   .sk-vbtn:hover { border-color: var(--leaf-600); }
   .sk-vbtn--accent { background: var(--leaf-600); border-color: var(--leaf-600); color: var(--paper); }
   .sk-vhint { margin-top: 14px; font-family: var(--font-mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--kraft-500); }
+  html.sk-viewmode .sk-cta { left: auto; right: 18px; top: auto; bottom: 18px; }
   @media (max-width: 900px) {
     html.sk-viewmode .sk-vinfo:not([hidden]) { top: 10px; left: 10px; right: 10px; max-width: none; padding: 14px 16px; }
     html.sk-viewmode .sk-vtitle { font-size: 22px; margin: 6px 0 4px; }
@@ -2091,7 +2092,8 @@
     });
     Object.assign(key.shadow.camera, {left:-1, right:1, top:1, bottom:-1}); key.shadow.camera.updateProjectionMatrix();
     controls.maxDistance = 3.6;
-    controls.target.set(0, (maxH + .1)*.5, 0);
+    // na página da sacola, desloca a cena para a direita para não ficar atrás do cartão
+    controls.target.set(VIEWING && window.innerWidth > 900 ? -total*.2 : 0, (maxH + .1)*.5, 0);
     compare = {groups, orig};
     applying = false;
     document.querySelectorAll('.sk-cmpbtn').forEach(b => b.classList.add('on'));
